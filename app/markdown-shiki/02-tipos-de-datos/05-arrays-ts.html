@@ -1,0 +1,50 @@
+<!--
+    *  ---------------------------------------------------------------------------------------------  *
+    *  -----  /05-arrays-ts.html  --  /src/markdown-shiki/02-tipos-de-datos/05-arrays-ts.html  -----  *
+    *  ---------------------------------------------------------------------------------------------  *
+-->
+
+<pre class="shiki dark-plus" style="background-color: #1E1E1E" tabindex="0"><code class="language-ts"><span class="line"><span style="color: #6A9955">/*</span></span>
+<span class="line"><span style="color: #6A9955">    ------------------------------------</span></span>
+<span class="line"><span style="color: #6A9955">    ----------  05-arrays.ts  ----------</span></span>
+<span class="line"><span style="color: #6A9955">    ------------------------------------</span></span>
+<span class="line"><span style="color: #6A9955">*/</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">(() </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">warn</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;-----  05-arrays.ts  -----&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Arrays de String, Numbers, Boolean  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">numbers1</span><span style="color: #D4D4D4"> = [</span><span style="color: #B5CEA8">1</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">2</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">3</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">4</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">5</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&#39;6&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">7</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">8</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">9</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">10</span><span style="color: #D4D4D4">, </span><span style="color: #569CD6">true</span><span style="color: #D4D4D4">];</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">numbers1</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">push</span><span style="color: #D4D4D4">(</span><span style="color: #569CD6">false</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">({ </span><span style="color: #9CDCFE">numbers1</span><span style="color: #D4D4D4"> });</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Array de Numbers  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">numbers2</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4">[] = [</span><span style="color: #B5CEA8">1</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">2</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">3</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">4</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">5</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">6</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">7</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">8</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">9</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">10</span><span style="color: #D4D4D4">];</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">numbers2</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">push</span><span style="color: #D4D4D4">(</span><span style="color: #B5CEA8">11</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">, { </span><span style="color: #9CDCFE">numbers2</span><span style="color: #D4D4D4"> });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Array de Strings  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">villains</span><span style="color: #D4D4D4"> = [</span><span style="color: #CE9178">&#39;Omega Rojo&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&#39;Dormammu&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&#39;Duende Verde&#39;</span><span style="color: #D4D4D4">];</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">, { </span><span style="color: #9CDCFE">villains</span><span style="color: #D4D4D4"> });</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">villains</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">forEach</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">villain</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">villain</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">toUpperCase</span><span style="color: #D4D4D4">()));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"><span style="color: #D4D4D4">})();</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+
+
+
+

@@ -1,0 +1,15 @@
+/*
+    *  ------------------------------------------------------------------------------------------------------------------  *
+    *  -----  /07-constructores-privados.scss  --  /src/styles/scss/pages/06-clases/07-constructores-privados.scss  -----  *
+    *  ------------------------------------------------------------------------------------------------------------------  *
+*/
+
+.main__hero {
+    width: 100%;
+    max-width: 120rem;
+    aspect-ratio: 16/9;
+    background-image: url('/plugins/spa-loader-content-html-v3/assets/img/06-clases/07-constructores-privados.avif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}

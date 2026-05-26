@@ -1,0 +1,45 @@
+<!--
+    *  -----------------------------------------------------------------------------------------------  *
+    *  -----  /03-strings-ts.html  --  /src/markdown-shiki/02-tipos-de-datos/03-strings-ts.html  -----  *
+    *  -----------------------------------------------------------------------------------------------  *
+-->
+
+<pre class="shiki dark-plus" style="background-color: #1E1E1E" tabindex="0"><code class="language-ts"><span class="line"><span style="color: #6A9955">/*</span></span>
+<span class="line"><span style="color: #6A9955">    --------------------------------------</span></span>
+<span class="line"><span style="color: #6A9955">    ----------  03-strings.ts  ----------</span></span>
+<span class="line"><span style="color: #6A9955">    --------------------------------------</span></span>
+<span class="line"><span style="color: #6A9955">*/</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">(() </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">warn</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;-----  03-strings.ts  -----&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  3 formas de crear strings  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">batman</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4"> = </span><span style="color: #CE9178">&#39;Batman&#39;</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">linternaVerde</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4"> = </span><span style="color: #CE9178">&quot;Linterna&#39;s Verde&quot;</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">volcanNegro</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4"> = </span><span style="color: #CE9178">`Héroe: Volcán Negro`</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  number  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">abc</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4"> = </span><span style="color: #B5CEA8">123</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">({ </span><span style="color: #9CDCFE">batman</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">linternaVerde</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">volcanNegro</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">abc</span><span style="color: #D4D4D4"> });</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Métodos de String  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">batman</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">toUpperCase</span><span style="color: #D4D4D4">());</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">` I&#39;m </span><span style="color: #569CD6">${</span><span style="color: #9CDCFE">batman</span><span style="color: #569CD6">}</span><span style="color: #CE9178">, </span><span style="color: #569CD6">${</span><span style="color: #9CDCFE">abc</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">toString</span><span style="color: #D4D4D4">()</span><span style="color: #569CD6">}</span><span style="color: #CE9178"> `</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">( </span><span style="color: #9CDCFE">batman</span><span style="color: #D4D4D4">[</span><span style="color: #B5CEA8">11</span><span style="color: #D4D4D4">]?.</span><span style="color: #DCDCAA">toUpperCase</span><span style="color: #D4D4D4">() || </span><span style="color: #CE9178">&#39;No existe el héroe&#39;</span><span style="color: #D4D4D4"> );</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"><span style="color: #D4D4D4">})();</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+
+
+
+

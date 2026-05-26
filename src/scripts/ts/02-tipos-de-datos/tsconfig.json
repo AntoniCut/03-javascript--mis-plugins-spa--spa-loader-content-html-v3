@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        
+        "target": "ES5",
+        "module": "amd",
+        "sourceMap": true,
+        
+        "rootDir": ".",
+        "outDir": "../../js/02-tipos-de-datos",
+                
+        "strict": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "ignoreDeprecations": "6.0"
+    },
+    
+    "include": [
+        "**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+
+}

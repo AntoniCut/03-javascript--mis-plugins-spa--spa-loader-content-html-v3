@@ -1,0 +1,61 @@
+/*
+    *  -------------------------------------------------------------------------  *
+    *  -----  /_variables.scss  --  /src/styles/scss/base/_variables.scss  -----  *
+    *  -------------------------------------------------------------------------  *
+*/
+
+//  -----  base del proyecto  -----
+$base: '/mis-plugins-spa/spa-loader-content-html-v3';
+
+
+
+//  -----  Fuentes  -----
+$font-primary: "Monserrat", Arial, Helvetica, sans-serif;
+
+
+//  -----  Colores  -----
+
+$color-primary: #007ACC;
+
+$color-header-title: $color-primary;
+$color-header-page: #F89C15;
+$color-header-subtitle: #D94D3D;
+
+$color-grid: #e5e7eb;
+
+//  -----  Fondos lisos  -----
+$bg-scrollbar: $color-primary;
+$bg-white: #ffffff;
+$bg-light: #F7E7C0;
+$bg-dark: #1E293B;
+$bg-dark-footer: #020617;
+
+
+//  -----  Background Principal  -----
+$bg-main: radial-gradient(circle, rgb(255, 255, 255), rgb(219, 228, 240), rgb(176, 196, 236));
+
+
+//  -----  Background Cuadricula  -----
+$bg-grid-light: linear-gradient(to right, $color-grid 1px, transparent 1px),
+    linear-gradient(to bottom, $color-grid 1px, transparent 1px);
+
+
+//  -----  Background Gradiente Header  -----
+$bg-gradient-header: linear-gradient(to left, rgb(189, 220, 230) 20%, rgb(133, 157, 189) 40%, rgb(100, 143, 230) 60%, rgb(197, 201, 221) 80%);
+
+//  -----  Background Gradiente Footer  -----
+$bg-gradient-footer: linear-gradient(to right, rgb(139, 175, 187) 20%, rgb(146, 175, 212) 40%, rgb(100, 143, 230) 60%, rgb(197, 207, 250) 80%);
+
+
+//  -----  Background Cuadricula 40x40  -----
+$bg-grid-pattern: linear-gradient(to right, $color-grid 1px, transparent 1px),
+    linear-gradient(to bottom, $color-grid 1px, transparent 1px);
+
+$bg-grid-size-40x40: 40px 40px;
+
+
+/// ----- Breakpoints -----
+$mobile: 480px;
+$tablet: 768px;
+$desktop-sm: 1024px;
+$desktop: 1200px;

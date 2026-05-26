@@ -1,0 +1,15 @@
+/*
+    *  -------------------------------------------------------------------------------------------  *
+    *  -----  /01-functions.scss  --  /src/styles/scss/pages/03-funciones/01-functions.scss  -----  *
+    *  -------------------------------------------------------------------------------------------  *
+*/
+
+.main__hero {
+    width: 100%;
+    max-width: 120rem;
+    aspect-ratio: 16/9;
+    background-image: url('/mis-plugins-spa/spa-loader-content-html-v3/assets/img/03-funciones/01-functions.avif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}

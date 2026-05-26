@@ -1,0 +1,14 @@
+/*
+    *  ---------------------------------------------------------------------------------------------------  *
+    *  -----  /03-args-optional.scss  --  /src/styles/scss/pages/03-funciones/03-args-optional.scss  -----  *
+    *  ---------------------------------------------------------------------------------------------------  *
+*/
+.main__hero {
+  width: 100%;
+  max-width: 120rem;
+  aspect-ratio: 16/9;
+  background-image: url("/mis-plugins-spa/spa-loader-content-html-v3/assets/img/03-funciones/03-args-optional.avif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIwMy1mdW5jaW9uZXMvMDMtYXJncy1vcHRpb25hbC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFNQTtFQUNJO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAgICAqICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0gICpcbiAgICAqICAtLS0tLSAgLzAzLWFyZ3Mtb3B0aW9uYWwuc2NzcyAgLS0gIC9zcmMvc3R5bGVzL3Njc3MvcGFnZXMvMDMtZnVuY2lvbmVzLzAzLWFyZ3Mtb3B0aW9uYWwuc2NzcyAgLS0tLS0gICpcbiAgICAqICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0gICpcbiovXG5cbi5tYWluX19oZXJvIHtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBtYXgtd2lkdGg6IDEyMHJlbTtcbiAgICBhc3BlY3QtcmF0aW86IDE2Lzk7XG4gICAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCcvbWlzLXBsdWdpbnMtc3BhL3NwYS1sb2FkZXItY29udGVudC1odG1sLXYzL2Fzc2V0cy9pbWcvMDMtZnVuY2lvbmVzLzAzLWFyZ3Mtb3B0aW9uYWwuYXZpZicpO1xuICAgIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG4gICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgICBiYWNrZ3JvdW5kLXBvc2l0aW9uOiBjZW50ZXI7XG59XG4iXSwiZmlsZSI6IjAzLWZ1bmNpb25lcy8wMy1hcmdzLW9wdGlvbmFsLmNzcyJ9 */

@@ -1,0 +1,14 @@
+/*
+    *  ----------------------------------------------------------------------------------------------------------------------------  *
+    *  -----  /02-desestructuring-objects.scss  --  /src/styles/scss/pages/05-ecmascript-es6/02-desestructuring-objects.scss  -----  *
+    *  ----------------------------------------------------------------------------------------------------------------------------  *
+*/
+.main__hero {
+  width: 100%;
+  max-width: 120rem;
+  aspect-ratio: 16/9;
+  background-image: url("/mis-plugins-spa/spa-loader-content-html-v3/assets/img/05-ecmascript-es6/02-desestructuracion-de-objetos.avif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIwNS1lY21hc2NyaXB0LWVzNi8wMi1kZXNlc3RydWN0dXJpbmctb2JqZWN0cy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFNQTtFQUNJO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAgICAqICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tICAqXG4gICAgKiAgLS0tLS0gIC8wMi1kZXNlc3RydWN0dXJpbmctb2JqZWN0cy5zY3NzICAtLSAgL3NyYy9zdHlsZXMvc2Nzcy9wYWdlcy8wNS1lY21hc2NyaXB0LWVzNi8wMi1kZXNlc3RydWN0dXJpbmctb2JqZWN0cy5zY3NzICAtLS0tLSAgKlxuICAgICogIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0gICpcbiovXG5cbi5tYWluX19oZXJvIHtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBtYXgtd2lkdGg6IDEyMHJlbTtcbiAgICBhc3BlY3QtcmF0aW86IDE2Lzk7XG4gICAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCcvbWlzLXBsdWdpbnMtc3BhL3NwYS1sb2FkZXItY29udGVudC1odG1sLXYzL2Fzc2V0cy9pbWcvMDUtZWNtYXNjcmlwdC1lczYvMDItZGVzZXN0cnVjdHVyYWNpb24tZGUtb2JqZXRvcy5hdmlmJyk7XG4gICAgYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcbiAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICAgIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlcjtcbn1cbiJdLCJmaWxlIjoiMDUtZWNtYXNjcmlwdC1lczYvMDItZGVzZXN0cnVjdHVyaW5nLW9iamVjdHMuY3NzIn0= */

@@ -1,0 +1,57 @@
+<!--
+    *  ----------------------------------------------------------------------------------------  *
+    *  -----  /01-objects-js.html  --  /src/markdown-shiki/04-objetos/01-objects-js.html  -----  *
+    *  ----------------------------------------------------------------------------------------  *
+-->
+
+<pre class="shiki dark-plus" style="background-color: #1E1E1E" tabindex="0"><code class="language-js"><span class="line"><span style="color: #6A9955">// @ts-nocheck</span></span>
+<span class="line"><span style="color: #CE9178">&quot;use strict&quot;</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #6A9955">/*</span></span>
+<span class="line"><span style="color: #6A9955">    -------------------------------------</span></span>
+<span class="line"><span style="color: #6A9955">    ----------  01-objetos.js  ----------</span></span>
+<span class="line"><span style="color: #6A9955">    -------------------------------------</span></span>
+<span class="line"><span style="color: #6A9955">*/</span></span>
+<span class="line"><span style="color: #D4D4D4">(</span><span style="color: #569CD6">function</span><span style="color: #D4D4D4"> () {</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">clear</span><span style="color: #D4D4D4">();</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">warn</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;-----  01-objects.js  -----&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Inferir tipo  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">var</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">flash</span><span style="color: #D4D4D4"> = {</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">name:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Barry Allen&#39;</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">age:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">24</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">powers:</span><span style="color: #D4D4D4"> [</span><span style="color: #CE9178">&#39;Super Velocidad&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&#39;Viajar en el tiempo&#39;</span><span style="color: #D4D4D4">]</span></span>
+<span class="line"><span style="color: #D4D4D4">    };</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">flash</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  cambiamos valor de flash  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">flash</span><span style="color: #D4D4D4"> = {</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">name:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Clark Kent&#39;</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">age:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">30</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">powers:</span><span style="color: #D4D4D4"> [</span><span style="color: #CE9178">&#39;Super Fuerza&#39;</span><span style="color: #D4D4D4">],</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #6A9955">//  El literal de objeto solo puede especificar propiedades conocidas </span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #6A9955">// y &#39;getNombre&#39; no existe en el tipo &#39;{ name: string; age: number; powers: string[]; }&#39;</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #DCDCAA">getNombre</span><span style="color: #9CDCFE">:</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">function</span><span style="color: #D4D4D4"> () {</span></span>
+<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #C586C0">return</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">        }</span></span>
+<span class="line"><span style="color: #D4D4D4">    };</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">flash</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Definir tipo  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">var</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">superman</span><span style="color: #D4D4D4"> = {</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">name:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Superman&#39;</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #6A9955">//age: 500,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">powers:</span><span style="color: #D4D4D4"> [</span><span style="color: #CE9178">&#39;Super Fuerza&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&#39;Volar&#39;</span><span style="color: #D4D4D4">]</span></span>
+<span class="line"><span style="color: #D4D4D4">    };</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">superman</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Agregar método  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">var</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">ironMan</span><span style="color: #D4D4D4"> = {</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">name:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Iron Man&#39;</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">age:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">33</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">powers:</span><span style="color: #D4D4D4"> [</span><span style="color: #CE9178">&#39;Super Fuerza&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&#39;Volar&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&#39;Inteligencia&#39;</span><span style="color: #D4D4D4">],</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #DCDCAA">getName</span><span style="color: #9CDCFE">:</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">function</span><span style="color: #D4D4D4"> () {</span></span>
+<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #C586C0">return</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">        }</span></span>
+<span class="line"><span style="color: #D4D4D4">    };</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;ironMan.getName() = &#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">ironMan</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">getName</span><span style="color: #D4D4D4">());</span></span>
+<span class="line"><span style="color: #D4D4D4">})();</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>

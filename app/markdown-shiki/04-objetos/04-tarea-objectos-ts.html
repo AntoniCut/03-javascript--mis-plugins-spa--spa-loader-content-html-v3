@@ -1,0 +1,133 @@
+<!--
+    *  ------------------------------------------------------------------------------------------------------  *
+    *  -----  /04-tarea-objectos-ts.html  --  /src/markdown-shiki/04-objetos/04-tarea-objectos-ts.html  -----  *
+    *  ------------------------------------------------------------------------------------------------------  *
+-->
+
+<pre class="shiki dark-plus" style="background-color: #1E1E1E" tabindex="0"><code class="language-ts"><span class="line"><span style="color: #6A9955">/*</span></span>
+<span class="line"><span style="color: #6A9955">    -------------------------------------------</span></span>
+<span class="line"><span style="color: #6A9955">    ----------  04-tarea-objetos.ts  ----------</span></span>
+<span class="line"><span style="color: #6A9955">    -------------------------------------------</span></span>
+<span class="line"><span style="color: #6A9955">*/</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">(() </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">clear</span><span style="color: #D4D4D4">();</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">warn</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;-----  04-tarea-objetos.ts  -----&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Definir tipos personalizados para un objeto  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">type</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Carro</span><span style="color: #D4D4D4"> = {</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">carroceria</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">modelo</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">antibalas</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">boolean</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">pasajeros</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #DCDCAA">disparar</span><span style="color: #D4D4D4">?: () </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">void</span><span style="color: #D4D4D4">; </span><span style="color: #6A9955">// El metodo disparar es opcional</span></span>
+<span class="line"><span style="color: #D4D4D4">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Crear el objeto  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">batimovil</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">Carro</span><span style="color: #D4D4D4"> = {</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">carroceria:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&quot;Negra&quot;</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">modelo:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&quot;6x6&quot;</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">antibalas:</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">true</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">pasajeros:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">4</span></span>
+<span class="line"><span style="color: #D4D4D4">    };</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Otro objeto  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">bumblebee</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">Carro</span><span style="color: #D4D4D4"> = {</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">carroceria:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&quot;Amarillo con negro&quot;</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">modelo:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&quot;4x2&quot;</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">antibalas:</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">true</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">pasajeros:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">4</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #DCDCAA">disparar</span><span style="color: #D4D4D4">() { </span><span style="color: #6A9955">// El metodo disparar es opcional</span></span>
+<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&quot;Disparando&quot;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">        }</span></span>
+<span class="line"><span style="color: #D4D4D4">    };</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Imprimir en consola  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;batimovil:&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">batimovil</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;bumblebee:&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">bumblebee</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;bumblebee.disparar():&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">bumblebee</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">disparar</span><span style="color: #D4D4D4">?.());</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Definir un tipo personalizado para un objeto  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">type</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Villano</span><span style="color: #D4D4D4"> = {</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">nombre</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">edad</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4"> | </span><span style="color: #4EC9B0">undefined</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">mutante</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">boolean</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Villanos debe de ser un arreglo de objetos personalizados  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">villanos</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">Villano</span><span style="color: #D4D4D4">[] = [</span></span>
+<span class="line"><span style="color: #D4D4D4">        {</span></span>
+<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">nombre:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&quot;Lex Luthor&quot;</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">edad:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">54</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">mutante:</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">false</span></span>
+<span class="line"><span style="color: #D4D4D4">        }, {</span></span>
+<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">nombre:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&quot;Erik Magnus Lehnsherr&quot;</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">edad:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">49</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">mutante:</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">true</span></span>
+<span class="line"><span style="color: #D4D4D4">        }, {</span></span>
+<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">nombre:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&quot;James Logan&quot;</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">edad:</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">undefined</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">mutante:</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">true</span></span>
+<span class="line"><span style="color: #D4D4D4">        }</span></span>
+<span class="line"><span style="color: #D4D4D4">    ];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Imprimir en consola  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">villanos:&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">villanos</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Multiples tipos  ----------------------------------------------</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  cree dos tipos, uno para charles y otro para apocalipsis  -----</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//    -----  Tipo Charles  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">type</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Charles</span><span style="color: #D4D4D4"> = {</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">poder</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">estatura</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  variable charles  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">charles</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">Charles</span><span style="color: #D4D4D4"> = {</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">poder:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&quot;psiquico&quot;</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">estatura:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">1.78</span></span>
+<span class="line"><span style="color: #D4D4D4">    };</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//    -----  Tipo Apocalipsis  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">type</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Apocalipsis</span><span style="color: #D4D4D4"> = {</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">lider</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">boolean</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">miembros</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">[];</span></span>
+<span class="line"><span style="color: #D4D4D4">    }</span></span>
+<span class="line"><span style="color: #D4D4D4">  </span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Variable apocalipsis  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">apocalipsis</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">Apocalipsis</span><span style="color: #D4D4D4"> = {</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">lider:</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">true</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">miembros:</span><span style="color: #D4D4D4"> [</span><span style="color: #CE9178">&quot;Magneto&quot;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&quot;Tormenta&quot;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&quot;Psylocke&quot;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&quot;Angel&quot;</span><span style="color: #D4D4D4">]</span></span>
+<span class="line"><span style="color: #D4D4D4">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Mystique, debe poder ser cualquiera de esos dos mutantes (charles o apocalipsis)  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">let</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">mystique</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">Charles</span><span style="color: #D4D4D4"> | </span><span style="color: #4EC9B0">Apocalipsis</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Asignar a mystique el tipo charles  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">mystique</span><span style="color: #D4D4D4"> = </span><span style="color: #9CDCFE">charles</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">mystique como charles:&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">mystique</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Asignar a mystique el tipo apocalipsis  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">mystique</span><span style="color: #D4D4D4"> = </span><span style="color: #9CDCFE">apocalipsis</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;mystique como apocalipsis:&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">mystique</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">})();</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+

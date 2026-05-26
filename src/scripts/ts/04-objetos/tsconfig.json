@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        
+        "target": "ES5",
+        "module": "amd",
+        "sourceMap": true,
+        
+        "rootDir": ".",
+        "outDir": "../../js/04-objetos",
+        
+        "strict": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "ignoreDeprecations": "6.0"
+    },
+    
+    "include": [
+        "**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+
+}

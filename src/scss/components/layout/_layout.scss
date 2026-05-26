@@ -1,0 +1,67 @@
+/*
+    *  --------------------------------------------------------------------------------  *
+    *  -----  /_layout.scss  --  /src/styles/scss/components/layout/_layout.scss  -----  *
+    *  --------------------------------------------------------------------------------  *
+*/
+
+@use '../../base/variables' as var;
+
+
+html {
+    font-size: 10px;
+}
+
+body {
+    min-width: 100%;
+    min-height: 100dvh;
+    font-family: var.$font-primary;
+    font-style: normal;
+    font-size: 1.6rem;
+    box-shadow: inset 50px 50px 100px rgb(209, 220, 235);
+}
+
+.layout {
+    
+    width: 100vw;
+    min-height: 100dvh;
+
+    position: absolute;
+    overflow-x: hidden;
+    inset: 0;
+    z-index: 0;
+    overflow-y: auto;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+
+.layout.fade-in {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.btn__container {
+    margin-top: 3rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+button {
+    padding: 1rem 2rem;
+    background-color: cornflowerblue;
+    color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: rgb(24, 56, 116);
+}

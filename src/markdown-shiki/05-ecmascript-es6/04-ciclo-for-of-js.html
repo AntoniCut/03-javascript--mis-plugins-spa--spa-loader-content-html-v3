@@ -1,0 +1,36 @@
+<!--
+    *  ---------------------------------------------------------------------------------------------------------  *
+    *  -----  /04-ciclo-for-of-js.html  --  /src/markdown-shiki/05-ecmascript-es6/04-ciclo-for-of-js.html  -----  *
+    *  ---------------------------------------------------------------------------------------------------------  *
+-->
+
+<pre class="shiki dark-plus" style="background-color: #1E1E1E" tabindex="0"><code class="language-js"><span class="line"><span style="color: #6A9955">// @ts-nocheck</span></span>
+<span class="line"><span style="color: #CE9178">&quot;use strict&quot;</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #6A9955">/*</span></span>
+<span class="line"><span style="color: #6A9955">    ------------------------------------------</span></span>
+<span class="line"><span style="color: #6A9955">    ----------  04-ciclo-for-of.js  ----------</span></span>
+<span class="line"><span style="color: #6A9955">    ------------------------------------------</span></span>
+<span class="line"><span style="color: #6A9955">*/</span></span>
+<span class="line"><span style="color: #D4D4D4">(() </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//console.clear();</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">warn</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;-----  04-ciclo-for-of.ts  -----&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  objetos  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">ironman</span><span style="color: #D4D4D4"> = {</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">name:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Ironman&#39;</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">weapon:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Armorsuit&#39;</span></span>
+<span class="line"><span style="color: #D4D4D4">    };</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  otro objeto  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">thor</span><span style="color: #D4D4D4"> = {</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">name:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Thor&#39;</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">weapon:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Mjolnir&#39;</span></span>
+<span class="line"><span style="color: #D4D4D4">    };</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  array de objetos  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">avengers</span><span style="color: #D4D4D4"> = [</span><span style="color: #9CDCFE">ironman</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">thor</span><span style="color: #D4D4D4">];</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #C586C0">for</span><span style="color: #D4D4D4"> (</span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">avenger</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">of</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">avengers</span><span style="color: #D4D4D4">) {</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">table</span><span style="color: #D4D4D4">({ </span><span style="color: #9CDCFE">avenger</span><span style="color: #D4D4D4"> });</span></span>
+<span class="line"><span style="color: #D4D4D4">    }</span></span>
+<span class="line"><span style="color: #D4D4D4">})();</span></span>
+<span class="line"><span style="color: #6A9955">//# sourceMappingURL=04-ciclo-for-of.js.map</span></span>
+<span class="line"></span></code></pre>

@@ -1,0 +1,14 @@
+/*
+    *  --------------------------------------------------------------------------------------------------------------  *
+    *  -----  /03-interfaces-metodos.scss  --  /src/styles/scss/pages/07-interfaces/03-interfaces-metodos.scss  -----  *
+    *  --------------------------------------------------------------------------------------------------------------  *
+*/
+.main__hero {
+  width: 100%;
+  max-width: 120rem;
+  aspect-ratio: 16/9;
+  background-image: url("/plugins/spa-loader-content-html-v3/assets/img/07-interfaces/03-metodos-interfaz.avif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIwNy1pbnRlcmZhY2VzLzAzLWludGVyZmFjZXMtbWV0b2Rvcy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFNQTtFQUNJO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAgICAqICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSAgKlxuICAgICogIC0tLS0tICAvMDMtaW50ZXJmYWNlcy1tZXRvZG9zLnNjc3MgIC0tICAvc3JjL3N0eWxlcy9zY3NzL3BhZ2VzLzA3LWludGVyZmFjZXMvMDMtaW50ZXJmYWNlcy1tZXRvZG9zLnNjc3MgIC0tLS0tICAqXG4gICAgKiAgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0gICpcbiovXG5cbi5tYWluX19oZXJvIHtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBtYXgtd2lkdGg6IDEyMHJlbTtcbiAgICBhc3BlY3QtcmF0aW86IDE2Lzk7XG4gICAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCcvcGx1Z2lucy9zcGEtbG9hZGVyLWNvbnRlbnQtaHRtbC12My9hc3NldHMvaW1nLzA3LWludGVyZmFjZXMvMDMtbWV0b2Rvcy1pbnRlcmZhei5hdmlmJyk7XG4gICAgYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcbiAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICAgIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlcjtcbn1cbiJdLCJmaWxlIjoiMDctaW50ZXJmYWNlcy8wMy1pbnRlcmZhY2VzLW1ldG9kb3MuY3NzIn0= */

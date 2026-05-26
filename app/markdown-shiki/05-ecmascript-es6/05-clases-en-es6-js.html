@@ -1,0 +1,69 @@
+<!--
+    *  -----------------------------------------------------------------------------------------------------------  *
+    *  -----  /05-clases-en-es6-js.html  --  /src/markdown-shiki/05-ecmascript-es6/05-clases-en-es6-js.html  -----  *
+    *  -----------------------------------------------------------------------------------------------------------  *
+-->
+
+<pre class="shiki dark-plus" style="background-color: #1E1E1E" tabindex="0"><code class="language-js"><span class="line"><span style="color: #6A9955">// @ts-nocheck</span></span>
+<span class="line"><span style="color: #6A9955">/*</span></span>
+<span class="line"><span style="color: #6A9955">    -------------------------------------------</span></span>
+<span class="line"><span style="color: #6A9955">    ----------  05-clases-en-es6.js  ----------</span></span>
+<span class="line"><span style="color: #6A9955">    -------------------------------------------</span></span>
+<span class="line"><span style="color: #6A9955">*/</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">(() </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">clear</span><span style="color: #D4D4D4">();</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">warn</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;-----  05-clases-en-es6.js  -----&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">/*  </span></span>
+<span class="line"><span style="color: #6A9955">        ---------------------------</span></span>
+<span class="line"><span style="color: #6A9955">        -----  Clases en ES6  -----</span></span>
+<span class="line"><span style="color: #6A9955">        ---------------------------  </span></span>
+<span class="line"><span style="color: #6A9955">    */</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  definir clase Avenger -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">class</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Avenger</span><span style="color: #D4D4D4"> {</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #569CD6">constructor</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4"> = </span><span style="color: #CE9178">&#39;No name&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">power</span><span style="color: #D4D4D4"> = </span><span style="color: #B5CEA8">0</span><span style="color: #D4D4D4">) {</span></span>
+<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4"> = </span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">power</span><span style="color: #D4D4D4"> = </span><span style="color: #9CDCFE">power</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    }</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  definir clase FlyiningAvenger que hereda de Avenger -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">class</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">FlyiningAvenger</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">extends</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Avenger</span><span style="color: #D4D4D4"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #569CD6">constructor</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">power</span><span style="color: #D4D4D4">) {</span></span>
+<span class="line"><span style="color: #D4D4D4">            </span></span>
+<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #569CD6">super</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">power</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">flying</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">true</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    }</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  crear instancia de la clase Avenger -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">hulk</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">Avenger</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;Hulk&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">9000</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  crear instancia de la clase FlyiningAvenger -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">falcon</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">FlyiningAvenger</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;Falcon&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">70</span><span style="color: #D4D4D4">, </span><span style="color: #569CD6">true</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  mostrar en consola  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">table</span><span style="color: #D4D4D4">({ </span><span style="color: #9CDCFE">hulk</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">falcon</span><span style="color: #D4D4D4"> });</span></span>
+<span class="line"><span style="color: #D4D4D4">   </span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">})();</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>

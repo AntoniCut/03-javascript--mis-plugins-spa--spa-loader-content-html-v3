@@ -1,0 +1,51 @@
+<!--
+    *  -------------------------------------------------------------------------------------------  *
+    *  -----  /09-never-ts.html  --  /src/markdown-shiki/02-tipos-de-datos/09-never-ts.html  -----  *
+    *  -------------------------------------------------------------------------------------------  *
+-->
+
+<pre class="shiki dark-plus" style="background-color: #1E1E1E" tabindex="0"><code class="language-ts"><span class="line"><span style="color: #6A9955">/*</span></span>
+<span class="line"><span style="color: #6A9955">    -----------------------------------</span></span>
+<span class="line"><span style="color: #6A9955">    ----------  09-never.ts  ----------</span></span>
+<span class="line"><span style="color: #6A9955">    -----------------------------------</span></span>
+<span class="line"><span style="color: #6A9955">*/</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">(() </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">warn</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;-----  09-never.ts  -----&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  ----------------------------------------------</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  never  --------------------------------</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  No debe de terminar Exitosamente  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Da Error en tiempo de Ejecución  ------</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  ----------------------------------------------</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">errorOrNumber</span><span style="color: #D4D4D4"> = (</span><span style="color: #9CDCFE">message</span><span style="color: #D4D4D4">?: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">):(</span><span style="color: #4EC9B0">never</span><span style="color: #D4D4D4">|</span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4">) </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #C586C0">if</span><span style="color: #D4D4D4">(!</span><span style="color: #9CDCFE">message</span><span style="color: #D4D4D4">)</span></span>
+<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #C586C0">throw</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">Error</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">message</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">        </span></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #C586C0">return</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">1</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #DCDCAA">errorOrNumber</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;Auxilio&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #DCDCAA">errorOrNumber</span><span style="color: #D4D4D4">();</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">error</span><span style="color: #D4D4D4"> = (</span><span style="color: #9CDCFE">message</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">): </span><span style="color: #4EC9B0">never</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #C586C0">throw</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">Error</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">message</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #DCDCAA">error</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;Auxilio&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D4D4D4">})();</span></span>
+<span class="line"></span></code></pre>

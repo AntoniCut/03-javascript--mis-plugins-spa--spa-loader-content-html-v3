@@ -1,0 +1,31 @@
+<!--
+    *  -------------------------------------------------------------------------------------------------------------  *
+    *  -----  /10-null-undefined-js.html  --  /src/markdown-shiki/02-tipos-de-datos/10-null-undefined-js.html  -----  *
+    *  -------------------------------------------------------------------------------------------------------------  *
+-->
+
+<pre class="shiki dark-plus" style="background-color: #1E1E1E" tabindex="0"><code class="language-js"><span class="line"><span style="color: #6A9955">// @ts-nocheck</span></span>
+<span class="line"><span style="color: #CE9178">&quot;use strict&quot;</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #6A9955">/*</span></span>
+<span class="line"><span style="color: #6A9955">    --------------------------------------------</span></span>
+<span class="line"><span style="color: #6A9955">    ----------  10-null-undefined.js  ----------</span></span>
+<span class="line"><span style="color: #6A9955">    --------------------------------------------</span></span>
+<span class="line"><span style="color: #6A9955">*/</span></span>
+<span class="line"><span style="color: #D4D4D4">(</span><span style="color: #569CD6">function</span><span style="color: #D4D4D4"> () {</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">warn</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;-----  10-null-undefined.js  -----&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  null o undefined  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  strictNullChecks = true  -----</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">var</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">nada</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">undefined</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">// nada = 123;                   //  Error: Type &#39;number&#39; is not assignable to type &#39;undefined&#39;.</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">, { </span><span style="color: #9CDCFE">nada:</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">nada</span><span style="color: #D4D4D4"> });</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">var</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">nadaNumber</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">undefined</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">// nadaNumber = 123;             //  OK</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">// nadaNumber = null;            //  OK</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">, { </span><span style="color: #9CDCFE">nadaNumber:</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">nadaNumber</span><span style="color: #D4D4D4"> });</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">var</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">isActive</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">null</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">, { </span><span style="color: #9CDCFE">isActive:</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">isActive</span><span style="color: #D4D4D4"> });</span></span>
+<span class="line"><span style="color: #D4D4D4">})();</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>

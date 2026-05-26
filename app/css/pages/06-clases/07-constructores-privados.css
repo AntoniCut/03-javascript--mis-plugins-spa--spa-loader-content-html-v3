@@ -1,0 +1,14 @@
+/*
+    *  ------------------------------------------------------------------------------------------------------------------  *
+    *  -----  /07-constructores-privados.scss  --  /src/styles/scss/pages/06-clases/07-constructores-privados.scss  -----  *
+    *  ------------------------------------------------------------------------------------------------------------------  *
+*/
+.main__hero {
+  width: 100%;
+  max-width: 120rem;
+  aspect-ratio: 16/9;
+  background-image: url("/plugins/spa-loader-content-html-v3/assets/img/06-clases/07-constructores-privados.avif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIwNi1jbGFzZXMvMDctY29uc3RydWN0b3Jlcy1wcml2YWRvcy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFNQTtFQUNJO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAgICAqICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0gICpcbiAgICAqICAtLS0tLSAgLzA3LWNvbnN0cnVjdG9yZXMtcHJpdmFkb3Muc2NzcyAgLS0gIC9zcmMvc3R5bGVzL3Njc3MvcGFnZXMvMDYtY2xhc2VzLzA3LWNvbnN0cnVjdG9yZXMtcHJpdmFkb3Muc2NzcyAgLS0tLS0gICpcbiAgICAqICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0gICpcbiovXG5cbi5tYWluX19oZXJvIHtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBtYXgtd2lkdGg6IDEyMHJlbTtcbiAgICBhc3BlY3QtcmF0aW86IDE2Lzk7XG4gICAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCcvcGx1Z2lucy9zcGEtbG9hZGVyLWNvbnRlbnQtaHRtbC12My9hc3NldHMvaW1nLzA2LWNsYXNlcy8wNy1jb25zdHJ1Y3RvcmVzLXByaXZhZG9zLmF2aWYnKTtcbiAgICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xuICAgIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gICAgYmFja2dyb3VuZC1wb3NpdGlvbjogY2VudGVyO1xufVxuIl0sImZpbGUiOiIwNi1jbGFzZXMvMDctY29uc3RydWN0b3Jlcy1wcml2YWRvcy5jc3MifQ== */
