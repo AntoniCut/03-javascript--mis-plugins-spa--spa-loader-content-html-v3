@@ -1,66 +1,54 @@
-<!--
-    *  -----------------------------------------------------------------------------------------------------------  *
-    *  -----  /02-clase-forma-corta-ts.html  --  /src/markdown-shiki/06-clases/02-clase-forma-corta-ts.html  -----  *
-    *  -----------------------------------------------------------------------------------------------------------  *
--->
-
-<pre class="shiki dark-plus" style="background-color: #1E1E1E" tabindex="0"><code class="language-ts"><span class="line"><span style="color: #6A9955">/*</span></span>
-<span class="line"><span style="color: #6A9955">    -----------------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">    ----------  02-clase-forma-corta.ts  ----------</span></span>
-<span class="line"><span style="color: #6A9955">    -----------------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">*/</span></span>
+<pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#6A9955">/*</span></span>
+<span class="line"><span style="color:#6A9955">    *  ---------------------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -----  /02-clase-forma-corta.ts  --  /src/scripts/ts/06-clases/02-clase-forma-corta.ts  -----  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  ---------------------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">*/</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">(() </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">(() </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">clear</span><span style="color: #D4D4D4">();</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">warn</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;-----  02-clase-forma-corta.ts  -----&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">clear</span><span style="color:#D4D4D4">();</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">warn</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'-----  02-clase-forma-corta.ts  -----'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">/*</span></span>
-<span class="line"><span style="color: #6A9955">        -------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">        -----  Clase Forma Corta  -----</span></span>
-<span class="line"><span style="color: #6A9955">        -------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">    */</span></span>
+<span class="line"><span style="color:#6A9955">    /*</span></span>
+<span class="line"><span style="color:#6A9955">        -------------------------------</span></span>
+<span class="line"><span style="color:#6A9955">        -----  Clase Forma Corta  -----</span></span>
+<span class="line"><span style="color:#6A9955">        -------------------------------</span></span>
+<span class="line"><span style="color:#6A9955">    */</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">class</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Avenger</span><span style="color: #D4D4D4"> {</span></span>
+<span class="line"><span style="color:#569CD6">    class</span><span style="color:#4EC9B0"> Avenger</span><span style="color:#D4D4D4"> {</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #6A9955">//  -----  Propiedad Estática  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #569CD6">static</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">avgAge</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4"> = </span><span style="color: #B5CEA8">35</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color:#6A9955">        //  -----  Propiedad Estática  -----</span></span>
+<span class="line"><span style="color:#569CD6">        static</span><span style="color:#9CDCFE"> avgAge</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">number</span><span style="color:#D4D4D4"> = </span><span style="color:#B5CEA8">35</span><span style="color:#D4D4D4">;</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #6A9955">//  -----  Constructor  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #569CD6">constructor</span><span style="color: #D4D4D4">( </span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #569CD6">private</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">nombre</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">, </span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #569CD6">public</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">realName</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4"> ,</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #569CD6">public</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">team</span><span style="color: #D4D4D4">?: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">, </span></span>
-<span class="line"><span style="color: #D4D4D4">        ) {}</span></span>
+<span class="line"><span style="color:#6A9955">        //  -----  Constructor  -----</span></span>
+<span class="line"><span style="color:#569CD6">        constructor</span><span style="color:#D4D4D4">( </span></span>
+<span class="line"><span style="color:#569CD6">            private</span><span style="color:#9CDCFE"> nombre</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">, </span></span>
+<span class="line"><span style="color:#569CD6">            public</span><span style="color:#9CDCFE"> realName</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4"> ,</span></span>
+<span class="line"><span style="color:#569CD6">            public</span><span style="color:#9CDCFE"> team</span><span style="color:#D4D4D4">?: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">, </span></span>
+<span class="line"><span style="color:#D4D4D4">        ) {}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Instancia de la Clase  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">antman</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">Avenger</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">Avenger</span><span style="color: #D4D4D4">( </span><span style="color: #CE9178">&#39;Antman&#39;</span><span style="color: #D4D4D4">,  </span><span style="color: #CE9178">&#39;Capitan&#39;</span><span style="color: #D4D4D4"> );</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Mostrar en Consola  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">Clase Avenger =&gt; &#39;</span><span style="color: #D4D4D4">, {</span><span style="color: #9CDCFE">Avenger</span><span style="color: #D4D4D4">});</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">Antman =&gt; &#39;</span><span style="color: #D4D4D4">, {</span><span style="color: #9CDCFE">antman</span><span style="color: #D4D4D4">});</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">Nombre de antman =&gt; &#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">antman</span><span style="color: #D4D4D4">[</span><span style="color: #CE9178">&#39;nombre&#39;</span><span style="color: #D4D4D4">]);         </span><span style="color: #6A9955">//  Propiedad Privada</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">Nombre real de antman =&gt; &#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">antman</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">realName</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">Team de antman =&gt; &#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">antman</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">team</span><span style="color: #D4D4D4">);                </span><span style="color: #6A9955">//  Propiedad Opcional</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">Edad promedio de antman: &#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">Avenger</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">avgAge</span><span style="color: #D4D4D4">);      </span><span style="color: #6A9955">//  Propiedad estática</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Instancia de la Clase  -----</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> antman</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">Avenger</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> Avenger</span><span style="color:#D4D4D4">( </span><span style="color:#CE9178">'Antman'</span><span style="color:#D4D4D4">,  </span><span style="color:#CE9178">'Capitan'</span><span style="color:#D4D4D4"> );</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">})();</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Mostrar en Consola  -----</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">Clase Avenger => '</span><span style="color:#D4D4D4">, {</span><span style="color:#9CDCFE">Avenger</span><span style="color:#D4D4D4">});</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">Antman => '</span><span style="color:#D4D4D4">, {</span><span style="color:#9CDCFE">antman</span><span style="color:#D4D4D4">});</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">Nombre de antman => '</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">antman</span><span style="color:#D4D4D4">[</span><span style="color:#CE9178">'nombre'</span><span style="color:#D4D4D4">]);         </span><span style="color:#6A9955">//  Propiedad Privada</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">Nombre real de antman => '</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">antman</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">realName</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">Team de antman => '</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">antman</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">team</span><span style="color:#D4D4D4">);                </span><span style="color:#6A9955">//  Propiedad Opcional</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">Edad promedio de antman: '</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">Avenger</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">avgAge</span><span style="color:#D4D4D4">);      </span><span style="color:#6A9955">//  Propiedad estática</span></span>
 <span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">})();</span></span>
 <span class="line"></span></code></pre>
-
-
-

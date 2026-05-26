@@ -1,106 +1,93 @@
-<!--
-    *  -----------------------------------------------------------------------------------------------  *
-    *  -----  /05-gets-y-sets-ts.html  --  /src/markdown-shiki/06-clases/05-gets-y-sets-ts.html  -----  *
-    *  -----------------------------------------------------------------------------------------------  *
--->
-
-<pre class="shiki dark-plus" style="background-color: #1E1E1E" tabindex="0"><code class="language-ts"><span class="line"><span style="color: #6A9955">/*</span></span>
-<span class="line"><span style="color: #6A9955">    -----------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">    ----------  05-gets-y-sets.ts  ----------</span></span>
-<span class="line"><span style="color: #6A9955">    -----------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">*/</span></span>
+<pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#6A9955">/*</span></span>
+<span class="line"><span style="color:#6A9955">    *  ---------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -----  /05-gets-y-sets.ts  --  /src/scripts/ts/06-clases/05-gets-y-sets.ts  -----  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  ---------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">*/</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">(() </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">(() </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">clear</span><span style="color: #D4D4D4">();</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">warn</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;-----  05-gets-y-sets.ts  -----&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">clear</span><span style="color:#D4D4D4">();</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">warn</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'-----  05-gets-y-sets.ts  -----'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">/*</span></span>
-<span class="line"><span style="color: #6A9955">        -------------------------</span></span>
-<span class="line"><span style="color: #6A9955">        -----  Gets y Sets  -----</span></span>
-<span class="line"><span style="color: #6A9955">        -------------------------</span></span>
-<span class="line"><span style="color: #6A9955">    */</span></span>
+<span class="line"><span style="color:#6A9955">    /*</span></span>
+<span class="line"><span style="color:#6A9955">        -------------------------</span></span>
+<span class="line"><span style="color:#6A9955">        -----  Gets y Sets  -----</span></span>
+<span class="line"><span style="color:#6A9955">        -------------------------</span></span>
+<span class="line"><span style="color:#6A9955">    */</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Clase Padre  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">class</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Avenger</span><span style="color: #D4D4D4"> {</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Clase Padre  -----</span></span>
+<span class="line"><span style="color:#569CD6">    class</span><span style="color:#4EC9B0"> Avenger</span><span style="color:#D4D4D4"> {</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #569CD6">constructor</span><span style="color: #D4D4D4">(</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #569CD6">public</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #569CD6">public</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">realName</span><span style="color: #D4D4D4">?: </span><span style="color: #4EC9B0">string</span></span>
-<span class="line"><span style="color: #D4D4D4">                       </span></span>
-<span class="line"><span style="color: #D4D4D4">        ) {</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;Constructor Avenger llamado!!!&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">        }</span></span>
-<span class="line"><span style="color: #D4D4D4">       </span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #569CD6">protected</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">getFullName</span><span style="color: #D4D4D4">() {</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #C586C0">return</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">`</span><span style="color: #569CD6">${</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">}</span><span style="color: #CE9178"> </span><span style="color: #569CD6">${</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">realName</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">}</span><span style="color: #CE9178">`</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">        }</span></span>
+<span class="line"><span style="color:#569CD6">        constructor</span><span style="color:#D4D4D4">(</span></span>
+<span class="line"><span style="color:#569CD6">            public</span><span style="color:#9CDCFE"> name</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#569CD6">            public</span><span style="color:#9CDCFE"> realName</span><span style="color:#D4D4D4">?: </span><span style="color:#4EC9B0">string</span></span>
+<span class="line"><span style="color:#D4D4D4">                       </span></span>
+<span class="line"><span style="color:#D4D4D4">        ) {</span></span>
+<span class="line"><span style="color:#9CDCFE">            console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'Constructor Avenger llamado!!!'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">        }</span></span>
+<span class="line"><span style="color:#D4D4D4">       </span></span>
+<span class="line"><span style="color:#569CD6">        protected</span><span style="color:#DCDCAA"> getFullName</span><span style="color:#D4D4D4">() {</span></span>
+<span class="line"><span style="color:#C586C0">            return</span><span style="color:#CE9178"> `</span><span style="color:#569CD6">${</span><span style="color:#569CD6"> this</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">name</span><span style="color:#569CD6"> }</span><span style="color:#569CD6"> ${</span><span style="color:#569CD6"> this</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">realName</span><span style="color:#569CD6"> }</span><span style="color:#CE9178">`</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">        }</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Extends: hereda de otra clase  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">class</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Xmen</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">extends</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Avenger</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span></span>
-<span class="line"><span style="color: #D4D4D4">       </span><span style="color: #569CD6">constructor</span><span style="color: #D4D4D4">(</span></span>
-<span class="line"><span style="color: #D4D4D4">           </span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">, </span></span>
-<span class="line"><span style="color: #D4D4D4">           </span><span style="color: #9CDCFE">realName</span><span style="color: #D4D4D4">?: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">, </span></span>
-<span class="line"><span style="color: #D4D4D4">           </span><span style="color: #569CD6">public</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">isMutant</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">boolean</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">true</span></span>
-<span class="line"><span style="color: #D4D4D4">       ) {</span></span>
-<span class="line"><span style="color: #D4D4D4">       </span></span>
-<span class="line"><span style="color: #D4D4D4">          </span><span style="color: #569CD6">super</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">realName</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">          </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;Constructor Xmen llamado!!!&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">       }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">       </span><span style="color: #569CD6">public</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">getFullNameDesdeXmen</span><span style="color: #D4D4D4">() {</span></span>
-<span class="line"><span style="color: #D4D4D4">           </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">( </span><span style="color: #569CD6">super</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">getFullName</span><span style="color: #D4D4D4">() );</span></span>
-<span class="line"><span style="color: #D4D4D4">       }</span></span>
-<span class="line"><span style="color: #D4D4D4">       </span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">       </span><span style="color: #6A9955">//  -----  Getter  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">       </span><span style="color: #569CD6">get</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">fullName</span><span style="color: #D4D4D4">() : </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"><span style="color: #D4D4D4">           </span><span style="color: #C586C0">return</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">`</span><span style="color: #569CD6">${</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">}</span><span style="color: #CE9178"> - </span><span style="color: #569CD6">${</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">realName</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">}</span><span style="color: #CE9178">`</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">       }</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">       </span><span style="color: #6A9955">//  -----  Setter  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">       </span><span style="color: #569CD6">set</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">fullName</span><span style="color: #D4D4D4">( </span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4"> ) {</span></span>
-<span class="line"><span style="color: #D4D4D4">           </span></span>
-<span class="line"><span style="color: #D4D4D4">           </span><span style="color: #C586C0">if</span><span style="color: #D4D4D4">( </span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">length</span><span style="color: #D4D4D4"> &lt; </span><span style="color: #B5CEA8">3</span><span style="color: #D4D4D4"> ) {</span></span>
-<span class="line"><span style="color: #D4D4D4">               </span><span style="color: #C586C0">throw</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">Error</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;El nombre debe ser mayor de 3 caracteres&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">           }</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Extends: hereda de otra clase  -----</span></span>
+<span class="line"><span style="color:#569CD6">    class</span><span style="color:#4EC9B0"> Xmen</span><span style="color:#569CD6"> extends</span><span style="color:#4EC9B0"> Avenger</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#D4D4D4">        </span></span>
+<span class="line"><span style="color:#569CD6">       constructor</span><span style="color:#D4D4D4">(</span></span>
+<span class="line"><span style="color:#9CDCFE">           name</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">, </span></span>
+<span class="line"><span style="color:#9CDCFE">           realName</span><span style="color:#D4D4D4">?: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">, </span></span>
+<span class="line"><span style="color:#569CD6">           public</span><span style="color:#9CDCFE"> isMutant</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">boolean</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">true</span></span>
+<span class="line"><span style="color:#D4D4D4">       ) {</span></span>
+<span class="line"><span style="color:#D4D4D4">       </span></span>
+<span class="line"><span style="color:#569CD6">          super</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">name</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">realName</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">          console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'Constructor Xmen llamado!!!'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">       }</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">           </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4"> = </span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">       }</span></span>
+<span class="line"><span style="color:#569CD6">       public</span><span style="color:#DCDCAA"> getFullNameDesdeXmen</span><span style="color:#D4D4D4">() {</span></span>
+<span class="line"><span style="color:#9CDCFE">           console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">( </span><span style="color:#569CD6">super</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getFullName</span><span style="color:#D4D4D4">() );</span></span>
+<span class="line"><span style="color:#D4D4D4">       }</span></span>
+<span class="line"><span style="color:#D4D4D4">       </span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">       //  -----  Getter  -----</span></span>
+<span class="line"><span style="color:#569CD6">       get</span><span style="color:#DCDCAA"> fullName</span><span style="color:#D4D4D4">() : </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#C586C0">           return</span><span style="color:#CE9178"> `</span><span style="color:#569CD6">${</span><span style="color:#569CD6"> this</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">name</span><span style="color:#569CD6"> }</span><span style="color:#CE9178"> - </span><span style="color:#569CD6">${</span><span style="color:#569CD6"> this</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">realName</span><span style="color:#569CD6"> }</span><span style="color:#CE9178">`</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">       }</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
+<span class="line"><span style="color:#6A9955">       //  -----  Setter  -----</span></span>
+<span class="line"><span style="color:#569CD6">       set</span><span style="color:#DCDCAA"> fullName</span><span style="color:#D4D4D4">( </span><span style="color:#9CDCFE">name</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4"> ) {</span></span>
+<span class="line"><span style="color:#D4D4D4">           </span></span>
+<span class="line"><span style="color:#C586C0">           if</span><span style="color:#D4D4D4">( </span><span style="color:#9CDCFE">name</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">length</span><span style="color:#D4D4D4"> &#x3C; </span><span style="color:#B5CEA8">3</span><span style="color:#D4D4D4"> ) {</span></span>
+<span class="line"><span style="color:#C586C0">               throw</span><span style="color:#569CD6"> new</span><span style="color:#DCDCAA"> Error</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'El nombre debe ser mayor de 3 caracteres'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">           }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">           this</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">name</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">name</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">       }</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Instancia de la clase Xmen - Hereda de Avenger  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">wolverine</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">Xmen</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;Wolverine&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&#39;Logan&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #569CD6">true</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;Wolverine =&gt; &#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">wolverine</span><span style="color: #D4D4D4">);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Getter -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">wolverine.fullName =&gt; &#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">wolverine</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">fullName</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">   </span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Setter  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">wolverine</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">fullName</span><span style="color: #D4D4D4"> = </span><span style="color: #CE9178">&#39;New name for Wolverine&#39;</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//wolverine.fullName = &#39;Ne&#39;;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;wolverine.fullName (después de set) =&gt; &#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">wolverine</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">fullName</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Instancia de la clase Xmen - Hereda de Avenger  -----</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> wolverine</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> Xmen</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'Wolverine'</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">'Logan'</span><span style="color:#D4D4D4">, </span><span style="color:#569CD6">true</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">})();</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'Wolverine => '</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">wolverine</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Getter -----</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">wolverine.fullName => '</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">wolverine</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">fullName</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">   </span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Setter  -----</span></span>
+<span class="line"><span style="color:#9CDCFE">    wolverine</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">fullName</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">'New name for Wolverine'</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#6A9955">    //wolverine.fullName = 'Ne';</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'wolverine.fullName (después de set) => '</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">wolverine</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">fullName</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">})();</span></span>
 <span class="line"></span></code></pre>
-
-
-
-

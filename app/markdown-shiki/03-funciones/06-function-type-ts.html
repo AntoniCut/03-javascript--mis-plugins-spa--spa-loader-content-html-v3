@@ -1,64 +1,53 @@
-<!--
-    *  ------------------------------------------------------------------------------------------------------  *
-    *  -----  /06-function-type-ts.html  --  /src/markdown-shiki/03-funciones/06-function-type-ts.html  -----  *
-    *  ------------------------------------------------------------------------------------------------------  *
--->
-
-<pre class="shiki dark-plus" style="background-color: #1E1E1E" tabindex="0"><code class="language-ts"><span class="line"><span style="color: #6A9955">/*</span></span>
-<span class="line"><span style="color: #6A9955">    -------------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">    ----------  06-function-type.ts  ----------</span></span>
-<span class="line"><span style="color: #6A9955">    -------------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">*/</span></span>
+<pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#6A9955">/*</span></span>
+<span class="line"><span style="color:#6A9955">    *  ----------------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -----  /06-function-type.ts  --  /src/scripts/ts/03-funciones/06-function-type.ts  -----  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  ----------------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">*/</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">(() </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">(() </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">clear</span><span style="color:#D4D4D4">();</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">warn</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'-----  06-function-type.ts  -----'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">clear</span><span style="color: #D4D4D4">();</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">warn</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;-----  06-function-type.ts  -----&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Función que recibe dos números, los suma y retorna un número  -----</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#DCDCAA"> addNumbers</span><span style="color:#D4D4D4"> = (</span><span style="color:#9CDCFE">a</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">number</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">b</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">number</span><span style="color:#D4D4D4">): </span><span style="color:#4EC9B0">number</span><span style="color:#569CD6"> =></span><span style="color:#9CDCFE"> a</span><span style="color:#D4D4D4"> + </span><span style="color:#9CDCFE">b</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Función que recibe un string y retorna un string  -----</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#DCDCAA"> greet</span><span style="color:#D4D4D4"> = (</span><span style="color:#9CDCFE">name</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">): </span><span style="color:#4EC9B0">string</span><span style="color:#569CD6"> =></span><span style="color:#CE9178"> `Hola </span><span style="color:#569CD6">${</span><span style="color:#9CDCFE">name</span><span style="color:#569CD6">}</span><span style="color:#CE9178">`</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Función que no retorna nada (void)  -----</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#DCDCAA"> saveTheWorld</span><span style="color:#D4D4D4"> = (): </span><span style="color:#4EC9B0">string</span><span style="color:#569CD6"> =></span><span style="color:#CE9178"> 'El mundo esta salvado!'</span><span style="color:#D4D4D4">;</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Función que recibe dos números, los suma y retorna un número  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">addNumbers</span><span style="color: #D4D4D4"> = (</span><span style="color: #9CDCFE">a</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">b</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4">): </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">a</span><span style="color: #D4D4D4"> + </span><span style="color: #9CDCFE">b</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Función que recibe un string y retorna un string  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">greet</span><span style="color: #D4D4D4"> = (</span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">): </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">`Hola </span><span style="color: #569CD6">${</span><span style="color: #9CDCFE">name</span><span style="color: #569CD6">}</span><span style="color: #CE9178">`</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Función que no retorna nada (void)  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">saveTheWorld</span><span style="color: #D4D4D4"> = (): </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;El mundo esta salvado!&#39;</span><span style="color: #D4D4D4">;</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Definición de un tipo de función  -----</span></span>
+<span class="line"><span style="color:#569CD6">    let</span><span style="color:#9CDCFE"> myFunction</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#569CD6">    let</span><span style="color:#DCDCAA"> myFunctionNumber</span><span style="color:#D4D4D4">: (</span><span style="color:#9CDCFE">x</span><span style="color:#D4D4D4">:</span><span style="color:#4EC9B0">number</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">y</span><span style="color:#D4D4D4">:</span><span style="color:#4EC9B0">number</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=></span><span style="color:#4EC9B0"> Number</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Definición de un tipo de función  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">let</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">myFunction</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">let</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">myFunctionNumber</span><span style="color: #D4D4D4">: (</span><span style="color: #9CDCFE">x</span><span style="color: #D4D4D4">:</span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">y</span><span style="color: #D4D4D4">:</span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4">) </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Number</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  asigna un número a la variable  -----</span></span>
+<span class="line"><span style="color:#9CDCFE">    myFunction</span><span style="color:#D4D4D4"> = </span><span style="color:#B5CEA8">10</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'myFunction:'</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">myFunction</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  asigna un número a la variable  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">myFunction</span><span style="color: #D4D4D4"> = </span><span style="color: #B5CEA8">10</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;myFunction:&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">myFunction</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  pasa la función por referencia  -----</span></span>
+<span class="line"><span style="color:#9CDCFE">    myFunctionNumber</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">addNumbers</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">myFunctionNumber</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">    </span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  invoca la función  -----</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'myFunction(1, 2):'</span><span style="color:#D4D4D4">, </span><span style="color:#DCDCAA">myFunctionNumber</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">1</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">2</span><span style="color:#D4D4D4">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">    //  -----  invoca la función  -----</span></span>
+<span class="line"><span style="color:#9CDCFE">    myFunction</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">greet</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#DCDCAA">myFunction</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'Antonio'</span><span style="color:#D4D4D4">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">    //  -----  invoca la función  -----</span></span>
+<span class="line"><span style="color:#9CDCFE">    myFunction</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">saveTheWorld</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#DCDCAA">myFunction</span><span style="color:#D4D4D4">());</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  pasa la función por referencia  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">myFunctionNumber</span><span style="color: #D4D4D4"> = </span><span style="color: #9CDCFE">addNumbers</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">myFunctionNumber</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  invoca la función  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;myFunction(1, 2):&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #DCDCAA">myFunctionNumber</span><span style="color: #D4D4D4">(</span><span style="color: #B5CEA8">1</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">2</span><span style="color: #D4D4D4">));</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  invoca la función  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">myFunction</span><span style="color: #D4D4D4"> = </span><span style="color: #9CDCFE">greet</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #DCDCAA">myFunction</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;Antonio&#39;</span><span style="color: #D4D4D4">));</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  invoca la función  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">myFunction</span><span style="color: #D4D4D4"> = </span><span style="color: #9CDCFE">saveTheWorld</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #DCDCAA">myFunction</span><span style="color: #D4D4D4">());</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">})();</span></span>
-<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">})();</span></span>
 <span class="line"></span></code></pre>
-
-
-

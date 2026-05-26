@@ -1,89 +1,83 @@
-<!--
-    *  ---------------------------------------------------------------------------------------------------  *
-    *  -----  /inferir-tipos-js.html  --  /src/markdown-shiki/01-introduccion/inferir-tipos-js.html  -----  *
-    *  ---------------------------------------------------------------------------------------------------  *
--->
-
-<pre class="shiki dark-plus" style="background-color: #1E1E1E" tabindex="0"><code class="language-js"><span class="line"><span style="color: #6A9955">// @ts-nocheck</span></span>
-<span class="line"><span style="color: #CE9178">&quot;use strict&quot;</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #6A9955">/*</span></span>
-<span class="line"><span style="color: #6A9955">    ----------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">    ----------  inferir-tipos.js  ----------</span></span>
-<span class="line"><span style="color: #6A9955">    ----------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">*/</span></span>
-<span class="line"><span style="color: #6A9955">//  -----  función anónima autoinvocada  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">(</span><span style="color: #569CD6">function</span><span style="color: #D4D4D4"> () {</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">clear</span><span style="color: #D4D4D4">();</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">warn</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;-----  inferir-tipos.js  -----&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Variables - inferir tipo  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">var</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">msg1</span><span style="color: #D4D4D4"> = </span><span style="color: #CE9178">&#39;Antonio Cutillas&#39;</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">msg1</span><span style="color: #D4D4D4"> = </span><span style="color: #CE9178">&#39;Mi nombre&#39;</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Variables - definir tipo  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">var</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">msg2</span><span style="color: #D4D4D4"> = </span><span style="color: #CE9178">&#39;Hola Mundo&#39;</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">({ </span><span style="color: #9CDCFE">msg1:</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">msg1</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">msg2:</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">msg2</span><span style="color: #D4D4D4"> });</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Objetos  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">var</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">hero</span><span style="color: #D4D4D4"> = {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">name:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Ironman&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">age:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">45</span></span>
-<span class="line"><span style="color: #D4D4D4">    };</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;hero&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">hero</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;{hero} &#39;</span><span style="color: #D4D4D4">, { </span><span style="color: #9CDCFE">hero:</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">hero</span><span style="color: #D4D4D4"> });</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">hero</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4"> = </span><span style="color: #CE9178">&#39;Fernando Herrera&#39;</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">hero</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">age</span><span style="color: #D4D4D4"> = </span><span style="color: #B5CEA8">50</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;hero.name:&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">hero</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;hero.age:&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">hero</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">age</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">/*</span></span>
-<span class="line"><span style="color: #6A9955">        -------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">        ----------  inferir tipos  ----------</span></span>
-<span class="line"><span style="color: #6A9955">        -------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">    */</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  inferir tipos  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">var</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">a</span><span style="color: #D4D4D4"> = </span><span style="color: #B5CEA8">10</span><span style="color: #D4D4D4">; </span><span style="color: #6A9955">//  a: 10</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">var</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">b</span><span style="color: #D4D4D4"> = </span><span style="color: #B5CEA8">10</span><span style="color: #D4D4D4">; </span><span style="color: #6A9955">//  b: number</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">({ </span><span style="color: #9CDCFE">a:</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">a</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">b:</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">b</span><span style="color: #D4D4D4"> });</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  number  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">var</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">c</span><span style="color: #D4D4D4"> = </span><span style="color: #B5CEA8">20</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">var</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">d</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">d</span><span style="color: #D4D4D4"> = </span><span style="color: #B5CEA8">30</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">({ </span><span style="color: #9CDCFE">c:</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">c</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">d:</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">d</span><span style="color: #D4D4D4"> });</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">/*</span></span>
-<span class="line"><span style="color: #6A9955">        -----------------</span></span>
-<span class="line"><span style="color: #6A9955">        -----  any  -----</span></span>
-<span class="line"><span style="color: #6A9955">        -----------------</span></span>
-<span class="line"><span style="color: #6A9955">    */</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  any  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">var</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">e</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  number  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">e</span><span style="color: #D4D4D4"> = </span><span style="color: #B5CEA8">3.1416</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">({ </span><span style="color: #9CDCFE">e:</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">e</span><span style="color: #D4D4D4"> });</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  string  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">e</span><span style="color: #D4D4D4"> = </span><span style="color: #CE9178">&#39;Hola mundo&#39;</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">({ </span><span style="color: #9CDCFE">e:</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">e</span><span style="color: #D4D4D4"> });</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  boolean  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">e</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">true</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">({ </span><span style="color: #9CDCFE">e:</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">e</span><span style="color: #D4D4D4"> });</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  array number  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">e</span><span style="color: #D4D4D4"> = [</span><span style="color: #B5CEA8">1</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">2</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">3</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">4</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">5</span><span style="color: #D4D4D4">];</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">({ </span><span style="color: #9CDCFE">e:</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">e</span><span style="color: #D4D4D4"> });</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  object  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">e</span><span style="color: #D4D4D4"> = {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">name:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Antonio Cutillas&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">age:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">45</span></span>
-<span class="line"><span style="color: #D4D4D4">    };</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">({ </span><span style="color: #9CDCFE">e:</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">e</span><span style="color: #D4D4D4"> });</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  number  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">var</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">f</span><span style="color: #D4D4D4"> = </span><span style="color: #B5CEA8">20</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">({ </span><span style="color: #9CDCFE">f:</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">f</span><span style="color: #D4D4D4"> });</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  param string - return void  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">function</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">sayHello</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">message</span><span style="color: #D4D4D4">) {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">message</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #DCDCAA">sayHello</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;Hola mundo&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  inferir tipo  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">var</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">message</span><span style="color: #D4D4D4"> = </span><span style="color: #CE9178">&#39;Hello World&#39;</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #DCDCAA">sayHello</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">message</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">})();</span></span>
+<pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#6A9955">// @ts-nocheck</span></span>
+<span class="line"><span style="color:#CE9178">"use strict"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#6A9955">/*</span></span>
+<span class="line"><span style="color:#6A9955">    *  -------------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -----  /inferir-tipos.js  --  /src/scripts/js/01-introduccion/inferir-tipos.js  -----  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -------------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">*/</span></span>
 <span class="line"></span>
-<span class="line"></span></code></pre>
+<span class="line"><span style="color:#6A9955">//  -----  función anónima autoinvocada  -----</span></span>
+<span class="line"><span style="color:#D4D4D4">(</span><span style="color:#569CD6">function</span><span style="color:#D4D4D4"> () {</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">clear</span><span style="color:#D4D4D4">();</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">warn</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'-----  inferir-tipos.ts  -----'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Variables - inferir tipo  -----</span></span>
+<span class="line"><span style="color:#569CD6">    var</span><span style="color:#9CDCFE"> msg1</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">'Antonio Cutillas'</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    msg1</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">'Mi nombre'</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Variables - definir tipo  -----</span></span>
+<span class="line"><span style="color:#569CD6">    var</span><span style="color:#9CDCFE"> msg2</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">'Hola Mundo'</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">({ </span><span style="color:#9CDCFE">msg1:</span><span style="color:#9CDCFE"> msg1</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">msg2:</span><span style="color:#9CDCFE"> msg2</span><span style="color:#D4D4D4"> });</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Objetos  -----</span></span>
+<span class="line"><span style="color:#569CD6">    var</span><span style="color:#9CDCFE"> hero</span><span style="color:#D4D4D4"> = {</span></span>
+<span class="line"><span style="color:#9CDCFE">        name:</span><span style="color:#CE9178"> 'Ironman'</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        age:</span><span style="color:#B5CEA8"> 45</span></span>
+<span class="line"><span style="color:#D4D4D4">    };</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'hero'</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">hero</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'{hero} '</span><span style="color:#D4D4D4">, { </span><span style="color:#9CDCFE">hero:</span><span style="color:#9CDCFE"> hero</span><span style="color:#D4D4D4"> });</span></span>
+<span class="line"><span style="color:#9CDCFE">    hero</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">name</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">'Fernando Herrera'</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    hero</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">age</span><span style="color:#D4D4D4"> = </span><span style="color:#B5CEA8">50</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'hero.name:'</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">hero</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">name</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'hero.age:'</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">hero</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">age</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#6A9955">    /*</span></span>
+<span class="line"><span style="color:#6A9955">        -------------------------------------</span></span>
+<span class="line"><span style="color:#6A9955">        ----------  inferir tipos  ----------</span></span>
+<span class="line"><span style="color:#6A9955">        -------------------------------------</span></span>
+<span class="line"><span style="color:#6A9955">    */</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  inferir tipos  -----</span></span>
+<span class="line"><span style="color:#569CD6">    var</span><span style="color:#9CDCFE"> a</span><span style="color:#D4D4D4"> = </span><span style="color:#B5CEA8">10</span><span style="color:#D4D4D4">; </span><span style="color:#6A9955">//  a: 10</span></span>
+<span class="line"><span style="color:#569CD6">    var</span><span style="color:#9CDCFE"> b</span><span style="color:#D4D4D4"> = </span><span style="color:#B5CEA8">10</span><span style="color:#D4D4D4">; </span><span style="color:#6A9955">//  b: number</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">({ </span><span style="color:#9CDCFE">a:</span><span style="color:#9CDCFE"> a</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">b:</span><span style="color:#9CDCFE"> b</span><span style="color:#D4D4D4"> });</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  number  -----</span></span>
+<span class="line"><span style="color:#569CD6">    var</span><span style="color:#9CDCFE"> c</span><span style="color:#D4D4D4"> = </span><span style="color:#B5CEA8">20</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#569CD6">    var</span><span style="color:#9CDCFE"> d</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    d</span><span style="color:#D4D4D4"> = </span><span style="color:#B5CEA8">30</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">({ </span><span style="color:#9CDCFE">c:</span><span style="color:#9CDCFE"> c</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">d:</span><span style="color:#9CDCFE"> d</span><span style="color:#D4D4D4"> });</span></span>
+<span class="line"><span style="color:#6A9955">    /*</span></span>
+<span class="line"><span style="color:#6A9955">        -----------------</span></span>
+<span class="line"><span style="color:#6A9955">        -----  any  -----</span></span>
+<span class="line"><span style="color:#6A9955">        -----------------</span></span>
+<span class="line"><span style="color:#6A9955">    */</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  any  -----</span></span>
+<span class="line"><span style="color:#569CD6">    var</span><span style="color:#9CDCFE"> e</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  number  -----</span></span>
+<span class="line"><span style="color:#9CDCFE">    e</span><span style="color:#D4D4D4"> = </span><span style="color:#B5CEA8">3.1416</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">({ </span><span style="color:#9CDCFE">e:</span><span style="color:#9CDCFE"> e</span><span style="color:#D4D4D4"> });</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  string  -----</span></span>
+<span class="line"><span style="color:#9CDCFE">    e</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">'Hola mundo'</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">({ </span><span style="color:#9CDCFE">e:</span><span style="color:#9CDCFE"> e</span><span style="color:#D4D4D4"> });</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  boolean  -----</span></span>
+<span class="line"><span style="color:#9CDCFE">    e</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">true</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">({ </span><span style="color:#9CDCFE">e:</span><span style="color:#9CDCFE"> e</span><span style="color:#D4D4D4"> });</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  array number  -----</span></span>
+<span class="line"><span style="color:#9CDCFE">    e</span><span style="color:#D4D4D4"> = [</span><span style="color:#B5CEA8">1</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">2</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">3</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">4</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">5</span><span style="color:#D4D4D4">];</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">({ </span><span style="color:#9CDCFE">e:</span><span style="color:#9CDCFE"> e</span><span style="color:#D4D4D4"> });</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  object  -----</span></span>
+<span class="line"><span style="color:#9CDCFE">    e</span><span style="color:#D4D4D4"> = {</span></span>
+<span class="line"><span style="color:#9CDCFE">        name:</span><span style="color:#CE9178"> 'Antonio Cutillas'</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        age:</span><span style="color:#B5CEA8"> 45</span></span>
+<span class="line"><span style="color:#D4D4D4">    };</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">({ </span><span style="color:#9CDCFE">e:</span><span style="color:#9CDCFE"> e</span><span style="color:#D4D4D4"> });</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  number  -----</span></span>
+<span class="line"><span style="color:#569CD6">    var</span><span style="color:#9CDCFE"> f</span><span style="color:#D4D4D4"> = </span><span style="color:#B5CEA8">20</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">({ </span><span style="color:#9CDCFE">f:</span><span style="color:#9CDCFE"> f</span><span style="color:#D4D4D4"> });</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  param string - return void  -----</span></span>
+<span class="line"><span style="color:#569CD6">    function</span><span style="color:#DCDCAA"> sayHello</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">message</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#9CDCFE">        console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">message</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
+<span class="line"><span style="color:#DCDCAA">    sayHello</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'Hola mundo'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  inferir tipo  -----</span></span>
+<span class="line"><span style="color:#569CD6">    var</span><span style="color:#9CDCFE"> message</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">'Hello World'</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#DCDCAA">    sayHello</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">message</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">})();</span></span>
+<span class="line"><span style="color:#6A9955">//# sourceMappingURL=inferir-tipos.js.map</span></span></code></pre>

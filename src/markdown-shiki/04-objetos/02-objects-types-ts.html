@@ -1,58 +1,49 @@
-<!--
-    *  ----------------------------------------------------------------------------------------------------  *
-    *  -----  /02-objects-types-ts.html  --  /src/markdown-shiki/04-objetos/02-objects-types-ts.html  -----  *
-    *  ----------------------------------------------------------------------------------------------------  *
--->
-
-<pre class="shiki dark-plus" style="background-color: #1E1E1E" tabindex="0"><code class="language-ts"><span class="line"><span style="color: #6A9955">/*</span></span>
-<span class="line"><span style="color: #6A9955">    -------------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">    ----------  02-objects-types.ts  ----------</span></span>
-<span class="line"><span style="color: #6A9955">    -------------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">*/</span></span>
+<pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#6A9955">/*</span></span>
+<span class="line"><span style="color:#6A9955">    *  --------------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -----  /02-objects-types.ts  --  /src/scripts/ts/04-objetos/02-objects-types.ts  -----  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  --------------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">*/</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">(() </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">(() </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">clear</span><span style="color:#D4D4D4">();</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">warn</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'-----  02-objects-types.ts  -----'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">clear</span><span style="color: #D4D4D4">();</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">warn</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;-----  02-objects-types.ts  -----&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Definir tipos personalizados para un objeto  -----</span></span>
+<span class="line"><span style="color:#569CD6">    type</span><span style="color:#4EC9B0"> Hero</span><span style="color:#D4D4D4"> = {</span></span>
+<span class="line"><span style="color:#9CDCFE">        name</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">, </span></span>
+<span class="line"><span style="color:#9CDCFE">        age</span><span style="color:#D4D4D4">?: </span><span style="color:#4EC9B0">number</span><span style="color:#D4D4D4">, </span></span>
+<span class="line"><span style="color:#9CDCFE">        powers</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">[],</span></span>
+<span class="line"><span style="color:#DCDCAA">        getName</span><span style="color:#D4D4D4">?: () </span><span style="color:#569CD6">=></span><span style="color:#4EC9B0"> string</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Definir tipos personalizados para un objeto  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">type</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Hero</span><span style="color: #D4D4D4"> = {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">, </span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">age</span><span style="color: #D4D4D4">?: </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4">, </span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">powers</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">[],</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #DCDCAA">getName</span><span style="color: #D4D4D4">?: () </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">string</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Usar el tipo personalizado  -----</span></span>
+<span class="line"><span style="color:#569CD6">    let</span><span style="color:#9CDCFE"> flash</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">Hero</span><span style="color:#D4D4D4"> = {</span></span>
+<span class="line"><span style="color:#9CDCFE">        name:</span><span style="color:#CE9178"> 'Barry Allen'</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        age:</span><span style="color:#B5CEA8"> 25</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        powers:</span><span style="color:#D4D4D4"> [ </span><span style="color:#CE9178">'Super Velocidad'</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">'Viajar en el tiempo'</span><span style="color:#D4D4D4"> ]</span></span>
+<span class="line"><span style="color:#D4D4D4">    }   </span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">( </span><span style="color:#9CDCFE">flash</span><span style="color:#D4D4D4"> );</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">    </span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Otro objeto del mismo tipo  -----</span></span>
+<span class="line"><span style="color:#569CD6">    let</span><span style="color:#9CDCFE"> superman</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">Hero</span><span style="color:#D4D4D4"> = {</span></span>
+<span class="line"><span style="color:#9CDCFE">        name:</span><span style="color:#CE9178"> 'Superman'</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        age:</span><span style="color:#B5CEA8"> 50</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        powers:</span><span style="color:#D4D4D4"> [ </span><span style="color:#CE9178">'Super Fuerza'</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">'Volar'</span><span style="color:#D4D4D4"> ],</span></span>
+<span class="line"><span style="color:#DCDCAA">        getName</span><span style="color:#D4D4D4">() {</span></span>
+<span class="line"><span style="color:#C586C0">            return</span><span style="color:#569CD6"> this</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">name</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">        }</span></span>
+<span class="line"><span style="color:#D4D4D4">    }   </span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'superman.getName() = '</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">superman</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getName</span><span style="color:#D4D4D4">?.());</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Usar el tipo personalizado  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">let</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">flash</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">Hero</span><span style="color: #D4D4D4"> = {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">name:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Barry Allen&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">age:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">25</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">powers:</span><span style="color: #D4D4D4"> [ </span><span style="color: #CE9178">&#39;Super Velocidad&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&#39;Viajar en el tiempo&#39;</span><span style="color: #D4D4D4"> ]</span></span>
-<span class="line"><span style="color: #D4D4D4">    }   </span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">( </span><span style="color: #9CDCFE">flash</span><span style="color: #D4D4D4"> );</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Otro objeto del mismo tipo  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">let</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">superman</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">Hero</span><span style="color: #D4D4D4"> = {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">name:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Superman&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">age:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">50</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">powers:</span><span style="color: #D4D4D4"> [ </span><span style="color: #CE9178">&#39;Super Fuerza&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&#39;Volar&#39;</span><span style="color: #D4D4D4"> ],</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #DCDCAA">getName</span><span style="color: #D4D4D4">() {</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #C586C0">return</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">        }</span></span>
-<span class="line"><span style="color: #D4D4D4">    }   </span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;superman.getName() = &#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">superman</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">getName</span><span style="color: #D4D4D4">?.());</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">})();</span></span>
-<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">})();</span></span>
 <span class="line"></span></code></pre>
-

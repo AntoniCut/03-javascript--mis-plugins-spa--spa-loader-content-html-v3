@@ -1,87 +1,76 @@
-<!--
-    *  -----------------------------------------------------------------------------------------------------------  *
-    *  -----  /06-clases-abstractas-ts.html  --  /src/markdown-shiki/06-clases/06-clases-abstractas-ts.html  -----  *
-    *  -----------------------------------------------------------------------------------------------------------  *
--->
-
-<pre class="shiki dark-plus" style="background-color: #1E1E1E" tabindex="0"><code class="language-ts"><span class="line"><span style="color: #6A9955">/*</span></span>
-<span class="line"><span style="color: #6A9955">    -----------------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">    ----------  06-clases-abstractas.ts  ----------</span></span>
-<span class="line"><span style="color: #6A9955">    -----------------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">*/</span></span>
+<pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#6A9955">/*</span></span>
+<span class="line"><span style="color:#6A9955">    *  ---------------------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -----  /06-clases-abstractas.ts  --  /src/scripts/ts/06-clases/06-clases-abstractas.ts  -----  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  ---------------------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">*/</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">(() </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">(() </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">clear</span><span style="color: #D4D4D4">();</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">warn</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;-----  06-clases-abstractas.ts  -----&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">clear</span><span style="color:#D4D4D4">();</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">warn</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'-----  06-clases-abstractas.ts  -----'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">/*</span></span>
-<span class="line"><span style="color: #6A9955">        -------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">        -----  Clases Abstractas  -----</span></span>
-<span class="line"><span style="color: #6A9955">        -------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">    */</span></span>
+<span class="line"><span style="color:#6A9955">    /*</span></span>
+<span class="line"><span style="color:#6A9955">        -------------------------------</span></span>
+<span class="line"><span style="color:#6A9955">        -----  Clases Abstractas  -----</span></span>
+<span class="line"><span style="color:#6A9955">        -------------------------------</span></span>
+<span class="line"><span style="color:#6A9955">    */</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Clase Abstracta  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">abstract</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">class</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Mutante</span><span style="color: #D4D4D4"> {</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Clase Abstracta  -----</span></span>
+<span class="line"><span style="color:#569CD6">    abstract</span><span style="color:#569CD6"> class</span><span style="color:#4EC9B0"> Mutante</span><span style="color:#D4D4D4"> {</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #569CD6">constructor</span><span style="color: #D4D4D4">(</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #569CD6">public</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #569CD6">public</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">realName</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span></span>
-<span class="line"><span style="color: #D4D4D4">        ) { }</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Clase que hereda de la Clase Abstracta  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">class</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Xmen</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">extends</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Mutante</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #DCDCAA">salvarMundo</span><span style="color: #D4D4D4">() {</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #C586C0">return</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Mundo Salvado!&#39;</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">        }</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">class</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Villian</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">extends</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Mutante</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #DCDCAA">conquistarMundo</span><span style="color: #D4D4D4">() {</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #C586C0">return</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Mundo Conquistado!&#39;</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">        }</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Instancia de la Clase Xmen que hereda de la Clase Abstracta  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">wolverine</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">Xmen</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;Wolverine&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&#39;Logan&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Instancia de la Clase Villian que hereda de la Clase Abstracta  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">magneto</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">Villian</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;Magneto&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&#39;Erik Lehnsherr&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color:#569CD6">        constructor</span><span style="color:#D4D4D4">(</span></span>
+<span class="line"><span style="color:#569CD6">            public</span><span style="color:#9CDCFE"> name</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#569CD6">            public</span><span style="color:#9CDCFE"> realName</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span></span>
+<span class="line"><span style="color:#D4D4D4">        ) { }</span></span>
+<span class="line"><span style="color:#D4D4D4">        </span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">wolverine =&gt; &#39;</span><span style="color: #D4D4D4">,  </span><span style="color: #9CDCFE">wolverine</span><span style="color: #D4D4D4"> );</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;magneto =&gt; &#39;</span><span style="color: #D4D4D4">,  </span><span style="color: #9CDCFE">magneto</span><span style="color: #D4D4D4"> );</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Clase que hereda de la Clase Abstracta  -----</span></span>
+<span class="line"><span style="color:#569CD6">    class</span><span style="color:#4EC9B0"> Xmen</span><span style="color:#569CD6"> extends</span><span style="color:#4EC9B0"> Mutante</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#D4D4D4">    </span></span>
+<span class="line"><span style="color:#DCDCAA">        salvarMundo</span><span style="color:#D4D4D4">() {</span></span>
+<span class="line"><span style="color:#C586C0">            return</span><span style="color:#CE9178"> 'Mundo Salvado!'</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">        }</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">wolverine.salvarMundo() =&gt; &#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">wolverine</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">salvarMundo</span><span style="color: #D4D4D4">() );</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;magneto.conquistarMundo() =&gt; &#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">magneto</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">conquistarMundo</span><span style="color: #D4D4D4">() );</span></span>
+<span class="line"><span style="color:#569CD6">    class</span><span style="color:#4EC9B0"> Villian</span><span style="color:#569CD6"> extends</span><span style="color:#4EC9B0"> Mutante</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">        conquistarMundo</span><span style="color:#D4D4D4">() {</span></span>
+<span class="line"><span style="color:#C586C0">            return</span><span style="color:#CE9178"> 'Mundo Conquistado!'</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">        }</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Instancia de la Clase Xmen que hereda de la Clase Abstracta  -----</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> wolverine</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> Xmen</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'Wolverine'</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">'Logan'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Instancia de la Clase Villian que hereda de la Clase Abstracta  -----</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> magneto</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> Villian</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'Magneto'</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">'Erik Lehnsherr'</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">printName</span><span style="color: #D4D4D4"> = ( </span><span style="color: #9CDCFE">character</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">Mutante</span><span style="color: #D4D4D4"> ) </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">`</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">El personaje es: Nombre: </span><span style="color: #569CD6">${</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">character</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">}</span><span style="color: #CE9178"> - Nombre real: </span><span style="color: #569CD6">${</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">character</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">realName</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">}</span><span style="color: #CE9178">`</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">wolverine => '</span><span style="color:#D4D4D4">,  </span><span style="color:#9CDCFE">wolverine</span><span style="color:#D4D4D4"> );</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'magneto => '</span><span style="color:#D4D4D4">,  </span><span style="color:#9CDCFE">magneto</span><span style="color:#D4D4D4"> );</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Llamada a la Función y le pasamos al personaje wolverine  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #DCDCAA">printName</span><span style="color: #D4D4D4">( </span><span style="color: #9CDCFE">wolverine</span><span style="color: #D4D4D4"> );</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Llamada a la Función y le pasamos al personaje magneto  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #DCDCAA">printName</span><span style="color: #D4D4D4">( </span><span style="color: #9CDCFE">magneto</span><span style="color: #D4D4D4"> );</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">wolverine.salvarMundo() => '</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">wolverine</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">salvarMundo</span><span style="color:#D4D4D4">() );</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'magneto.conquistarMundo() => '</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">magneto</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">conquistarMundo</span><span style="color:#D4D4D4">() );</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">})();</span></span>
 <span class="line"></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#DCDCAA"> printName</span><span style="color:#D4D4D4"> = ( </span><span style="color:#9CDCFE">character</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">Mutante</span><span style="color:#D4D4D4"> ) </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">        console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">`</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">El personaje es: Nombre: </span><span style="color:#569CD6">${</span><span style="color:#9CDCFE"> character</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">name</span><span style="color:#569CD6"> }</span><span style="color:#CE9178"> - Nombre real: </span><span style="color:#569CD6">${</span><span style="color:#9CDCFE"> character</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">realName</span><span style="color:#569CD6"> }</span><span style="color:#CE9178">`</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
+<span class="line"><span style="color:#D4D4D4">    </span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Llamada a la Función y le pasamos al personaje wolverine  -----</span></span>
+<span class="line"><span style="color:#DCDCAA">    printName</span><span style="color:#D4D4D4">( </span><span style="color:#9CDCFE">wolverine</span><span style="color:#D4D4D4"> );</span></span>
+<span class="line"><span style="color:#D4D4D4">    </span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Llamada a la Función y le pasamos al personaje magneto  -----</span></span>
+<span class="line"><span style="color:#DCDCAA">    printName</span><span style="color:#D4D4D4">( </span><span style="color:#9CDCFE">magneto</span><span style="color:#D4D4D4"> );</span></span>
+<span class="line"><span style="color:#D4D4D4">    </span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">})();</span></span>
 <span class="line"></span></code></pre>
-
-

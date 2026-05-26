@@ -1,80 +1,67 @@
-<!--
-    *  ----------------------------------------------------------------------------------------------------------  *
-    *  -----  /07-tarea-funciones-ts.html  --  /src/markdown-shiki/03-funciones/07-tarea-funciones-ts.html  -----  *
-    *  ----------------------------------------------------------------------------------------------------------  *
--->
-
-<pre class="shiki dark-plus" style="background-color: #1E1E1E" tabindex="0"><code class="language-ts"><span class="line"><span style="color: #6A9955">/*</span></span>
-<span class="line"><span style="color: #6A9955">    ---------------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">    ----------  07-tarea-funciones.ts  ----------</span></span>
-<span class="line"><span style="color: #6A9955">    ---------------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">*/</span></span>
+<pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#6A9955">/*</span></span>
+<span class="line"><span style="color:#6A9955">    *  --------------------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -----  /07-tarea-funciones.ts  --  /src/scripts/ts/03-funciones/07-tarea-funciones.ts  -----  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  --------------------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">*/</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">(() </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">clear</span><span style="color:#D4D4D4">();</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">warn</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'-----  07-tarea-funciones.ts  -----'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">(() </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Funciones Básicas  -----</span></span>
+<span class="line"><span style="color:#D4D4D4">    </span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#DCDCAA"> sumar</span><span style="color:#D4D4D4"> = (</span><span style="color:#9CDCFE">a</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">number</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">b</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">number</span><span style="color:#D4D4D4">): </span><span style="color:#4EC9B0">number</span><span style="color:#569CD6"> =></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#C586C0">        return</span><span style="color:#9CDCFE"> a</span><span style="color:#D4D4D4"> + </span><span style="color:#9CDCFE">b</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'sumar(10, 20): '</span><span style="color:#D4D4D4">, </span><span style="color:#DCDCAA">sumar</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">10</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">20</span><span style="color:#D4D4D4">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#DCDCAA"> contar</span><span style="color:#D4D4D4"> = (</span><span style="color:#9CDCFE">heroes</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">[]): </span><span style="color:#4EC9B0">number</span><span style="color:#569CD6"> =></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#C586C0">        return</span><span style="color:#9CDCFE"> heroes</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">length</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> superHeroes</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">[] = [</span><span style="color:#CE9178">"Flash"</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">"Arrow"</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">"Superman"</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">"Linterna Verde"</span><span style="color:#D4D4D4">];</span></span>
+<span class="line"><span style="color:#D4D4D4">    </span></span>
+<span class="line"><span style="color:#DCDCAA">    contar</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">superHeroes</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">clear</span><span style="color: #D4D4D4">();</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">warn</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;-----  07-tarea-funciones.ts  -----&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Parametros por defecto  -----</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#DCDCAA"> llamarBatman</span><span style="color:#D4D4D4"> = (</span><span style="color:#9CDCFE">llamar</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">boolean</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">false</span><span style="color:#D4D4D4">): </span><span style="color:#4EC9B0">void</span><span style="color:#569CD6"> =></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#D4D4D4">        </span></span>
+<span class="line"><span style="color:#C586C0">        if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">llamar</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#9CDCFE">            console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"Batiseñal activada"</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">        }</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">    llamarBatman</span><span style="color:#D4D4D4">();</span></span>
 <span class="line"></span>
 <span class="line"></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Rest?  -----</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#DCDCAA"> unirheroes</span><span style="color:#D4D4D4"> = ( ...</span><span style="color:#9CDCFE">personas</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">[]): </span><span style="color:#4EC9B0">string</span><span style="color:#569CD6"> =></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#C586C0">        return</span><span style="color:#9CDCFE"> personas</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">join</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">", "</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Funciones Básicas  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">sumar</span><span style="color: #D4D4D4"> = (</span><span style="color: #9CDCFE">a</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">b</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4">): </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #C586C0">return</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">a</span><span style="color: #D4D4D4"> + </span><span style="color: #9CDCFE">b</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;sumar(10, 20): &#39;</span><span style="color: #D4D4D4">, </span><span style="color: #DCDCAA">sumar</span><span style="color: #D4D4D4">(</span><span style="color: #B5CEA8">10</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">20</span><span style="color: #D4D4D4">));</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">contar</span><span style="color: #D4D4D4"> = (</span><span style="color: #9CDCFE">heroes</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">[]): </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #C586C0">return</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">heroes</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">length</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">superHeroes</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">[] = [</span><span style="color: #CE9178">&quot;Flash&quot;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&quot;Arrow&quot;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&quot;Superman&quot;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&quot;Linterna Verde&quot;</span><span style="color: #D4D4D4">];</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #DCDCAA">contar</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">superHeroes</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#DCDCAA">unirheroes</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"Capitan America"</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">"Ironman"</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">"Thor"</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">"Hulk"</span><span style="color:#D4D4D4">));</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Parametros por defecto  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">llamarBatman</span><span style="color: #D4D4D4"> = (</span><span style="color: #9CDCFE">llamar</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">boolean</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">false</span><span style="color: #D4D4D4">): </span><span style="color: #4EC9B0">void</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #C586C0">if</span><span style="color: #D4D4D4"> (</span><span style="color: #9CDCFE">llamar</span><span style="color: #D4D4D4">) {</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&quot;Batiseñal activada&quot;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">        }</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #DCDCAA">llamarBatman</span><span style="color: #D4D4D4">();</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Tipo funcion  -----</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#DCDCAA"> noHaceNada</span><span style="color:#D4D4D4"> = (</span><span style="color:#9CDCFE">numero</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">number</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">texto</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">booleano</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">boolean</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">arreglo</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">[]): </span><span style="color:#4EC9B0">void</span><span style="color:#569CD6"> =></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#D4D4D4">        </span></span>
+<span class="line"><span style="color:#6A9955">        // Esta funcion no hace nada</span></span>
+<span class="line"><span style="color:#D4D4D4">     }</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Rest?  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">unirheroes</span><span style="color: #D4D4D4"> = ( ...</span><span style="color: #9CDCFE">personas</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">[]): </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #C586C0">return</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">personas</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">join</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&quot;, &quot;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #DCDCAA">unirheroes</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&quot;Capitan America&quot;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&quot;Ironman&quot;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&quot;Thor&quot;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&quot;Hulk&quot;</span><span style="color: #D4D4D4">));</span></span>
+<span class="line"><span style="color:#6A9955">    // Crear el tipo de funcion que acepte la funcion "noHaceNada"</span></span>
+<span class="line"><span style="color:#569CD6">    let</span><span style="color:#DCDCAA"> noHaceNadaTampoco</span><span style="color:#D4D4D4">: (</span><span style="color:#9CDCFE">n</span><span style="color:#D4D4D4">:</span><span style="color:#4EC9B0">number</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">s</span><span style="color:#D4D4D4">:</span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">b</span><span style="color:#D4D4D4">:</span><span style="color:#4EC9B0">boolean</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">a</span><span style="color:#D4D4D4">:</span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">[]) </span><span style="color:#569CD6">=></span><span style="color:#4EC9B0"> void</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">        </span></span>
+<span class="line"><span style="color:#9CDCFE">    noHaceNadaTampoco</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">noHaceNada</span><span style="color:#D4D4D4">;</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Tipo funcion  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">noHaceNada</span><span style="color: #D4D4D4"> = (</span><span style="color: #9CDCFE">numero</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">texto</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">booleano</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">boolean</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">arreglo</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">[]): </span><span style="color: #4EC9B0">void</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #6A9955">// Esta funcion no hace nada</span></span>
-<span class="line"><span style="color: #D4D4D4">     }</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">// Crear el tipo de funcion que acepte la funcion &quot;noHaceNada&quot;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">let</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">noHaceNadaTampoco</span><span style="color: #D4D4D4">: (</span><span style="color: #9CDCFE">n</span><span style="color: #D4D4D4">:</span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">s</span><span style="color: #D4D4D4">:</span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">b</span><span style="color: #D4D4D4">:</span><span style="color: #4EC9B0">boolean</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">a</span><span style="color: #D4D4D4">:</span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">[]) </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">void</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">noHaceNadaTampoco</span><span style="color: #D4D4D4"> = </span><span style="color: #9CDCFE">noHaceNada</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">})();</span></span>
-<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">})();</span></span>
 <span class="line"></span></code></pre>
-
-
-
-

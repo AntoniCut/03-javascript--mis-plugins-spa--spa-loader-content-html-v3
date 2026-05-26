@@ -1,0 +1,42 @@
+<pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#6A9955">/*</span></span>
+<span class="line"><span style="color:#6A9955">    *  -------------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -----  /01-validations.ts  --  /src/scripts/ts/08-namespaces/01-validations.ts  -----  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -------------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">*/</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">/** `Namespace para validaciones` */</span></span>
+<span class="line"><span style="color:#569CD6">namespace</span><span style="color:#4EC9B0"> Validations</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">clear</span><span style="color:#D4D4D4">();</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">warn</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'-----  01-validations.ts  -----'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">    /** `Valida que un texto tenga más de 3 caracteres` */</span></span>
+<span class="line"><span style="color:#C586C0">    export</span><span style="color:#569CD6"> const</span><span style="color:#DCDCAA"> validateText</span><span style="color:#D4D4D4"> = (</span><span style="color:#9CDCFE">text</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">): </span><span style="color:#4EC9B0">boolean</span><span style="color:#569CD6"> =></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">        return</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">text</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">length</span><span style="color:#D4D4D4"> > </span><span style="color:#B5CEA8">3</span><span style="color:#D4D4D4">) ? </span><span style="color:#569CD6">true</span><span style="color:#D4D4D4"> : </span><span style="color:#569CD6">false</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">    /** `Valida que una fecha sea válida` */</span></span>
+<span class="line"><span style="color:#C586C0">    export</span><span style="color:#569CD6"> const</span><span style="color:#DCDCAA"> validateDate</span><span style="color:#D4D4D4"> = (</span><span style="color:#9CDCFE">date</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">Date</span><span style="color:#D4D4D4">): </span><span style="color:#4EC9B0">boolean</span><span style="color:#569CD6"> =></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">        return</span><span style="color:#D4D4D4"> (</span><span style="color:#DCDCAA">isNaN</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">date</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">valueOf</span><span style="color:#D4D4D4">())) ? </span><span style="color:#569CD6">false</span><span style="color:#D4D4D4"> : </span><span style="color:#569CD6">true</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">//  -----  Pruebas de las validaciones  -----</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">Validations.validateText(</span><span style="color:#D7BA7D">\'</span><span style="color:#CE9178">Hola Mundo</span><span style="color:#D7BA7D">\'</span><span style="color:#CE9178">) => '</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">Validations</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">validateText</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'Hola Mundo'</span><span style="color:#D4D4D4">));</span></span>
+<span class="line"><span style="color:#9CDCFE">console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'Validations.validateText(</span><span style="color:#D7BA7D">\'</span><span style="color:#CE9178">Ho</span><span style="color:#D7BA7D">\'</span><span style="color:#CE9178">) => '</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">Validations</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">validateText</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'Ho'</span><span style="color:#D4D4D4">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">Validations.validateDate(new Date(5)) => '</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">Validations</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">validateDate</span><span style="color:#D4D4D4">(</span><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> Date</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">5</span><span style="color:#D4D4D4">)));</span></span>
+<span class="line"><span style="color:#9CDCFE">console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'Validations.validateDate(new Date(</span><span style="color:#D7BA7D">\'</span><span style="color:#CE9178">2024-13-01</span><span style="color:#D7BA7D">\'</span><span style="color:#CE9178">)) => '</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">Validations</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">validateDate</span><span style="color:#D4D4D4">(</span><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> Date</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'2024-13-01'</span><span style="color:#D4D4D4">)));</span></span>
+<span class="line"></span></code></pre>

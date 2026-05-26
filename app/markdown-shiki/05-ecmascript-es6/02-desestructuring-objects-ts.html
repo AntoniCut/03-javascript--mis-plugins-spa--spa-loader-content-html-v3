@@ -1,90 +1,81 @@
-<!--
-    *  -------------------------------------------------------------------------------------------------------------------------------  *
-    *  -----  /02-desestructuring-objects-ts.html  --  /src/markdown-shiki/05-ecmascript-es6/02-desestructuring-objects-ts.html  -----  *
-    *  -------------------------------------------------------------------------------------------------------------------------------  *
--->
-
-<pre class="shiki dark-plus" style="background-color: #1E1E1E" tabindex="0"><code class="language-ts"><span class="line"><span style="color: #6A9955">/*</span></span>
-<span class="line"><span style="color: #6A9955">    -----------------------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">    ----------  02-desestructuring-objects.ts  ----------</span></span>
-<span class="line"><span style="color: #6A9955">    -----------------------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">*/</span></span>
+<pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#6A9955">/*</span></span>
+<span class="line"><span style="color:#6A9955">    *  -----------------------------------------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -----  /02-desestructuring-objects.ts  --  /src/scripts/ts/05-ecmascript-es6/02-desestructuring-objects.ts  -----  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -----------------------------------------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">*/</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">(() </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">(() </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">clear</span><span style="color: #D4D4D4">();</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">warn</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;-----  02-desestructuring-objects.ts  -----&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color:#6A9955">    //console.clear();</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">warn</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'-----  02-desestructuring-objects.ts  -----'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Desestructuración de Objetos  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">avengers</span><span style="color: #D4D4D4"> = {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">nick:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Samuel L. Jackson&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">ironman:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Robert Downey Jr.&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">vision:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Paul Bettany&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">activo:</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">true</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">poder:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">1500.123123</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Desestructuración de Objetos  -----</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> avengers</span><span style="color:#D4D4D4"> = {</span></span>
+<span class="line"><span style="color:#9CDCFE">        nick:</span><span style="color:#CE9178"> 'Samuel L. Jackson'</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        ironman:</span><span style="color:#CE9178"> 'Robert Downey Jr.'</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        vision:</span><span style="color:#CE9178"> 'Paul Bettany'</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        activo:</span><span style="color:#569CD6"> true</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        poder:</span><span style="color:#B5CEA8"> 1500.123123</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Desestructuración  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> { </span><span style="color: #4FC1FF">nick</span><span style="color: #D4D4D4">, </span><span style="color: #4FC1FF">ironman</span><span style="color: #D4D4D4">, </span><span style="color: #4FC1FF">activo</span><span style="color: #D4D4D4">, </span><span style="color: #4FC1FF">poder</span><span style="color: #D4D4D4">, </span><span style="color: #4FC1FF">vision</span><span style="color: #D4D4D4"> } = </span><span style="color: #9CDCFE">avengers</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  salida por consola  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;nick :&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">nick</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;ironman :&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">ironman</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;activo :&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">activo</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;poder :&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">poder</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">toFixed</span><span style="color: #D4D4D4">(</span><span style="color: #B5CEA8">2</span><span style="color: #D4D4D4">));</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;vision :&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">vision</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">toUpperCase</span><span style="color: #D4D4D4">());</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span></span>
-<span class="line"><span style="color: #D4D4D4">    </span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Usando una funcion con parametros de tipo en linea  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">printAvenger</span><span style="color: #D4D4D4"> = (</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #6A9955">//  -----  crear tipo en linea  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">avengers</span><span style="color: #D4D4D4">: {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">nick</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">ironman</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">vision</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">activo</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">boolean</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">poder</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4">,</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Desestructuración  -----</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#D4D4D4"> { </span><span style="color:#4FC1FF">nick</span><span style="color:#D4D4D4">, </span><span style="color:#4FC1FF">ironman</span><span style="color:#D4D4D4">, </span><span style="color:#4FC1FF">activo</span><span style="color:#D4D4D4">, </span><span style="color:#4FC1FF">poder</span><span style="color:#D4D4D4">, </span><span style="color:#4FC1FF">vision</span><span style="color:#D4D4D4"> } = </span><span style="color:#9CDCFE">avengers</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">    </span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  salida por consola  -----</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'nick :'</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">nick</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'ironman :'</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">ironman</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'activo :'</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">activo</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'poder :'</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">poder</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">toFixed</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">2</span><span style="color:#D4D4D4">));</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'vision :'</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">vision</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">toUpperCase</span><span style="color:#D4D4D4">());</span></span>
+<span class="line"><span style="color:#D4D4D4">    </span></span>
+<span class="line"><span style="color:#D4D4D4">    </span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Usando una funcion con parametros de tipo en linea  -----</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#DCDCAA"> printAvenger</span><span style="color:#D4D4D4"> = (</span></span>
+<span class="line"><span style="color:#D4D4D4">    </span></span>
+<span class="line"><span style="color:#6A9955">        //  -----  crear tipo en linea  -----</span></span>
+<span class="line"><span style="color:#9CDCFE">        avengers</span><span style="color:#D4D4D4">: {</span></span>
+<span class="line"><span style="color:#9CDCFE">        nick</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        ironman</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        vision</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        activo</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">boolean</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        poder</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">number</span><span style="color:#D4D4D4">,</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    }) </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
+<span class="line"><span style="color:#D4D4D4">    }) </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> { </span><span style="color: #4FC1FF">nick</span><span style="color: #D4D4D4">, </span><span style="color: #4FC1FF">ironman</span><span style="color: #D4D4D4">, </span><span style="color: #4FC1FF">activo</span><span style="color: #D4D4D4">, </span><span style="color: #4FC1FF">poder</span><span style="color: #D4D4D4">, </span><span style="color: #4FC1FF">vision</span><span style="color: #D4D4D4"> } = </span><span style="color: #9CDCFE">avengers</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n\n</span><span style="color: #CE9178">printAvenger nick :&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">nick</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;printAvenger ironman :&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">ironman</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;printAvenger activo :&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">activo</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;printAvenger poder :&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">poder</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">toFixed</span><span style="color: #D4D4D4">(</span><span style="color: #B5CEA8">2</span><span style="color: #D4D4D4">));</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;printAvenger vision :&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">vision</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">toUpperCase</span><span style="color: #D4D4D4">());</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
+<span class="line"><span style="color:#569CD6">        const</span><span style="color:#D4D4D4"> { </span><span style="color:#4FC1FF">nick</span><span style="color:#D4D4D4">, </span><span style="color:#4FC1FF">ironman</span><span style="color:#D4D4D4">, </span><span style="color:#4FC1FF">activo</span><span style="color:#D4D4D4">, </span><span style="color:#4FC1FF">poder</span><span style="color:#D4D4D4">, </span><span style="color:#4FC1FF">vision</span><span style="color:#D4D4D4"> } = </span><span style="color:#9CDCFE">avengers</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">        console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n\n</span><span style="color:#CE9178">printAvenger nick :'</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">nick</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">        console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'printAvenger ironman :'</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">ironman</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">        console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'printAvenger activo :'</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">activo</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">        console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'printAvenger poder :'</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">poder</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">toFixed</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">2</span><span style="color:#D4D4D4">));</span></span>
+<span class="line"><span style="color:#9CDCFE">        console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'printAvenger vision :'</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">vision</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">toUpperCase</span><span style="color:#D4D4D4">());</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #DCDCAA">printAvenger</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">avengers</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Usando un tipo  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">type</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Avenger</span><span style="color: #D4D4D4"> = {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">nick</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">ironman</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">vision</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">activo</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">boolean</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">poder</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Usando un tipo ya creado  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">printAvenger2</span><span style="color: #D4D4D4"> = ({ </span><span style="color: #9CDCFE">ironman</span><span style="color: #D4D4D4">, ...</span><span style="color: #9CDCFE">rest</span><span style="color: #D4D4D4">}: </span><span style="color: #4EC9B0">Avenger</span><span style="color: #D4D4D4">) </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n\n</span><span style="color: #CE9178">printAvenger2 ironman :&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">ironman</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;printAvenger2 resto de propiedades :&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">rest</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #DCDCAA">printAvenger2</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">avengers</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color:#DCDCAA">    printAvenger</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">avengers</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">})();</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Usando un tipo  -----</span></span>
+<span class="line"><span style="color:#569CD6">    type</span><span style="color:#4EC9B0"> Avenger</span><span style="color:#D4D4D4"> = {</span></span>
+<span class="line"><span style="color:#9CDCFE">        nick</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        ironman</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        vision</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        activo</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">boolean</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        poder</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">number</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Usando un tipo ya creado  -----</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#DCDCAA"> printAvenger2</span><span style="color:#D4D4D4"> = ({ </span><span style="color:#9CDCFE">ironman</span><span style="color:#D4D4D4">, ...</span><span style="color:#9CDCFE">rest</span><span style="color:#D4D4D4">}: </span><span style="color:#4EC9B0">Avenger</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">        console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n\n</span><span style="color:#CE9178">printAvenger2 ironman :'</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">ironman</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">        console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'printAvenger2 resto de propiedades :'</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">rest</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">    printAvenger2</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">avengers</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">})();</span></span>
 <span class="line"></span></code></pre>

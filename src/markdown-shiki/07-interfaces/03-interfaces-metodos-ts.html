@@ -1,122 +1,73 @@
-<!--
-    *  -----------------------------------------------------------------------------------------------------------------  *
-    *  -----  /03-interfaces-metodos-ts.html  --  /src/markdown-shiki/07-interfaces/03-interfaces-metodos-ts.html  -----  *
-    *  -----------------------------------------------------------------------------------------------------------------  *
--->
-
-<pre class="shiki dark-plus" style="background-color: #1E1E1E" tabindex="0"><code class="language-ts"><span class="line"><span style="color: #6A9955">/*</span></span>
-<span class="line"><span style="color: #6A9955">    ------------------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">    ----------  03-interfaces-metodos.ts  ----------</span></span>
-<span class="line"><span style="color: #6A9955">    ------------------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">*/</span></span>
+<pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#6A9955">/*</span></span>
+<span class="line"><span style="color:#6A9955">    *  ---------------------------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -----  /03-interfaces-metodos.ts  --  /src/scripts/ts/07-interfaces/03-interfaces-metodos.ts  -----  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  ---------------------------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">*/</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">(() </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">(() </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">clear</span><span style="color: #D4D4D4">();</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">warn</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;-----  03-interfaces-metodos.ts  -----&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">clear</span><span style="color:#D4D4D4">();</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">warn</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'-----  03-interfaces-metodos.ts  -----'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">/*</span></span>
-<span class="line"><span style="color: #6A9955">        ---------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">        -----  Métodos de las Interfaces  -----</span></span>
-<span class="line"><span style="color: #6A9955">        ---------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">    */</span></span>
+<span class="line"><span style="color:#6A9955">    /*</span></span>
+<span class="line"><span style="color:#6A9955">        ---------------------------------------</span></span>
+<span class="line"><span style="color:#6A9955">        -----  Métodos de las Interfaces  -----</span></span>
+<span class="line"><span style="color:#6A9955">        ---------------------------------------</span></span>
+<span class="line"><span style="color:#6A9955">    */</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Definir interfaces  -----</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Definir interfaces  -----</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">interface</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Client</span><span style="color: #D4D4D4"> {  </span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">age</span><span style="color: #D4D4D4">?: </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">address</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">Address</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #DCDCAA">getFullAddress</span><span style="color: #D4D4D4">?( </span><span style="color: #9CDCFE">id</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4"> ): </span><span style="color: #4EC9B0">void</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
+<span class="line"><span style="color:#569CD6">    interface</span><span style="color:#4EC9B0"> Client</span><span style="color:#D4D4D4"> {  </span></span>
+<span class="line"><span style="color:#9CDCFE">        name</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">        age</span><span style="color:#D4D4D4">?: </span><span style="color:#4EC9B0">number</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">        address</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">Address</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#DCDCAA">        getFullAddress</span><span style="color:#D4D4D4">?( </span><span style="color:#9CDCFE">id</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4"> ): </span><span style="color:#4EC9B0">void</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">interface</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Address</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">id</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">number</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">street</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">country</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">city</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Usar interfazes  -----</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">client1</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">Client</span><span style="color: #D4D4D4"> = {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">name:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Tony&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">age:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">45</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">address:</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">id:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">125</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">street:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Av. Principal&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">country:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;USA&#39;</span><span style="color: #D4D4D4">, </span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">city:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;New York&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        },</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #DCDCAA">getFullAddress</span><span style="color: #D4D4D4">( </span><span style="color: #9CDCFE">id</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4"> ) {</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #C586C0">return</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">address</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">street</span><span style="color: #D4D4D4"> + </span><span style="color: #CE9178">&#39;, &#39;</span><span style="color: #D4D4D4"> + </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">address</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">city</span><span style="color: #D4D4D4"> + </span><span style="color: #CE9178">&#39;, &#39;</span><span style="color: #D4D4D4"> + </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">address</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">country</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">        }</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">client2</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">Client</span><span style="color: #D4D4D4"> = {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">name:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Melissa&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">age:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">39</span><span style="color: #D4D4D4">,    </span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">address:</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">id:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">126</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">street:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Calle Secundaria&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">country:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;USA&#39;</span><span style="color: #D4D4D4">, </span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">city:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Los Angeles&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        }</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
+<span class="line"><span style="color:#569CD6">    interface</span><span style="color:#4EC9B0"> Address</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">        id</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">number</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">        street</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">        country</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">        city</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;Dirección client1 =&gt; &#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">client1</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">getFullAddress</span><span style="color: #D4D4D4">?.(</span><span style="color: #CE9178">&#39;125&#39;</span><span style="color: #D4D4D4">) );</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">( </span><span style="color: #9CDCFE">client2</span><span style="color: #D4D4D4"> );</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Usar interfazes  -----</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">})();</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> client1</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">Client</span><span style="color:#D4D4D4"> = {</span></span>
+<span class="line"><span style="color:#9CDCFE">        name:</span><span style="color:#CE9178"> 'Tony'</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        age:</span><span style="color:#B5CEA8"> 45</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        address:</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">            id:</span><span style="color:#B5CEA8"> 125</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">            street:</span><span style="color:#CE9178"> 'Av. Principal'</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">            country:</span><span style="color:#CE9178"> 'USA'</span><span style="color:#D4D4D4">, </span></span>
+<span class="line"><span style="color:#9CDCFE">            city:</span><span style="color:#CE9178"> 'New York'</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#D4D4D4">        },</span></span>
+<span class="line"><span style="color:#DCDCAA">        getFullAddress</span><span style="color:#D4D4D4">( </span><span style="color:#9CDCFE">id</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4"> ) {</span></span>
+<span class="line"><span style="color:#C586C0">            return</span><span style="color:#569CD6"> this</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">address</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">street</span><span style="color:#D4D4D4"> + </span><span style="color:#CE9178">', '</span><span style="color:#D4D4D4"> + </span><span style="color:#569CD6">this</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">address</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">city</span><span style="color:#D4D4D4"> + </span><span style="color:#CE9178">', '</span><span style="color:#D4D4D4"> + </span><span style="color:#569CD6">this</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">address</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">country</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">        }</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">city</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Usar interfazes  -----</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">client1</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">Client</span><span style="color: #D4D4D4"> = {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">name:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Tony&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">age:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">45</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">address:</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">id:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">125</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">street:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Av. Principal&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">country:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;USA&#39;</span><span style="color: #D4D4D4">, </span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">city:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;New York&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        },</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #DCDCAA">getFullAddress</span><span style="color: #D4D4D4">( </span><span style="color: #9CDCFE">id</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4"> ) {</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #C586C0">return</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">address</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">street</span><span style="color: #D4D4D4"> + </span><span style="color: #CE9178">&#39;, &#39;</span><span style="color: #D4D4D4"> + </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">address</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">city</span><span style="color: #D4D4D4"> + </span><span style="color: #CE9178">&#39;, &#39;</span><span style="color: #D4D4D4"> + </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">address</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">country</span><span style="color: #D4D4D4">;</span></span>
-<span class="line"><span style="color: #D4D4D4">        }</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">client2</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">Client</span><span style="color: #D4D4D4"> = {</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">name:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Melissa&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">age:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">39</span><span style="color: #D4D4D4">,    </span></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">address:</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">id:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">126</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">street:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Calle Secundaria&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">country:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;USA&#39;</span><span style="color: #D4D4D4">, </span></span>
-<span class="line"><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">city:</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&#39;Los Angeles&#39;</span><span style="color: #D4D4D4">,</span></span>
-<span class="line"><span style="color: #D4D4D4">        }</span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
+<span class="line"><span style="color:#D4D4D4">    </span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> client2</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">Client</span><span style="color:#D4D4D4"> = {</span></span>
+<span class="line"><span style="color:#9CDCFE">        name:</span><span style="color:#CE9178"> 'Melissa'</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        age:</span><span style="color:#B5CEA8"> 39</span><span style="color:#D4D4D4">,    </span></span>
+<span class="line"><span style="color:#9CDCFE">        address:</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">            id:</span><span style="color:#B5CEA8"> 126</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">            street:</span><span style="color:#CE9178"> 'Calle Secundaria'</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">            country:</span><span style="color:#CE9178"> 'USA'</span><span style="color:#D4D4D4">, </span></span>
+<span class="line"><span style="color:#9CDCFE">            city:</span><span style="color:#CE9178"> 'Los Angeles'</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#D4D4D4">        }</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;Dirección client1 =&gt; &#39;</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE">client1</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">getFullAddress</span><span style="color: #D4D4D4">?.(</span><span style="color: #CE9178">&#39;125&#39;</span><span style="color: #D4D4D4">) );</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">( </span><span style="color: #9CDCFE">client2</span><span style="color: #D4D4D4"> );</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'Dirección client1 => '</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">client1</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getFullAddress</span><span style="color:#D4D4D4">?.(</span><span style="color:#CE9178">'125'</span><span style="color:#D4D4D4">) );</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">( </span><span style="color:#9CDCFE">client2</span><span style="color:#D4D4D4"> );</span></span>
+<span class="line"><span style="color:#D4D4D4">    </span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">})();</span></span>
-<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">})();</span></span>
 <span class="line"></span></code></pre>

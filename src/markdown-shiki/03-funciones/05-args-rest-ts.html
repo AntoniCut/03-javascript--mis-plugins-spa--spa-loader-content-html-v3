@@ -1,42 +1,29 @@
-<!--
-    *  ----------------------------------------------------------------------------------------------  *
-    *  -----  /05-args-rest-ts.html  --  /src/markdown-shiki/03-funciones/05-args-rest-ts.html  -----  *
-    *  ----------------------------------------------------------------------------------------------  *
--->
-
-<pre class="shiki dark-plus" style="background-color: #1E1E1E" tabindex="0"><code class="language-ts"><span class="line"><span style="color: #6A9955">/*</span></span>
-<span class="line"><span style="color: #6A9955">    ---------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">    ----------  05-args-rest.ts  ----------</span></span>
-<span class="line"><span style="color: #6A9955">    ---------------------------------------</span></span>
-<span class="line"><span style="color: #6A9955">*/</span></span>
+<pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#6A9955">/*</span></span>
+<span class="line"><span style="color:#6A9955">    *  --------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -----  /05-args-rest.ts  --  /src/scripts/ts/03-funciones/05-args-rest.ts  -----  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  --------------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">*/</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">(() </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">(() </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">clear</span><span style="color:#D4D4D4">();</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">warn</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'-----  05-args-rest.ts  -----'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'</span><span style="color:#D7BA7D">\n</span><span style="color:#CE9178">'</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">clear</span><span style="color: #D4D4D4">();</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">warn</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;-----  05-args-rest.ts  -----&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&#39;</span><span style="color: #D4D4D4">);</span></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Rest parameters  -----</span></span>
+<span class="line"><span style="color:#569CD6">   const</span><span style="color:#DCDCAA"> fullName</span><span style="color:#D4D4D4"> = (</span><span style="color:#9CDCFE">firstName</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">, ...</span><span style="color:#9CDCFE">restArgs</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">[]): </span><span style="color:#4EC9B0">string</span><span style="color:#569CD6"> =></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">        return</span><span style="color:#CE9178"> `</span><span style="color:#569CD6">${</span><span style="color:#9CDCFE"> firstName</span><span style="color:#569CD6"> }</span><span style="color:#569CD6"> ${</span><span style="color:#9CDCFE"> restArgs</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">join</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">' '</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">}</span><span style="color:#CE9178">`</span><span style="color:#D4D4D4">;    </span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">    //  -----  Usamos el operador rest para agrupar los argumentos restantes en un array  -----</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> sumerman</span><span style="color:#D4D4D4"> = </span><span style="color:#DCDCAA">fullName</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'Clark'</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">'Joseph'</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">'Kent'</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">'Superman'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">({ </span><span style="color:#9CDCFE">sumerman</span><span style="color:#D4D4D4"> });</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Rest parameters  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">   </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">fullName</span><span style="color: #D4D4D4"> = (</span><span style="color: #9CDCFE">firstName</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">, ...</span><span style="color: #9CDCFE">restArgs</span><span style="color: #D4D4D4">: </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">[]): </span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> {</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">        </span><span style="color: #C586C0">return</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">`</span><span style="color: #569CD6">${</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">firstName</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">}</span><span style="color: #CE9178"> </span><span style="color: #569CD6">${</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">restArgs</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">join</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39; &#39;</span><span style="color: #D4D4D4">) </span><span style="color: #569CD6">}</span><span style="color: #CE9178">`</span><span style="color: #D4D4D4">;    </span></span>
-<span class="line"><span style="color: #D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #6A9955">//  -----  Usamos el operador rest para agrupar los argumentos restantes en un array  -----</span></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">sumerman</span><span style="color: #D4D4D4"> = </span><span style="color: #DCDCAA">fullName</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&#39;Clark&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&#39;Joseph&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&#39;Kent&#39;</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">&#39;Superman&#39;</span><span style="color: #D4D4D4">);</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">console</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">log</span><span style="color: #D4D4D4">({ </span><span style="color: #9CDCFE">sumerman</span><span style="color: #D4D4D4"> });</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color: #D4D4D4">})();</span></span>
-<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">})();</span></span>
 <span class="line"></span></code></pre>
-
-
-
-
-

@@ -1,0 +1,124 @@
+/*
+    *  ------------------------------------------------------------------------  *
+    *  -----  /generate-markdown-shiki.js  ------------------------------------  *
+    *  ------------------------------------------------------------------------  *
+    *  Lee las rutas del SPA, deriva los archivos fuente por convención de       *
+    *  nombres, y genera los bloques HTML resaltados con Shiki en                *
+    *  src/markdown-shiki/.                                                      *
+    *                                                                            *
+    *  Uso: pnpm code-highlight                                                  *
+    *                                                                            *
+    *  Convención de nombres:                                                    *
+    *    MarkdownShikiHtml path  →  fuente                                       *
+    *    .../01-booleans-ts.html →  src/scripts/ts/.../01-booleans.ts            *
+    *    .../01-booleans-js.html →  src/scripts/js/.../01-booleans.js            *
+    *  ------------------------------------------------------------------------  *
+*/
+
+import { codeToHtml } from 'shiki';
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { readdirSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const MARKER     = 'markdown-shiki/';
+const SHIKI_THEME = 'dark-plus';
+
+
+/**
+ * A partir del path URL de un archivo .html en markdown-shiki, deduce
+ * el path del archivo fuente (.ts o .js) usando la convención de nombres.
+ *
+ * @param {string} htmlUrlPath  - p.ej. `/base/app/markdown-shiki/02-tipos-de-datos/01-booleans-ts.html`
+ * @returns {{ srcPath: string, lang: string, relHtml: string } | null}
+ */
+function deriveSource(htmlUrlPath) {
+
+    const idx = htmlUrlPath.indexOf(MARKER);
+    if (idx === -1) return null;
+
+    const relHtml = htmlUrlPath.slice(idx + MARKER.length);
+
+    if (relHtml.endsWith('-ts.html')) {
+        const relSrc = relHtml.replace(/-ts\.html$/, '.ts');
+        return {
+            srcPath: join(__dirname, 'src/scripts/ts', relSrc),
+            lang: 'typescript',
+            relHtml
+        };
+    }
+
+    if (relHtml.endsWith('-js.html')) {
+        const relSrc = relHtml.replace(/-js\.html$/, '.js');
+        return {
+            srcPath: join(__dirname, 'src/scripts/js', relSrc),
+            lang: 'javascript',
+            relHtml
+        };
+    }
+
+    return null;
+}
+
+
+//  -----  Leer todos los archivos de ruta  -----
+const routesDir  = join(__dirname, 'src/routes');
+const routeFiles = readdirSync(routesDir).filter(
+    f => f.startsWith('route-') && f.endsWith('.js') && f !== 'route-manifest.js'
+);
+
+//  -----  Recolectar todos los MarkdownShikiHtml únicos  -----
+const htmlPaths = new Set();
+
+for (const file of routeFiles) {
+
+    const mod   = await import(`./src/routes/${file}`);
+    const route = Object.values(mod).find(
+        v => v && typeof v === 'object' && Array.isArray(v.MarkdownShikiHtml)
+    );
+
+    if (route?.MarkdownShikiHtml) {
+        for (const p of route.MarkdownShikiHtml) htmlPaths.add(p);
+    }
+}
+
+
+//  -----  Generar HTML para cada entrada  -----
+let generated = 0;
+let skipped   = 0;
+
+for (const htmlPath of htmlPaths) {
+
+    const derived = deriveSource(htmlPath);
+
+    if (!derived) {
+        console.warn(`⚠️  No se puede derivar el fuente para: ${htmlPath}`);
+        skipped++;
+        continue;
+    }
+
+    const { srcPath, lang, relHtml } = derived;
+
+    if (!existsSync(srcPath)) {
+        const rel = srcPath.replace(__dirname + '/', '');
+        console.warn(`⚠️  Fuente no encontrado: src/markdown-shiki/${relHtml}`);
+        console.warn(`     Esperado en: ${rel}`);
+        console.warn(`     Comprueba que el nombre del archivo fuente coincide con el del .html`);
+        skipped++;
+        continue;
+    }
+
+    const code = readFileSync(srcPath, 'utf-8');
+    const html = await codeToHtml(code, { lang, theme: SHIKI_THEME });
+
+    const outPath = join(__dirname, 'src/markdown-shiki', relHtml);
+    mkdirSync(dirname(outPath), { recursive: true });
+    writeFileSync(outPath, html, 'utf-8');
+
+    console.log(`✅  src/markdown-shiki/${relHtml}`);
+    generated++;
+}
+
+console.log(`\n🎉  Completado — generados: ${generated} | omitidos: ${skipped}`);

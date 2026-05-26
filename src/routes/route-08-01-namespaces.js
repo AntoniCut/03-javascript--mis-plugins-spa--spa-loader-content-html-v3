@@ -15,8 +15,8 @@ export const route0801Namespaces = {
         "layoutFooter": `${layoutFooter}`,
     },
     MarkdownShikiHtml: [
-        `${MarkdownShikiHtml}/08-namespaces/01-namespaces-ts.html`,
-        `${MarkdownShikiHtml}/08-namespaces/01-namespaces-js.html`
+        `${MarkdownShikiHtml}/08-namespaces/01-validations-ts.html`,
+        `${MarkdownShikiHtml}/08-namespaces/01-validations-js.html`
     ],
     headerTitle: '1 - Namespaces en TypeScript',
     styles: [

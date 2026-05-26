@@ -13,7 +13,8 @@ export { };
  * -------------------------------
  * -----  `RouteComponents`  -----
  * -------------------------------
- * @typedef {Record<string, string|undefined>} RouteComponents - Mapa de componentes HTML a cargar dinámicamente. Cada valor puede ser string o undefined.
+ * @typedef {Record<string, string|undefined>} RouteComponents - Mapa de componentes HTML a cargar dinámicamente. 
+ *                                                               Cada valor puede ser string o undefined.
  */
 
 
@@ -47,7 +48,8 @@ export { };
  * @property {string} headerTitle - Título que se mostrará dentro del layout-header.
  * @property {string} favicon - Ruta del favicon específico de la vista.
  * @property {RouteComponents} components - Mapa selector → URL de componente HTML.
- * @property {string[]} MarkdownShikiHtml - Rutas a los archivos .html generados por Shiki para mostrar código.
+ * @property {string[]} MarkdownShikiHtml - Rutas a los archivos .html generados por Shiki para mostrar código. 
+ *                                          Ejecuta `pnpm code-highlight` para regenerarlos.
  * @property {RouteStyle[]|null} styles - Lista de hojas CSS asociadas a la vista (opcional).
  * @property {RouteScript[]|null} scripts - Lista de scripts a cargar dinámicamente (opcional).
  */
