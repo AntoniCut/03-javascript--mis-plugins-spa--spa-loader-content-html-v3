@@ -54,8 +54,9 @@ $bg-grid-pattern: linear-gradient(to right, $color-grid 1px, transparent 1px),
 $bg-grid-size-40x40: 40px 40px;
 
 
-/// ----- Breakpoints -----
+// ----- Breakpoints -----
 $mobile: 480px;
 $tablet: 768px;
 $desktop-sm: 1024px;
 $desktop: 1200px;
+$desktop-lg: 1400px;

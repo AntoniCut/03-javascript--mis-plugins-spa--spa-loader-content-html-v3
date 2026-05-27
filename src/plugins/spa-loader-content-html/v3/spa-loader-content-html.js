@@ -121,7 +121,8 @@ export const spaLoaderContentHtml = (options = {}) => {
                     {
                         id: route?.id || entry.id,
                         path: initialPathname,
-                        routeFile: entry.file
+                        routeFile: entry.file,
+                        favicon: route?.favicon || null
                     },
                     '',
                     initialPathname

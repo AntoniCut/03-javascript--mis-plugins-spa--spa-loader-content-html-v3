@@ -36,3 +36,11 @@
         @content;
     }
 }
+
+
+//  -----  mixin - desktopLG - @media(min-width: 1400px)  -----
+@mixin desktopLG {
+    @media(min-width: var.$desktop-lg) {
+        @content;
+    }
+}

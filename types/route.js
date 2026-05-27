@@ -33,6 +33,8 @@ export { };
  * ---------------------------
  * @typedef {Object} RouteScript - Representa un script que debe cargarse dinámicamente.
  * @property {string} src - Ruta absoluta o relativa del archivo JS.
+ * @property {boolean} [isModule] - Si es true, el script se carga como módulo ES6 con import() dinámico.
+ * @property {string|null} [exportFunctionName] - Nombre de la función exportada a ejecutar tras importar el módulo (solo si isModule es true).
  */
 
 
