@@ -1,18 +1,18 @@
 /*
-    *  ------------------------------------------------------------------------  *
-    *  -----  /generate-markdown-shiki.js  ------------------------------------  *
-    *  ------------------------------------------------------------------------  *
-    *  Lee las rutas del SPA, deriva los archivos fuente por convención de       *
-    *  nombres, y genera los bloques HTML resaltados con Shiki en                *
-    *  src/markdown-shiki/.                                                      *
-    *                                                                            *
-    *  Uso: pnpm code-highlight                                                  *
-    *                                                                            *
-    *  Convención de nombres:                                                    *
-    *    MarkdownShikiHtml path  →  fuente                                       *
-    *    .../01-booleans-ts.html →  src/scripts/ts/.../01-booleans.ts            *
-    *    .../01-booleans-js.html →  src/scripts/js/.../01-booleans.js            *
-    *  ------------------------------------------------------------------------  *
+    *  -----------------------------------------------------------------------------  *
+    *  -----  /generate-markdown-shiki.js  -----------------------------------------  *
+    *  -----------------------------------------------------------------------------  *
+    *  Lee las rutas del SPA, deriva los archivos fuente por convención de            *
+    *  nombres, y genera los bloques HTML resaltados con Shiki en                     *
+    *  src/markdown-shiki/.                                                           *
+    *                                                                                 *
+    *  Uso: pnpm code-highlight                                                       *
+    *                                                                                 *
+    *  Convención de nombres:                                                         *
+    *    MarkdownShikiHtml path  →  fuente                                            *
+    *    .../01-markdown-shiki-ts.html →  src/scripts/ts/.../01-markdown-shiki.ts     *
+    *    .../01-markdown-shiki-js.html →  src/scripts/js/.../01-markdown-shiki.js     *
+    *  -----------------------------------------------------------------------------  *
 */
 
 import { codeToHtml } from 'shiki';

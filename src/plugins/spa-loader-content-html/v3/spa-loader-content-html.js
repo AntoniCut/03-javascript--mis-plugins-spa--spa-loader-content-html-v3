@@ -829,9 +829,9 @@ export const spaLoaderContentHtml = (options = {}) => {
             //  -----  Buscar el archivo de ruta en el manifest para guardarlo en el historial  -----
             const manifestEntry = findManifestEntryById(route.id);
 
-            //  -----  pushState con pathname normalizado y routeFile para lazy loading en popstate  -----
+            //  -----  pushState con pathname normalizado, routeFile y favicon para actualización inmediata en popstate  -----
             history.pushState(
-                { id: route.id, path: newPathname, routeFile: manifestEntry?.file || null },
+                { id: route.id, path: newPathname, routeFile: manifestEntry?.file || null, favicon: route.favicon || null },
                 '',
                 newPathname
             );
@@ -865,6 +865,17 @@ export const spaLoaderContentHtml = (options = {}) => {
 
 
     /**
+     * ---------------------------------
+     * -----  `faviconSessionKey`  -----
+     * ---------------------------------
+     * - Clave fija por sesión para el cache-busting del favicon.
+     * - Al ser constante dentro de la sesión, el browser puede cachear el archivo de favicon
+     *   y servirlo desde caché en navegaciones posteriores (evita parpadeo en back-navigation).
+     */
+    const _faviconSessionKey = Date.now();
+
+
+    /**
      * --------------------------------------
      * -----  `updateFavicon(favicon)`  -----
      * --------------------------------------
@@ -873,20 +884,45 @@ export const spaLoaderContentHtml = (options = {}) => {
      * @return {void} - No devuelve nada, pero actualiza el favicon del documento.
      */
 
+    
+
     const updateFavicon = (favicon) => {
 
-        //  -----  Elimina todos los favicons existentes para forzar actualización  -----
-        document.querySelectorAll('link[rel~="icon"]').forEach(link => link.remove());
+        const newAbsolute = new URL(favicon, document.baseURI).href;
+        const newHref = `${favicon}?v=${_faviconSessionKey}`;
 
-        /** - `crea un nuevo elemento link para el favicon` */
+        /** @type {HTMLLinkElement|null} - `Referencia al favicon existente` */
+        const existing = /** @type {HTMLLinkElement|null} */ (document.querySelector('link[rel~="icon"]'));
+
+        //  -----  Si ya existe un favicon, actualizar su href in-place para evitar parpadeo, y eliminar duplicados si los hubiera  -----
+        if (existing) {
+
+            //  -----  Si el archivo es el mismo, no hacer nada para evitar parpadeo  -----
+            if (existing.href.split('?')[0] === newAbsolute) 
+                return;
+
+            //  -----  Actualizar href in-place evita el instante sin favicon que causa parpadeo  -----
+            existing.href = newHref;
+
+            //  -----  Eliminar duplicados si los hubiera  -----
+            document.querySelectorAll('link[rel~="icon"]').forEach(link => {
+                
+                if (link !== existing) 
+                    link.remove();
+
+            });
+
+            return;
+
+        }
+
+        //  -----  No existe ningún favicon: crear el elemento  -----
+        
+        /** @type {HTMLLinkElement} - `Nuevo elemento favicon` */
         const link = document.createElement('link');
-
-        //  -----  Configura el nuevo favicon con cache bypass usando timestamp para asegurar que se actualice correctamente  -----
         link.rel = 'icon';
         link.type = 'image/x-icon';
-        link.href = `${favicon}?t=${Date.now()}`;   //  -----  evitar cache  -----
-
-        //  -----  Añadir al head  -----
+        link.href = newHref;
         document.head.appendChild(link);
 
     }
@@ -1603,6 +1639,10 @@ export const spaLoaderContentHtml = (options = {}) => {
 
             //  -----  Marcar que la navegación se hizo por popstate para evitar pushState duplicados al aplicar la ruta  -----
             isPopNavigation = true;
+
+            //  -----  Actualizar favicon inmediatamente (síncronamente) desde el state para evitar parpadeo durante el async de lazy loading  -----
+            if (e.state?.favicon)
+                updateFavicon(e.state.favicon);
 
             /** - `Nombre del archivo de ruta guardado en el historial` */
             const routeFile = e.state?.routeFile;
