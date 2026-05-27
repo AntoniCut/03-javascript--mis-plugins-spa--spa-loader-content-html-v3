@@ -39,6 +39,18 @@ export const routeManifest = [
         file: 'route-javascript-page'
     },
 
+    {
+        id: 'jqueryPage',
+        path: 'jquery-page',
+        file: 'route-jquery-page'
+    },
+
+    {
+        id: 'jqueryUiPage',
+        path: 'jquery-ui-page',
+        file: 'route-jquery-ui-page'
+    },
+
     //  ----------  404 - Not Found  ----------
     { 
         id: '404NotFoundPage', 

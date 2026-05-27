@@ -6,71 +6,147 @@
 
 <div class="main__container">
 
-    <h2 class="main__title"> Curso de TypeScript - Tu completa guia y manual de mano </h2>
+    <h2 class="main__title"> spa-loader-content-html — Plugin SPA v3 </h2>
 
-    <div class="main__hero">
-        <!--  -----  Imagen Hero  -----  -->
+    <div class="home-page">
+
+        <!--  -----  Hero  -----  -->
+        <div class="home-page__hero">
+            <div class="home-page__hero-badge">
+                <span class="home-page__hero-tag" aria-hidden="true">SPA</span>
+                <h3 class="home-page__hero-title">spa-loader-content-html</h3>
+                <p class="home-page__hero-subtitle">Plugin vanilla JavaScript para SPAs — v3</p>
+            </div>
+        </div>
+
+        <!--  -----  Intro  -----  -->
+        <section class="home-page__intro">
+            <p class="home-page__intro-text">
+                <strong>spa-loader-content-html</strong> es un plugin vanilla JavaScript diseñado para crear
+                aplicaciones de una sola página (<strong>SPA</strong>) sin frameworks. Carga fragmentos HTML
+                dinámicamente mediante <code>fetch()</code>, inyectándolos en contenedores del DOM definidos
+                por rutas configuradas en un manifiesto ligero.
+            </p>
+            <p class="home-page__intro-text">
+                La <strong>versión 3</strong> introduce lazy loading de módulos de ruta mediante
+                <code>import()</code> dinámico, soporte nativo para la
+                <strong>View Transitions API</strong>, reescritura automática de URLs en HTML inyectado,
+                caché de módulos por ruta y un sistema de eventos personalizados para desacoplar
+                el loader visual de la lógica de navegación.
+            </p>
+        </section>
+
+        <!--  -----  Features  -----  -->
+        <section class="home-page__features">
+
+            <h3 class="home-page__features-title">Características Principales</h3>
+
+            <div class="home-page__features-grid">
+
+                <article class="home-page__feature">
+                    <span class="home-page__feature-icon" aria-hidden="true">🚀</span>
+                    <h4 class="home-page__feature-title">Lazy Loading de Rutas</h4>
+                    <p class="home-page__feature-text">
+                        Los módulos de ruta se importan dinámicamente con <code>import()</code> solo cuando
+                        el usuario navega a esa ruta. Un manifiesto ligero (<code>routeManifest</code>) registra
+                        cada ruta con <code>id</code>, <code>path</code> y <code>file</code>, sin importar
+                        módulos en el arranque.
+                    </p>
+                </article>
+
+                <article class="home-page__feature">
+                    <span class="home-page__feature-icon" aria-hidden="true">🎬</span>
+                    <h4 class="home-page__feature-title">View Transitions API</h4>
+                    <p class="home-page__feature-text">
+                        Cuando el navegador soporta <code>document.startViewTransition()</code>, el plugin
+                        envuelve automáticamente el renderizado de la nueva ruta en una transición nativa,
+                        logrando animaciones fluidas entre páginas sin configuración adicional.
+                    </p>
+                </article>
+
+                <article class="home-page__feature">
+                    <span class="home-page__feature-icon" aria-hidden="true">📋</span>
+                    <h4 class="home-page__feature-title">Route Manifest</h4>
+                    <p class="home-page__feature-text">
+                        El <code>routeManifest</code> es un array de entradas
+                        <code>&#123; id, path, file &#125;</code>. El plugin resuelve la ruta activa
+                        comparando <code>window.location.pathname</code> normalizado con cada <code>path</code>,
+                        y carga el módulo correspondiente bajo demanda.
+                    </p>
+                </article>
+
+                <article class="home-page__feature">
+                    <span class="home-page__feature-icon" aria-hidden="true">🔃</span>
+                    <h4 class="home-page__feature-title">Inyección de HTML por Componente</h4>
+                    <p class="home-page__feature-text">
+                        Cada ruta define un objeto <code>components</code> donde la clave es el
+                        <code>id</code> del contenedor en el DOM y el valor es la URL del fragmento HTML.
+                        El plugin hace <code>fetch()</code> de cada fragmento y lo inyecta en su contenedor
+                        de forma secuencial.
+                    </p>
+                </article>
+
+                <article class="home-page__feature">
+                    <span class="home-page__feature-icon" aria-hidden="true">🎨</span>
+                    <h4 class="home-page__feature-title">CSS y JS por Ruta</h4>
+                    <p class="home-page__feature-text">
+                        Cada ruta puede declarar sus propios <code>styles</code> (array de
+                        <code>&#123; href &#125;</code>) y <code>scripts</code> (array de
+                        <code>&#123; src, isModule? &#125;</code>). El plugin los inyecta dinámicamente
+                        en el <code>&lt;head&gt;</code> al navegar a esa ruta.
+                    </p>
+                </article>
+
+                <article class="home-page__feature">
+                    <span class="home-page__feature-icon" aria-hidden="true">⚡</span>
+                    <h4 class="home-page__feature-title">Caché y Eventos Personalizados</h4>
+                    <p class="home-page__feature-text">
+                        Los módulos de ruta se cachean en un <code>Map</code> interno para evitar
+                        importaciones redundantes. El plugin emite eventos <code>spa:route-loaded</code>,
+                        <code>spa:first-route-loaded</code> y <code>spa:route-load-error</code> para
+                        desacoplar el loader visual de la navegación SPA.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <!--  -----  Opciones de Configuración  -----  -->
+        <section class="home-page__tags-section">
+
+            <h3 class="home-page__tags-title">Opciones de Configuración</h3>
+
+            <ul class="home-page__tags">
+                <li class="home-page__tag">routeManifest</li>
+                <li class="home-page__tag">routeModulesBase</li>
+                <li class="home-page__tag">base</li>
+                <li class="home-page__tag">id</li>
+                <li class="home-page__tag">path</li>
+                <li class="home-page__tag">file</li>
+                <li class="home-page__tag">components</li>
+                <li class="home-page__tag">styles[ ]</li>
+                <li class="home-page__tag">scripts[ ]</li>
+                <li class="home-page__tag">isModule</li>
+                <li class="home-page__tag">pageTitle</li>
+                <li class="home-page__tag">headerTitle</li>
+                <li class="home-page__tag">favicon</li>
+            </ul>
+
+        </section>
+
+        <!--  -----  Eventos Personalizados  -----  -->
+        <section class="home-page__tags-section">
+
+            <h3 class="home-page__tags-title">Eventos Personalizados</h3>
+
+            <ul class="home-page__tags home-page__tags--events">
+                <li class="home-page__tag">spa:route-loaded</li>
+                <li class="home-page__tag">spa:first-route-loaded</li>
+                <li class="home-page__tag">spa:route-load-error</li>
+            </ul>
+
+        </section>
+
     </div>
-
-    
-    <p class="main__text">
-        
-        TypeScript es uno de los lenguajes de programación web que debes de aprender ya que esta tomando mucha fuerza en
-        el mundo. Es utilizado como base para crear aplicaciones y frameworks completos, ya que sin él, los códigos de
-        programación web estarían plagados de errores que son muy difíciles de detectar ya que JavaScript es un lenguaje
-        de programación dinámico que permite muchas cosas que no debería de hacer.
-        
-        <br> <br>
-        
-        Este curso es ideal para cualquier persona que desee entrar a trabajar con TypeScript sin importar si es
-        Angular, React, Vue, React Native, NativeScript, Nestjs, ionic, Node o cualquier framework o librería que use
-        TypeScript.
-
-        <br> <br>
-
-        Muchas veces damos por hecho que la programación en JavaScript es difícil de depurar, ya que los errores y
-        problemas se nos presentan hasta que estamos ejecutando el código en el navegador web o en nuestra aplicación.
-
-        <br> <br>
-
-        Con TypeScript es posible alcanzar excelentes prácticas de programación a la cual ya estas acostumbrado en otros
-        lenguajes como Java, C#, C++, VB, entre otros; También te permite crear código que es fácil de comprender por
-        otros programadores ya que cada instrucción por si sola, es bien explicativa.
-
-        <br> <br>
-
-        TypeScript es soportado por Microsoft, y muchas empresas grandes lo utilizan para crear aplicaciones y
-        frameworks sólidos y con la menor cantidad de posibles errores, y lo mejor de todo, es que permite tener una
-        programación modular y muy rápida.
-        
-        <br> <br>
-
-        Al terminar este curso, tendrás más que una base sólida de TypeScript, saldrás con ganas de utilizarlo en
-        cualquier proyecto web que tenga que escribir lineas de JavaScript. Este curso es completo y actualizado,
-        adicionalmente se pasa actualizando con los nuevos cambios que TypeScript vaya realizando.
-        
-        <br> <br>
-
-        Te invito a que observes el programa de estudios de este curso y decidas por ti mismo si deseas aprender conmigo
-        y otros estudiantes este increíble lenguaje de programación que es más usado cada día y tu puedes estar listo
-        hoy mismo!.
-
-    </p>
-
-    <p class="main__text">
-        
-        En este curso aprenderás todo lo necesario para convertirte en un desarrollador profesional
-        de TypeScript. Desde los conceptos básicos hasta las características avanzadas del lenguaje, este curso está
-        diseñado para llevarte de principiante a experto.
-        
-        <br> <br>
-
-        A lo largo del curso, trabajarás en una serie de proyectos prácticos que te ayudarán a
-        consolidar tus conocimientos y habilidades. Al finalizar el curso, estarás preparado para enfrentar cualquier
-        desafío relacionado con TypeScript en el mundo real.
-
-    </p>
-
-    
 
 </div>

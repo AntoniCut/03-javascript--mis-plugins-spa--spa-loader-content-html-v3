@@ -106,6 +106,12 @@
     }
 }
 
+.header__brand--spa {
+    @include mix.tablet {
+        order: 1;
+    }
+}
+
 .header__brand--javascript {
     @include mix.tablet {
         order: 3;
@@ -130,14 +136,12 @@
     }
 }
 
-.header__logo-typescript,
 .header__logo-javascript {
     width: 4rem;
     height: 4rem;
     transition: transform 220ms ease;
 }
 
-.header__brand:hover .header__logo-typescript,
 .header__brand:hover .header__logo-javascript {
     transform: scale(1.08);
 }
@@ -173,6 +177,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
     background: linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(230, 238, 250, 0.82));
     box-shadow: 0 24px 60px rgba(30, 41, 59, 0.2);
@@ -201,12 +206,14 @@
 }
 
 .header__title {
+    width: 100%;
     margin: 0;
     font-size: 2.6rem;
     text-align: center;
     font-weight: 900;
     line-height: 1.1;
     color: #0f172a;
+    text-align: center;
     text-wrap: balance;
 
     @include mix.tablet {

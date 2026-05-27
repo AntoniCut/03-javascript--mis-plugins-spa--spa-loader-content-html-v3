@@ -1,8 +1,7 @@
 
-
 import { paths } from './paths.js';
 
-const { favicon, layoutHeader, layoutNavbar, pages, layoutFooter, styles } = paths;
+const { favicon, layoutHeader, layoutNavbar, pages, layoutFooter, styles, scripts } = paths;
 
 /** @typedef {import("../../types/index.js").Route} Route */
 
@@ -11,7 +10,7 @@ const { favicon, layoutHeader, layoutNavbar, pages, layoutFooter, styles } = pat
 export const route00Home = {
     id: 'home',
     favicon: `${favicon}/javascript-favicon.ico`,
-    pageTitle: 'TypeScript - Tu completa guia y manual de mano',
+    pageTitle: 'spa-loader-content-html — Plugin SPA v3',
     path: '',
     components: {
         "layoutHeader": `${layoutHeader}`,
@@ -20,9 +19,12 @@ export const route00Home = {
         "layoutFooter": `${layoutFooter}`,
     },
     MarkdownShikiHtml: [],
-    headerTitle: 'TypeScript - Tu completa guia y manual de mano',
+    headerTitle: 'spa-loader-content-html — Plugin SPA v3',
     styles: [
         { href: `${styles}/home.css` }
     ],
-    scripts: []
+    scripts: [
+        { src: `${scripts}/js/pages/home.cjs.js` },
+        { src: `${scripts}/js/pages/home.esm.js`, isModule: true },
+    ]
 };
