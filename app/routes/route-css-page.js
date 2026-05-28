@@ -6,7 +6,7 @@
 
 import { paths } from './paths.js';
 
-const { favicon, layoutHeader, layoutNavbar, pages, layoutFooter, styles, scripts } = paths;
+const { favicon, layoutHeader, layoutNavbar, pages, MarkdownShikiHtml, layoutFooter, styles, scripts } = paths;
 
 /** @type {import("../../types/index.js").Route} */
 export const routeCssPage = {
@@ -20,7 +20,10 @@ export const routeCssPage = {
         "layoutMain": `${pages}/css-page.html`,
         "layoutFooter": `${layoutFooter}`,
     },
-    MarkdownShikiHtml: [],
+    MarkdownShikiHtml: [
+        { url: `${MarkdownShikiHtml}/pages/css-page.cjs-js.html`, id: 'codeCjsJs' },
+        { url: `${MarkdownShikiHtml}/pages/css-page.esm-js.html`, id: 'codeEsmJs' },
+    ],
     headerTitle: 'CSS3 — Cascading Style Sheets',
     styles: [
         { href: `${styles}/css-page.css` }

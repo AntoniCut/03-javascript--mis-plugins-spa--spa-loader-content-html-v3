@@ -50,7 +50,9 @@ export { };
  * @property {string} headerTitle - Título que se mostrará dentro del layout-header.
  * @property {string} favicon - Ruta del favicon específico de la vista.
  * @property {RouteComponents} components - Mapa selector → URL de componente HTML.
- * @property {string[]} MarkdownShikiHtml - Rutas a los archivos .html generados por Shiki para mostrar código. 
+ * @property {(string | { url: string, id: string })[]} MarkdownShikiHtml - Rutas a los archivos .html generados por Shiki para mostrar código.
+ *                                          Cada entrada puede ser un string (url) o un objeto { url, id } que indica
+ *                                          el id del contenedor donde se insertará el HTML.
  *                                          Ejecuta `pnpm code-highlight` para regenerarlos.
  * @property {RouteStyle[]|null} styles - Lista de hojas CSS asociadas a la vista (opcional).
  * @property {RouteScript[]|null} scripts - Lista de scripts a cargar dinámicamente (opcional).

@@ -6,7 +6,7 @@
 
 import { paths } from './paths.js';
 
-const { favicon, layoutHeader, layoutNavbar, pages, layoutFooter, styles, scripts } = paths;
+const { favicon, layoutHeader, layoutNavbar, pages, MarkdownShikiHtml, layoutFooter, styles, scripts } = paths;
 
 /** @type {import("../../types/index.js").Route} */
 export const routeJqueryPage = {
@@ -20,7 +20,10 @@ export const routeJqueryPage = {
         "layoutMain": `${pages}/jquery-page.html`,
         "layoutFooter": `${layoutFooter}`,
     },
-    MarkdownShikiHtml: [],
+    MarkdownShikiHtml: [
+        { url: `${MarkdownShikiHtml}/pages/jquery-page.cjs-js.html`, id: 'codeCjsJs' },
+        { url: `${MarkdownShikiHtml}/pages/jquery-page.esm-js.html`, id: 'codeEsmJs' },
+    ],
     headerTitle: 'jQuery — The Write Less, Do More Library',
     styles: [
         { href: `${styles}/jquery-page.css` }

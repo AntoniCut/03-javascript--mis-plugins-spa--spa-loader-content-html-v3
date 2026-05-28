@@ -18,7 +18,10 @@ export const route00Home = {
         "layoutMain": `${pages}/home.html`,
         "layoutFooter": `${layoutFooter}`,
     },
-    MarkdownShikiHtml: [],
+    MarkdownShikiHtml: [
+        `${s}/js/plugins/markdown-shiki-html.cjs.js`,
+        `${scripts}/js/plugins/markdown-shiki-html.esm.js`,
+    ],
     headerTitle: 'spa-loader-content-html — Plugin SPA v3',
     styles: [
         { href: `${styles}/home.css` }

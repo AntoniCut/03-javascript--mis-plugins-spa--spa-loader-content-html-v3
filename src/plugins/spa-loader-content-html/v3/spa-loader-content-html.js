@@ -1481,12 +1481,9 @@ export const spaLoaderContentHtml = (options = {}) => {
      * -----------------------------------
      * -----  `renderMarkdownShiki`  -----
      * -----------------------------------
-     * 
      * - `Función para renderizar archivos html Markdown Shiki en la vista`
-     * 
-    * @param {Route} route
+     * @param {Route} route
      * @returns {Promise<void>}
-     * 
      */
 
     const renderMarkdownShiki = async (route) => {
@@ -1497,8 +1494,19 @@ export const spaLoaderContentHtml = (options = {}) => {
             return;
         }
 
-        //  -----  Cargar cada archivo Shiki  -----
-        for (const url of route.MarkdownShikiHtml) {
+        //  -----  Cargar cada entrada Shiki  -----
+        for (const entry of route.MarkdownShikiHtml) {
+
+            /**
+             * Cada entrada puede ser:
+             *   - objeto  { url: string, id: string }  → nuevo formato (escalable)
+             *   - string  url                           → compatibilidad hacia atrás
+             */
+            /** @type {string} */
+            const url         = typeof entry === 'string' ? entry : entry.url;
+            
+            /** @type {string | null} */
+            const containerId = typeof entry === 'string' ? null  : entry.id;
 
             try {
 
@@ -1514,11 +1522,15 @@ export const spaLoaderContentHtml = (options = {}) => {
                  */
                 let container = null;
 
-                if (url.includes('-ts'))
-                    container = document.querySelector('#codeTs');
-
-                else if (url.includes('-js'))
-                    container = document.querySelector('#codeJs');
+                if (containerId) {
+                    container = document.querySelector(`#${containerId}`);
+                } else {
+                    //  Compatibilidad hacia atrás: derivar id por sufijo en la URL
+                    if (url.includes('-ts'))
+                        container = document.querySelector('#codeTs');
+                    else if (url.includes('-js'))
+                        container = document.querySelector('#codeJs');
+                }
 
                 if (!container) {
                     console.warn(`❌ No se encontró contenedor para: ${url}`);

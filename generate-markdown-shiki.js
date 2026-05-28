@@ -80,7 +80,11 @@ for (const file of routeFiles) {
     );
 
     if (route?.MarkdownShikiHtml) {
-        for (const p of route.MarkdownShikiHtml) htmlPaths.add(p);
+        for (const p of route.MarkdownShikiHtml) {
+            //  Soporta tanto string como objeto { url, id }
+            const urlStr = typeof p === 'string' ? p : p.url;
+            if (urlStr) htmlPaths.add(urlStr);
+        }
     }
 }
 

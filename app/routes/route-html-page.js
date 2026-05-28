@@ -6,7 +6,7 @@
 
 import { paths } from './paths.js';
 
-const { favicon, layoutHeader, layoutNavbar, pages, layoutFooter, styles, scripts } = paths;
+const { favicon, layoutHeader, layoutNavbar, pages, MarkdownShikiHtml, layoutFooter, styles, scripts } = paths;
 
 /** @type {import("../../types/index.js").Route} */
 export const routeHtmlPage = {
@@ -20,7 +20,10 @@ export const routeHtmlPage = {
         "layoutMain": `${pages}/html-page.html`,
         "layoutFooter": `${layoutFooter}`,
     },
-    MarkdownShikiHtml: [],
+    MarkdownShikiHtml: [
+        { url: `${MarkdownShikiHtml}/pages/html-page.cjs-js.html`, id: 'codeCjsJs' },
+        { url: `${MarkdownShikiHtml}/pages/html-page.esm-js.html`, id: 'codeEsmJs' },
+    ],
     headerTitle: 'HTML5 — HyperText Markup Language',
     styles: [
         { href: `${styles}/html-page.css` }
