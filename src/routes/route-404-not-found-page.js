@@ -1,3 +1,9 @@
+/*
+    *  ----------------------------------------------  *
+    *  -----  /route-404-not-found-page.js  -----  *
+    *  ----------------------------------------------  *
+*/
+
 import { paths } from './paths.js';
 
 const { favicon, layoutHeader, layoutNavbar, pages, layoutFooter } = paths;

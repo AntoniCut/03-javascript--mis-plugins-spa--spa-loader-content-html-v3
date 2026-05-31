@@ -51,6 +51,19 @@ export const routeManifest = [
         file: 'route-jquery-ui-page'
     },
 
+    //  ----------  Frameworks (React / Astro)  ----------
+    {
+        id: 'reactPage',
+        path: 'react-page',
+        file: 'route-react-page'
+    },
+
+    {
+        id: 'astroPage',
+        path: 'astro-page',
+        file: 'route-astro-page'
+    },
+
     //  ----------  404 - Not Found  ----------
     { 
         id: '404NotFoundPage', 
