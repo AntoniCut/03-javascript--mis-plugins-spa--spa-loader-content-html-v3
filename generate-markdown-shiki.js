@@ -8,11 +8,13 @@
     *                                                                                 *
     *  Uso: pnpm code-highlight                                                       *
     *                                                                                 *
-    *  Convención de nombres:                                                         *
-    *    MarkdownShikiHtml path  →  fuente                                            *
-    *    .../01-markdown-shiki-ts.html →  src/scripts/ts/.../01-markdown-shiki.ts     *
-    *    .../01-markdown-shiki-js.html →  src/scripts/js/.../01-markdown-shiki.js     *
-    *  -----------------------------------------------------------------------------  *
+ *  Convención de nombres:                                                         *
+ *    MarkdownShikiHtml path  →  fuente                                            *
+ *    .../01-markdown-shiki-ts.html   →  src/scripts/ts/.../01-markdown-shiki.ts   *
+ *    .../01-markdown-shiki-js.html   →  src/scripts/js/.../01-markdown-shiki.js   *
+ *    .../01-markdown-shiki-html.html →  src/pages/.../01-markdown-shiki.html      *
+ *    .../01-markdown-shiki-css.html  →  src/scss/pages/.../01-markdown-shiki.scss *
+ *  -----------------------------------------------------------------------------  *
 */
 
 import { codeToHtml } from 'shiki';
@@ -30,7 +32,8 @@ const SHIKI_THEME = 'dark-plus';
 
 /**
  * A partir del path URL de un archivo .html en markdown-shiki, deduce
- * el path del archivo fuente (.ts o .js) usando la convención de nombres.
+ * el path del archivo fuente (.ts, .js, .html o .scss) usando la convención
+ * de nombres multi-sufijo.
  *
  * @param {string} htmlUrlPath  - p.ej. `/base/app/markdown-shiki/02-tipos-de-datos/01-booleans-ts.html`
  * @returns {{ srcPath: string, lang: string, relHtml: string } | null}
@@ -56,6 +59,24 @@ function deriveSource(htmlUrlPath) {
         return {
             srcPath: join(__dirname, 'src/scripts/js', relSrc),
             lang: 'javascript',
+            relHtml
+        };
+    }
+
+    if (relHtml.endsWith('-html.html')) {
+        const relSrc = relHtml.replace(/-html\.html$/, '.html').replace(/^pages\//, '');
+        return {
+            srcPath: join(__dirname, 'src/pages', relSrc),
+            lang: 'html',
+            relHtml
+        };
+    }
+
+    if (relHtml.endsWith('-css.html')) {
+        const relSrc = relHtml.replace(/-css\.html$/, '.scss').replace(/^pages\//, '');
+        return {
+            srcPath: join(__dirname, 'src/scss/pages', relSrc),
+            lang: 'scss',
             relHtml
         };
     }
@@ -90,40 +111,42 @@ for (const file of routeFiles) {
 }
 
 
-//  -----  Generar HTML para cada entrada  -----
-let generated = 0;
-let skipped   = 0;
+//  -----  Generar HTML para cada entrada (en paralelo con Promise.all)  -----
+const results = await Promise.all(
 
-for (const htmlPath of htmlPaths) {
+    [...htmlPaths].map(async (htmlPath) => {
 
-    const derived = deriveSource(htmlPath);
+        const derived = deriveSource(htmlPath);
 
-    if (!derived) {
-        console.warn(`⚠️  No se puede derivar el fuente para: ${htmlPath}`);
-        skipped++;
-        continue;
-    }
+        if (!derived) {
+            return { status: 'skipped', message: `⚠️  No se puede derivar el fuente para: ${htmlPath}` };
+        }
 
-    const { srcPath, lang, relHtml } = derived;
+        const { srcPath, lang, relHtml } = derived;
 
-    if (!existsSync(srcPath)) {
-        const rel = srcPath.replace(__dirname + '/', '');
-        console.warn(`⚠️  Fuente no encontrado: src/markdown-shiki/${relHtml}`);
-        console.warn(`     Esperado en: ${rel}`);
-        console.warn(`     Comprueba que el nombre del archivo fuente coincide con el del .html`);
-        skipped++;
-        continue;
-    }
+        if (!existsSync(srcPath)) {
+            const rel = srcPath.replace(__dirname + '/', '');
+            return {
+                status: 'skipped',
+                message: `⚠️  Fuente no encontrado: src/markdown-shiki/${relHtml}\n     Esperado en: ${rel}\n     Comprueba que el nombre del archivo fuente coincide con el del .html`
+            };
+        }
 
-    const code = readFileSync(srcPath, 'utf-8');
-    const html = await codeToHtml(code, { lang, theme: SHIKI_THEME });
+        const code = readFileSync(srcPath, 'utf-8');
+        const html = await codeToHtml(code, { lang, theme: SHIKI_THEME });
 
-    const outPath = join(__dirname, 'src/markdown-shiki', relHtml);
-    mkdirSync(dirname(outPath), { recursive: true });
-    writeFileSync(outPath, html, 'utf-8');
+        const outPath = join(__dirname, 'src/markdown-shiki', relHtml);
+        mkdirSync(dirname(outPath), { recursive: true });
+        writeFileSync(outPath, html, 'utf-8');
 
-    console.log(`✅  src/markdown-shiki/${relHtml}`);
-    generated++;
-}
+        return { status: 'generated', message: `✅  src/markdown-shiki/${relHtml}` };
+    })
+);
+
+//  -----  Imprimir resultados en orden para mantener logs legibles  -----
+for (const r of results) console.log(r.message);
+
+const generated = results.filter(r => r.status === 'generated').length;
+const skipped   = results.filter(r => r.status === 'skipped').length;
 
 console.log(`\n🎉  Completado — generados: ${generated} | omitidos: ${skipped}`);

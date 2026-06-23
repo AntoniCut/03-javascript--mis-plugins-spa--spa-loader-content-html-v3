@@ -21,6 +21,8 @@ export const routeReactPage = {
         "layoutFooter": `${layoutFooter}`,
     },
     MarkdownShikiHtml: [
+        { url: `${MarkdownShikiHtml}/pages/react-page-html.html`, target: '[data-shiki="codeHtml"]' },
+        { url: `${MarkdownShikiHtml}/pages/react-page-css.html`, target: '[data-shiki="codeCss"]' },
         { url: `${MarkdownShikiHtml}/pages/react-page.cjs-js.html`, target: '[data-shiki="codeCjsJs"]' },
         { url: `${MarkdownShikiHtml}/pages/react-page.esm-js.html`, target: '[data-shiki="codeEsmJs"]' },
     ],

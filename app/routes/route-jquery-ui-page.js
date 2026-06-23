@@ -21,8 +21,10 @@ export const routeJqueryUiPage = {
         "layoutFooter": `${layoutFooter}`,
     },
     MarkdownShikiHtml: [
-        { url: `${MarkdownShikiHtml}/pages/jquery-ui-page.cjs-js.html`, id: 'codeCjsJs' },
-        { url: `${MarkdownShikiHtml}/pages/jquery-ui-page.esm-js.html`, id: 'codeEsmJs' },
+        { url: `${MarkdownShikiHtml}/pages/jquery-ui-page-html.html`, target: '[data-shiki="codeHtml"]' },
+        { url: `${MarkdownShikiHtml}/pages/jquery-ui-page-css.html`, target: '[data-shiki="codeCss"]' },
+        { url: `${MarkdownShikiHtml}/pages/jquery-ui-page.cjs-js.html`, target: '[data-shiki="codeCjsJs"]' },
+        { url: `${MarkdownShikiHtml}/pages/jquery-ui-page.esm-js.html`, target: '[data-shiki="codeEsmJs"]' },
     ],
     headerTitle: 'jQuery UI — Interactions, Widgets & Effects',
     styles: [

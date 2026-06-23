@@ -21,8 +21,10 @@ export const routeCssPage = {
         "layoutFooter": `${layoutFooter}`,
     },
     MarkdownShikiHtml: [
-        { url: `${MarkdownShikiHtml}/pages/css-page.cjs-js.html`, id: 'codeCjsJs' },
-        { url: `${MarkdownShikiHtml}/pages/css-page.esm-js.html`, id: 'codeEsmJs' },
+        { url: `${MarkdownShikiHtml}/pages/css-page-html.html`, target: '[data-shiki="codeHtml"]' },
+        { url: `${MarkdownShikiHtml}/pages/css-page-css.html`, target: '[data-shiki="codeCss"]' },
+        { url: `${MarkdownShikiHtml}/pages/css-page.cjs-js.html`, target: '[data-shiki="codeCjsJs"]' },
+        { url: `${MarkdownShikiHtml}/pages/css-page.esm-js.html`, target: '[data-shiki="codeEsmJs"]' },
     ],
     headerTitle: 'CSS3 — Cascading Style Sheets',
     styles: [

@@ -23,8 +23,8 @@ export const route00Home = {
         "layoutFooter": `${layoutFooter}`,
     },
     MarkdownShikiHtml: [
-        `${scripts}/js/plugins/markdown-shiki-html.cjs.js`,
-        `${scripts}/js/plugins/markdown-shiki-html.esm.js`,
+        { url: `${scripts}/js/plugins/markdown-shiki-html.cjs.js`, target: '[data-shiki="codeCjsJs"]' },
+        { url: `${scripts}/js/plugins/markdown-shiki-html.esm.js`, target: '[data-shiki="codeEsmJs"]' },
     ],
     headerTitle: 'spa-loader-content-html — Plugin SPA v3',
     styles: [

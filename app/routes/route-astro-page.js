@@ -21,8 +21,10 @@ export const routeAstroPage = {
         "layoutFooter": `${layoutFooter}`,
     },
     MarkdownShikiHtml: [
-        { url: `${MarkdownShikiHtml}/pages/astro-page.cjs-js.html`, id: 'codeCjsJs' },
-        { url: `${MarkdownShikiHtml}/pages/astro-page.esm-js.html`, id: 'codeEsmJs' },
+        { url: `${MarkdownShikiHtml}/pages/astro-page-html.html`, target: '[data-shiki="codeHtml"]' },
+        { url: `${MarkdownShikiHtml}/pages/astro-page-css.html`, target: '[data-shiki="codeCss"]' },
+        { url: `${MarkdownShikiHtml}/pages/astro-page.cjs-js.html`, target: '[data-shiki="codeCjsJs"]' },
+        { url: `${MarkdownShikiHtml}/pages/astro-page.esm-js.html`, target: '[data-shiki="codeEsmJs"]' },
     ],
     headerTitle: 'Astro — Framework de Sitios Estáticos',
     styles: [

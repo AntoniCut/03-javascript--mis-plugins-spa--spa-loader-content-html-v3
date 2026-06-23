@@ -1488,9 +1488,8 @@ export const spaLoaderContentHtml = (options = {}) => {
 
     const renderMarkdownShiki = async (route) => {
 
-        //  -----  Validación  -----
+        //  -----  Validación (caso válido: la mayoría de rutas no tienen código que mostrar)  -----
         if (!route.MarkdownShikiHtml || !Array.isArray(route.MarkdownShikiHtml)) {
-            console.warn('⚠️ No hay archivos Shiki en esta ruta.');
             return;
         }
 
@@ -1498,15 +1497,14 @@ export const spaLoaderContentHtml = (options = {}) => {
         for (const entry of route.MarkdownShikiHtml) {
 
             /**
-             * Cada entrada puede ser:
-             *   - objeto  { url: string, target: string }  → selector CSS del contenedor
-             *   - string  url                               → compatibilidad hacia atrás
+             * Cada entrada es un objeto  { url: string, target: string }
+             * donde target es un selector CSS del contenedor destino.
              */
             /** @type {string} */
-            const url    = typeof entry === 'string' ? entry : entry.url;
+            const url = entry.url;
 
-            /** @type {string | null} */
-            const target = typeof entry === 'string' ? null  : entry.target;
+            /** @type {string} */
+            const target = entry.target;
 
             try {
 
@@ -1520,17 +1518,7 @@ export const spaLoaderContentHtml = (options = {}) => {
                  * - `Contenedor donde se insertará el HTML` 
                  * @type {HTMLElement|null}
                  */
-                let container = null;
-
-                if (target) {
-                    container = document.querySelector(target);
-                } else {
-                    //  Compatibilidad hacia atrás: derivar selector por sufijo en la URL
-                    if (url.includes('-ts'))
-                        container = document.querySelector('[data-shiki="codeTs"]');
-                    else if (url.includes('-js'))
-                        container = document.querySelector('[data-shiki="codeJs"]');
-                }
+                const container = document.querySelector(target);
 
                 if (!container) {
                     console.warn(`❌ No se encontró contenedor para: ${url}`);
@@ -1543,8 +1531,6 @@ export const spaLoaderContentHtml = (options = {}) => {
                 console.error(`❌ Error cargando archivo Shiki: ${url}`, error);
             }
         }
-
-        console.warn('✅ Markdown Shiki renderizado');
 
     }
 

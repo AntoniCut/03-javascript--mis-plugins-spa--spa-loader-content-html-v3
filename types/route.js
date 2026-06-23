@@ -40,6 +40,17 @@ export { };
 
 
 /**
+ * ----------------------------------
+ * -----  `MarkdownShikiEntry`  -----
+ * ----------------------------------
+ * @typedef {Object} MarkdownShikiEntry - Entrada de archivo HTML generado por Shiki para resaltar código.
+ * @property {string} url - URL absoluta al archivo .html generado con Shiki.
+ * @property {string} target - Selector CSS del contenedor DOM donde se insertará el HTML (p.ej. `'[data-shiki="codeJs"]'`). Permite múltiples archivos del mismo tipo sin colisión de IDs.
+ */
+
+
+
+/**
  * ---------------------
  * -----  `Route`  -----
  * ---------------------
@@ -50,9 +61,7 @@ export { };
  * @property {string} headerTitle - Título que se mostrará dentro del layout-header.
  * @property {string} favicon - Ruta del favicon específico de la vista.
  * @property {RouteComponents} components - Mapa selector → URL de componente HTML.
- * @property {(string | { url: string, target: string })[]} MarkdownShikiHtml - Rutas a los archivos .html generados por Shiki para mostrar código.
- *                                          Cada entrada puede ser un string (url) o un objeto { url, target } donde
- *                                          target es un selector CSS (ej. '[data-shiki="codeJs"]') del contenedor.
+ * @property {MarkdownShikiEntry[]} MarkdownShikiHtml - Rutas a los archivos .html generados por Shiki para mostrar código.
  *                                          Ejecuta `pnpm code-highlight` para regenerarlos.
  * @property {RouteStyle[]|null} styles - Lista de hojas CSS asociadas a la vista (opcional).
  * @property {RouteScript[]|null} scripts - Lista de scripts a cargar dinámicamente (opcional).
