@@ -21,8 +21,8 @@ export const routeJqueryPage = {
         "layoutFooter": `${layoutFooter}`,
     },
     MarkdownShikiHtml: [
-        { url: `${MarkdownShikiHtml}/pages/jquery-page.cjs-js.html`, id: 'codeCjsJs' },
-        { url: `${MarkdownShikiHtml}/pages/jquery-page.esm-js.html`, id: 'codeEsmJs' },
+        { url: `${MarkdownShikiHtml}/pages/jquery-page.cjs-js.html`, target: '[data-shiki="codeCjsJs"]' },
+        { url: `${MarkdownShikiHtml}/pages/jquery-page.esm-js.html`, target: '[data-shiki="codeEsmJs"]' },
     ],
     headerTitle: 'jQuery — The Write Less, Do More Library',
     styles: [

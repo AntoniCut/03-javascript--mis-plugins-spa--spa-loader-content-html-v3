@@ -1499,14 +1499,14 @@ export const spaLoaderContentHtml = (options = {}) => {
 
             /**
              * Cada entrada puede ser:
-             *   - objeto  { url: string, id: string }  → nuevo formato (escalable)
-             *   - string  url                           → compatibilidad hacia atrás
+             *   - objeto  { url: string, target: string }  → selector CSS del contenedor
+             *   - string  url                               → compatibilidad hacia atrás
              */
             /** @type {string} */
-            const url         = typeof entry === 'string' ? entry : entry.url;
-            
+            const url    = typeof entry === 'string' ? entry : entry.url;
+
             /** @type {string | null} */
-            const containerId = typeof entry === 'string' ? null  : entry.id;
+            const target = typeof entry === 'string' ? null  : entry.target;
 
             try {
 
@@ -1522,14 +1522,14 @@ export const spaLoaderContentHtml = (options = {}) => {
                  */
                 let container = null;
 
-                if (containerId) {
-                    container = document.querySelector(`#${containerId}`);
+                if (target) {
+                    container = document.querySelector(target);
                 } else {
-                    //  Compatibilidad hacia atrás: derivar id por sufijo en la URL
+                    //  Compatibilidad hacia atrás: derivar selector por sufijo en la URL
                     if (url.includes('-ts'))
-                        container = document.querySelector('#codeTs');
+                        container = document.querySelector('[data-shiki="codeTs"]');
                     else if (url.includes('-js'))
-                        container = document.querySelector('#codeJs');
+                        container = document.querySelector('[data-shiki="codeJs"]');
                 }
 
                 if (!container) {

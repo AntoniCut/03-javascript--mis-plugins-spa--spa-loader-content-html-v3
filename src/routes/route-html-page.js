@@ -21,8 +21,8 @@ export const routeHtmlPage = {
         "layoutFooter": `${layoutFooter}`,
     },
     MarkdownShikiHtml: [
-        { url: `${MarkdownShikiHtml}/pages/html-page.cjs-js.html`, id: 'codeCjsJs' },
-        { url: `${MarkdownShikiHtml}/pages/html-page.esm-js.html`, id: 'codeEsmJs' },
+        { url: `${MarkdownShikiHtml}/pages/html-page.cjs-js.html`, target: '[data-shiki="codeCjsJs"]' },
+        { url: `${MarkdownShikiHtml}/pages/html-page.esm-js.html`, target: '[data-shiki="codeEsmJs"]' },
     ],
     headerTitle: 'HTML5 — HyperText Markup Language',
     styles: [
