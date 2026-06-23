@@ -9,7 +9,7 @@
     "dev:watch": "gulp dev",
     "build": "gulp build",
     "add:ts-nocheck": "cross-env NODE_ENV=development node addTsNoCheck.js",
-    "code-highlight": "node generate-markdown-shiki.js",
+    "code-highlight": "gulp styles && node generate-markdown-shiki.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

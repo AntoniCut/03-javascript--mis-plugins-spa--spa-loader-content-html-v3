@@ -30,6 +30,11 @@ de **4 pasos** (pre-compilado en Node, renderizado en navegador):
 
 La generación se ejecuta en paralelo con `Promise.all`.
 
+> **Dependencia de compilación:** las entradas `-css` leen el CSS compilado por
+> Gulp en `app/css/pages/`, no el SCSS fuente. Por eso `pnpm code-highlight`
+> ejecuta primero `gulp styles`, y en `gulp dev` el watch de SCSS encadena
+> `styles → generateShiki → copyMarkdownShiki` automáticamente.
+
 #### Convención de nombres
 
 | Sufijo del `.html` | Archivo fuente | Lenguaje Shiki |
@@ -37,7 +42,7 @@ La generación se ejecuta en paralelo con `Promise.all`.
 | `...-ts.html` | `src/scripts/ts/**/*.ts` | `typescript` |
 | `...-js.html` | `src/scripts/js/**/*.js` | `javascript` |
 | `...-html.html` | `src/pages/**/*.html` | `html` |
-| `...-css.html` | `src/scss/pages/**/*.scss` | `scss` |
+| `...-css.html` | `app/css/pages/**/*.css` (compilado por Gulp) | `css` |
 
 > Los sufijos `cjs-js` / `esm-js` (p. ej. `page.cjs-js.html`) se resuelven
 > mediante el sufijo `-js.html` → `page.cjs.js` / `page.esm.js`.
@@ -46,7 +51,8 @@ La generación se ejecuta en paralelo con `Promise.all`.
 
 La tarea `copyMarkdownShiki` copia `src/markdown-shiki/` → `app/markdown-shiki/`.
 Se ejecuta tanto en `gulp dev` (con watch sobre `src/markdown-shiki/**/*`) como
-en `gulp build`.
+en `gulp build`. En la cadena de generación, `copyMarkdownShiki` corre siempre
+después de `generateShiki` para copiar el HTML recién generado.
 
 ### 3. Servidor
 

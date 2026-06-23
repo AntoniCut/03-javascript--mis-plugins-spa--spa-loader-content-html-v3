@@ -16,6 +16,8 @@ import terser from "gulp-terser";
 import cleanCSS from "gulp-clean-css";
 import htmlmin from "gulp-htmlmin";
 
+import { generateMarkdownShiki } from './generate-markdown-shiki.js';
+
 
 
 //  -----  desestructuración de métodos de Gulp  -----
@@ -116,6 +118,20 @@ export const copyEffects = () =>
  */
 export const copyMarkdownShiki = () =>
     src('src/markdown-shiki/**/*', { base: 'src' }).pipe(dest('app'));
+
+
+/**
+ * --------------------------------
+ * -----  `generateShiki()`  -----
+ * --------------------------------
+ * - Genera los bloques HTML resaltados con Shiki en src/markdown-shiki/.
+ * - Las entradas -css leen el CSS compilado en app/css/pages/, por lo que
+ *   esta tarea debe ejecutarse DESPUÉS de `styles` y ANTES de `copyMarkdownShiki`.
+ * @returns {Promise<void>}
+ */
+const generateShiki = async () => {
+    await generateMarkdownShiki();
+};
 
 
 /**
@@ -236,10 +252,10 @@ export const styles = parallel(css, cssPages);
 
 
 
-const copyAll = parallel(
+//  -----  buildSources: copias + compilación SCSS en paralelo (produce app/css/)  -----
+const buildSources = parallel(
     copyComponents,
     copyEffects,
-    copyMarkdownShiki,
     copyPages,
     copyPlugins,
     copyRoutes,
@@ -247,6 +263,15 @@ const copyAll = parallel(
     copyScripts,
     copyMain,
     styles
+);
+
+//  -----  copyAll: buildSources → generateShiki → copyMarkdownShiki  -----
+//  generateShiki lee el CSS compilado por styles, y copyMarkdownShiki copia
+//  el HTML recién generado a app/markdown-shiki/.
+const copyAll = series(
+    buildSources,
+    generateShiki,
+    copyMarkdownShiki
 );
 
 
@@ -277,7 +302,7 @@ const watchTask = () => {
     watch('src/spa/**/*', WATCH_OPTIONS, copySpa);
     watch('src/scripts/**/*.js', WATCH_OPTIONS, copyScripts);
     watch('src/main.js', WATCH_OPTIONS, copyMain);
-    watch('src/scss/**/*.scss', WATCH_OPTIONS, styles);
+    watch('src/scss/**/*.scss', WATCH_OPTIONS, series(styles, generateShiki, copyMarkdownShiki));
 };
 
 

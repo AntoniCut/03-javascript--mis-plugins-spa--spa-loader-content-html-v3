@@ -3,298 +3,288 @@
 <span class="line"><span style="color:#6A9955">    *  -----  /css-page.scss  --  /src/scss/pages/css-page.scss  -----  *</span></span>
 <span class="line"><span style="color:#6A9955">    *  --------------------------------------------------------------  *</span></span>
 <span class="line"><span style="color:#6A9955">*/</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#C586C0">@use</span><span style="color:#CE9178"> '../base/variables'</span><span style="color:#C586C0"> as</span><span style="color:#9CDCFE"> var</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#C586C0">@use</span><span style="color:#CE9178"> '../base/mixins'</span><span style="color:#C586C0"> as</span><span style="color:#9CDCFE"> mx</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color:#6A9955">//  -----  CSS Custom Properties  -----</span></span>
+<span class="line"><span style="color:#6A9955">/*</span></span>
+<span class="line"><span style="color:#6A9955">    *  -------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -----  /_variables.scss  --  /src/styles/scss/base/_variables.scss  -----  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -------------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">*/</span></span>
+<span class="line"><span style="color:#6A9955">/*</span></span>
+<span class="line"><span style="color:#6A9955">    *  --------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -----  /css-page.scss  --  /src/scss/pages/css-page.scss  -----  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  --------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">*/</span></span>
+<span class="line"><span style="color:#6A9955">/*</span></span>
+<span class="line"><span style="color:#6A9955">    *  -------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -----  /_mixins.scss  --  /src/styles/scss/base/_mixins.scss  -----  *</span></span>
+<span class="line"><span style="color:#6A9955">    *  -------------------------------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">*/</span></span>
 <span class="line"><span style="color:#D7BA7D">:root</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">    --css-primary</span><span style="color:#D4D4D4">:      </span><span style="color:#CE9178">#264de4</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">    --css-secondary</span><span style="color:#D4D4D4">:    </span><span style="color:#CE9178">#2965f1</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">    --css-accent-bg</span><span style="color:#D4D4D4">:    </span><span style="color:#CE9178">#f0f4ff</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">    --css-text</span><span style="color:#D4D4D4">:         </span><span style="color:#CE9178">#1a2340</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">    --css-text-light</span><span style="color:#D4D4D4">:   </span><span style="color:#CE9178">#4a5568</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">    --css-card-bg</span><span style="color:#D4D4D4">:      </span><span style="color:#CE9178">#ffffff</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">    --css-card-border</span><span style="color:#D4D4D4">:  </span><span style="color:#DCDCAA">rgba</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">38</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">77</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">228</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">0.2</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">    --css-card-shadow</span><span style="color:#D4D4D4">:  </span><span style="color:#B5CEA8">0</span><span style="color:#B5CEA8"> 4px</span><span style="color:#B5CEA8"> 16px</span><span style="color:#DCDCAA"> rgba</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">38</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">77</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">228</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">0.1</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">    --css-tag-bg</span><span style="color:#D4D4D4">:       </span><span style="color:#DCDCAA">rgba</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">38</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">77</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">228</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">0.08</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">    --css-tag-color</span><span style="color:#D4D4D4">:    </span><span style="color:#CE9178">#264de4</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">    --css-tag-border</span><span style="color:#D4D4D4">:   </span><span style="color:#DCDCAA">rgba</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">38</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">77</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">228</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">0.3</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  --css-primary</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#264de4</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  --css-secondary</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#2965f1</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  --css-accent-bg</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#f0f4ff</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  --css-text</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#1a2340</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  --css-text-light</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#4a5568</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  --css-card-bg</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#ffffff</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  --css-card-border</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">rgba</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">38</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">77</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">228</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">0.2</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  --css-card-shadow</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0</span><span style="color:#B5CEA8"> 4px</span><span style="color:#B5CEA8"> 16px</span><span style="color:#DCDCAA"> rgba</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">38</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">77</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">228</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">0.1</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  --css-tag-bg</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">rgba</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">38</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">77</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">228</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">0.08</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  --css-tag-color</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#264de4</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  --css-tag-border</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">rgba</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">38</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">77</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">228</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">0.3</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"><span style="color:#D4D4D4">}</span></span>
 <span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color:#6A9955">//  -----  css-page  -----</span></span>
 <span class="line"><span style="color:#D7BA7D">.css-page</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#9CDCFE">    width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">100%</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">    display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">flex</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">    flex-direction</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">column</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">    align-items</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">center</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">    gap</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">4rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color:#6A9955">    //  -----  Hero  -----</span></span>
-<span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__hero</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">        width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">100%</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        min-height</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">18rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        background</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">linear-gradient</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">135deg</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">#1a237e</span><span style="color:#B5CEA8"> 0%</span><span style="color:#D4D4D4">, </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">) </span><span style="color:#B5CEA8">50%</span><span style="color:#D4D4D4">, </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-secondary</span><span style="color:#D4D4D4">) </span><span style="color:#B5CEA8">100%</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">        border-radius</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">flex</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        justify-content</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">center</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        align-items</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">center</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        padding</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">3rem</span><span style="color:#B5CEA8"> 2rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#C586C0">        @include</span><span style="color:#9CDCFE"> mx</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">tablet</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            min-height</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">24rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">            padding</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">4rem</span><span style="color:#B5CEA8"> 3rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#C586C0">        @include</span><span style="color:#9CDCFE"> mx</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">desktop</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            min-height</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">28rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#C586C0">        @include</span><span style="color:#9CDCFE"> mx</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">desktopLG</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            min-height</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">32rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"><span style="color:#D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__hero-badge</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">        text-align</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">center</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        color</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#fff</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__hero-tag</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">        display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">block</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">4rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        font-weight</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">800</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        font-family</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">monospace</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        letter-spacing</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.3rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        opacity</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.9</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#C586C0">        @include</span><span style="color:#9CDCFE"> mx</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">tablet</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">6rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#C586C0">        @include</span><span style="color:#9CDCFE"> mx</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">desktop</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">8rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"><span style="color:#D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__hero-title</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">        font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">3rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        font-weight</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">700</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        margin</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.6rem</span><span style="color:#B5CEA8"> 0</span><span style="color:#B5CEA8"> 0.4rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        text-shadow</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0</span><span style="color:#B5CEA8"> 2px</span><span style="color:#B5CEA8"> 8px</span><span style="color:#DCDCAA"> rgba</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">0.3</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#C586C0">        @include</span><span style="color:#9CDCFE"> mx</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">tablet</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">4.5rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#C586C0">        @include</span><span style="color:#9CDCFE"> mx</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">desktop</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">5.5rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"><span style="color:#D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__hero-subtitle</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">        font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.4rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        opacity</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.85</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        letter-spacing</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.05rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#C586C0">        @include</span><span style="color:#9CDCFE"> mx</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">tablet</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.8rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#C586C0">        @include</span><span style="color:#9CDCFE"> mx</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">desktopLG</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"><span style="color:#D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color:#6A9955">    //  -----  Intro  -----</span></span>
-<span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__intro</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">        width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">100%</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">flex</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        flex-direction</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">column</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        gap</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.6rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        background-color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-accent-bg</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">        border-left</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">5px</span><span style="color:#CE9178"> solid</span><span style="color:#DCDCAA"> var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">        border-radius</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0</span><span style="color:#B5CEA8"> 0.8rem</span><span style="color:#B5CEA8"> 0.8rem</span><span style="color:#B5CEA8"> 0</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        padding</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2.5rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__intro-text</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">        font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.5rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        line-height</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.8</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-text</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D7BA7D">        strong</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">            font-weight</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">600</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#C586C0">        @include</span><span style="color:#9CDCFE"> mx</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">tablet</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.6rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#C586C0">        @include</span><span style="color:#9CDCFE"> mx</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">desktop</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.7rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"><span style="color:#D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color:#6A9955">    //  -----  Features  -----</span></span>
-<span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__features</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">        width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">100%</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">flex</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        flex-direction</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">column</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        gap</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2.5rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__features-title</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">        font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2.2rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        font-weight</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">600</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">        text-align</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">center</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">        &#x26;</span><span style="color:#D7BA7D">::after</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#D7BA7D">            content</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">''</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">            display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">block</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">            width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">6rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">            height</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">3px</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">            background-color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">            margin</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.8rem</span><span style="color:#CE9178"> auto</span><span style="color:#B5CEA8"> 0</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">            border-radius</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2px</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#C586C0">        @include</span><span style="color:#9CDCFE"> mx</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">tablet</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2.6rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"><span style="color:#D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__features-grid</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">        display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">grid</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        grid-template-columns</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1fr</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        gap</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#C586C0">        @include</span><span style="color:#9CDCFE"> mx</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">tablet</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            grid-template-columns</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">repeat</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">2</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">1fr</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#C586C0">        @include</span><span style="color:#9CDCFE"> mx</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">desktopSM</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            grid-template-columns</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">repeat</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">3</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">1fr</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"><span style="color:#D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__feature</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">        background-color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-card-bg</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">        border</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1px</span><span style="color:#CE9178"> solid</span><span style="color:#DCDCAA"> var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-card-border</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">        border-radius</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        padding</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2.5rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        box-shadow</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-card-shadow</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">        display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">flex</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        flex-direction</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">column</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        gap</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        transition</span><span style="color:#D4D4D4">: </span><span style="color:#9CDCFE">transform</span><span style="color:#B5CEA8"> 0.2s</span><span style="color:#CE9178"> ease</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">box-shadow</span><span style="color:#B5CEA8"> 0.2s</span><span style="color:#CE9178"> ease</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">        &#x26;</span><span style="color:#D7BA7D">:hover</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            transform</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">translateY</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">-4px</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">            box-shadow</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0</span><span style="color:#B5CEA8"> 8px</span><span style="color:#B5CEA8"> 28px</span><span style="color:#DCDCAA"> rgba</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">38</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">77</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">228</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">0.2</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"><span style="color:#D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__feature-icon</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">        font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">3rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__feature-title</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">        font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.8rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        font-weight</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">600</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__feature-text</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">        font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.4rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        line-height</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.75</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-text-light</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D7BA7D">        code</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            background-color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-tag-bg</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">            color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">            padding</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.1rem</span><span style="color:#B5CEA8"> 0.4rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">            border-radius</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">4px</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">            font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.2rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">            font-family</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">monospace</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#C586C0">        @include</span><span style="color:#9CDCFE"> mx</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">tablet</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.5rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"><span style="color:#D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span style="color:#6A9955">    //  -----  Tags Section  -----</span></span>
-<span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__tags-section</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">        width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">100%</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">flex</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        flex-direction</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">column</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        gap</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__tags-title</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">        font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2.2rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        font-weight</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">600</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">        text-align</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">center</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">        &#x26;</span><span style="color:#D7BA7D">::after</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#D7BA7D">            content</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">''</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">            display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">block</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">            width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">6rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">            height</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">3px</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">            background-color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">            margin</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.8rem</span><span style="color:#CE9178"> auto</span><span style="color:#B5CEA8"> 0</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">            border-radius</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2px</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#C586C0">        @include</span><span style="color:#9CDCFE"> mx</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">tablet</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2.6rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"><span style="color:#D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__tags</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">        list-style</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">none</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">flex</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        flex-wrap</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">wrap</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        gap</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        justify-content</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">center</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        padding</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        margin</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__tag</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">        background-color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-tag-bg</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">        color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-tag-color</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">        border</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1px</span><span style="color:#CE9178"> solid</span><span style="color:#DCDCAA"> var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-tag-border</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">        border-radius</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        padding</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.6rem</span><span style="color:#B5CEA8"> 1.4rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.3rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        font-family</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">monospace</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        font-weight</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">500</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D7BA7D">        cursor</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">default</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        transition</span><span style="color:#D4D4D4">: </span><span style="color:#9CDCFE">background-color</span><span style="color:#B5CEA8"> 0.2s</span><span style="color:#CE9178"> ease</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">color</span><span style="color:#B5CEA8"> 0.2s</span><span style="color:#CE9178"> ease</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">transform</span><span style="color:#B5CEA8"> 0.2s</span><span style="color:#CE9178"> ease</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">        &#x26;</span><span style="color:#D7BA7D">:hover</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            background-color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#9CDCFE">            color</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#fff</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">            transform</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">scale</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">1.06</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#C586C0">        @include</span><span style="color:#9CDCFE"> mx</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">tablet</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">            font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.4rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">            padding</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.7rem</span><span style="color:#B5CEA8"> 1.6rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#D4D4D4">        }</span></span>
-<span class="line"><span style="color:#D4D4D4">    }</span></span>
-<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">  width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">100%</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">flex</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  flex-direction</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">column</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  align-items</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">center</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  gap</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">4rem</span><span style="color:#D4D4D4">;</span></span>
 <span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__hero</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">100%</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  min-height</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">18rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  background</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">linear-gradient</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">135deg</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">#1a237e</span><span style="color:#B5CEA8"> 0%</span><span style="color:#D4D4D4">, </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">) </span><span style="color:#B5CEA8">50%</span><span style="color:#D4D4D4">, </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-secondary</span><span style="color:#D4D4D4">) </span><span style="color:#B5CEA8">100%</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  border-radius</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">flex</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  justify-content</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">center</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  align-items</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">center</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  padding</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">3rem</span><span style="color:#B5CEA8"> 2rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#C586C0">@media</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">min-width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">768px</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#D7BA7D">  .css-page__hero</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    min-height</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">24rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    padding</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">4rem</span><span style="color:#B5CEA8"> 3rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#C586C0">@media</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">min-width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1200px</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#D7BA7D">  .css-page__hero</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    min-height</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">28rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#C586C0">@media</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">min-width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1400px</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#D7BA7D">  .css-page__hero</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    min-height</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">32rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__hero-badge</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  text-align</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">center</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  color</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#fff</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__hero-tag</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">block</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">4rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-weight</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">800</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-family</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">monospace</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  letter-spacing</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.3rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  opacity</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.9</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#C586C0">@media</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">min-width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">768px</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#D7BA7D">  .css-page__hero-tag</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">6rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#C586C0">@media</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">min-width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1200px</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#D7BA7D">  .css-page__hero-tag</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">8rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__hero-title</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">3rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-weight</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">700</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  margin</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.6rem</span><span style="color:#B5CEA8"> 0</span><span style="color:#B5CEA8"> 0.4rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  text-shadow</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0</span><span style="color:#B5CEA8"> 2px</span><span style="color:#B5CEA8"> 8px</span><span style="color:#DCDCAA"> rgba</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">0.3</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#C586C0">@media</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">min-width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">768px</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#D7BA7D">  .css-page__hero-title</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">4.5rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#C586C0">@media</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">min-width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1200px</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#D7BA7D">  .css-page__hero-title</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">5.5rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__hero-subtitle</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.4rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  opacity</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.85</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  letter-spacing</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.05rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#C586C0">@media</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">min-width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">768px</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#D7BA7D">  .css-page__hero-subtitle</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.8rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#C586C0">@media</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">min-width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1400px</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#D7BA7D">  .css-page__hero-subtitle</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__intro</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">100%</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">flex</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  flex-direction</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">column</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  gap</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.6rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  background-color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-accent-bg</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  border-left</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">5px</span><span style="color:#CE9178"> solid</span><span style="color:#DCDCAA"> var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  border-radius</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0</span><span style="color:#B5CEA8"> 0.8rem</span><span style="color:#B5CEA8"> 0.8rem</span><span style="color:#B5CEA8"> 0</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  padding</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2.5rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__intro-text</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.5rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  line-height</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.8</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-text</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__intro-text</span><span style="color:#D7BA7D"> strong</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-weight</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">600</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#C586C0">@media</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">min-width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">768px</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#D7BA7D">  .css-page__intro-text</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.6rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#C586C0">@media</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">min-width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1200px</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#D7BA7D">  .css-page__intro-text</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.7rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__features</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">100%</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">flex</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  flex-direction</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">column</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  gap</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2.5rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__features-title</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2.2rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-weight</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">600</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  text-align</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">center</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__features-title::after</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  content</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">""</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">block</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">6rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  height</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">3px</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  background-color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  margin</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.8rem</span><span style="color:#CE9178"> auto</span><span style="color:#B5CEA8"> 0</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  border-radius</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2px</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#C586C0">@media</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">min-width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">768px</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#D7BA7D">  .css-page__features-title</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2.6rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__features-grid</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">grid</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  grid-template-columns</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1fr</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  gap</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#C586C0">@media</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">min-width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">768px</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#D7BA7D">  .css-page__features-grid</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    grid-template-columns</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">repeat</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">2</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">1fr</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#C586C0">@media</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">min-width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1024px</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#D7BA7D">  .css-page__features-grid</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    grid-template-columns</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">repeat</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">3</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">1fr</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__feature</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  background-color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-card-bg</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  border</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1px</span><span style="color:#CE9178"> solid</span><span style="color:#DCDCAA"> var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-card-border</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  border-radius</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  padding</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2.5rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  box-shadow</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-card-shadow</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">flex</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  flex-direction</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">column</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  gap</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  transition</span><span style="color:#D4D4D4">: transform </span><span style="color:#B5CEA8">0.2s</span><span style="color:#CE9178"> ease</span><span style="color:#D4D4D4">, box-shadow </span><span style="color:#B5CEA8">0.2s</span><span style="color:#CE9178"> ease</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__feature:hover</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  transform</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">translateY</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">-4px</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  box-shadow</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0</span><span style="color:#B5CEA8"> 8px</span><span style="color:#B5CEA8"> 28px</span><span style="color:#DCDCAA"> rgba</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">38</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">77</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">228</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">0.2</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__feature-icon</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">3rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__feature-title</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.8rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-weight</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">600</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__feature-text</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.4rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  line-height</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.75</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-text-light</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__feature-text</span><span style="color:#D7BA7D"> code</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  background-color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-tag-bg</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  padding</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.1rem</span><span style="color:#B5CEA8"> 0.4rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  border-radius</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">4px</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.2rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-family</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">monospace</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#C586C0">@media</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">min-width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">768px</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#D7BA7D">  .css-page__feature-text</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.5rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__tags-section</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">100%</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">flex</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  flex-direction</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">column</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  gap</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__tags-title</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2.2rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-weight</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">600</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  text-align</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">center</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__tags-title::after</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  content</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">""</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">block</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">6rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  height</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">3px</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  background-color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  margin</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.8rem</span><span style="color:#CE9178"> auto</span><span style="color:#B5CEA8"> 0</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  border-radius</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2px</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#C586C0">@media</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">min-width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">768px</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#D7BA7D">  .css-page__tags-title</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2.6rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__tags</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  list-style</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">none</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">flex</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  flex-wrap</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">wrap</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  gap</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  justify-content</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">center</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  padding</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  margin</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__tag</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  background-color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-tag-bg</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-tag-color</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  border</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1px</span><span style="color:#CE9178"> solid</span><span style="color:#DCDCAA"> var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-tag-border</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  border-radius</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  padding</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.6rem</span><span style="color:#B5CEA8"> 1.4rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.3rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-family</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">monospace</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-weight</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">500</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  cursor</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">default</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  transition</span><span style="color:#D4D4D4">: background-color </span><span style="color:#B5CEA8">0.2s</span><span style="color:#CE9178"> ease</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">color</span><span style="color:#B5CEA8"> 0.2s</span><span style="color:#CE9178"> ease</span><span style="color:#D4D4D4">, transform </span><span style="color:#B5CEA8">0.2s</span><span style="color:#CE9178"> ease</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#D7BA7D">.css-page__tag:hover</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  background-color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--css-primary</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  color</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#fff</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  transform</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">scale</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">1.06</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#C586C0">@media</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">min-width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">768px</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#D7BA7D">  .css-page__tag</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1.4rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    padding</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.7rem</span><span style="color:#B5CEA8"> 1.6rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span><span style="color:#6A9955">/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJjc3MtcGFnZS5zY3NzIiwiaG9tZS9hbnRvbnlkZXYvYW50b255ZGV2LWRlc2Fycm9sbG9zLzAzLWphdmFzY3JpcHQtZGVzYXJyb2xsb3MvamF2YXNjcmlwdC5hbnRvbnlkZXYudGVjaC9taXMtcGx1Z2lucy1zcGEvc3BhLWxvYWRlci1jb250ZW50LWh0bWwtdjMvc3JjL3Njc3MvYmFzZS9fdmFyaWFibGVzLnNjc3MiLCJob21lL2FudG9ueWRldi9hbnRvbnlkZXYtZGVzYXJyb2xsb3MvMDMtamF2YXNjcmlwdC1kZXNhcnJvbGxvcy9qYXZhc2NyaXB0LmFudG9ueWRldi50ZWNoL21pcy1wbHVnaW5zLXNwYS9zcGEtbG9hZGVyLWNvbnRlbnQtaHRtbC12My9zcmMvc2Nzcy9iYXNlL19taXhpbnMuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FDQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBREFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUVBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FGV0E7RUFDSTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOzs7QUFLSjtFQUVJO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBSUE7RUFDSTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBRTNCSjtFRm1CQTtJQVdRO0lBQ0E7OztBRWZSO0VGR0E7SUFnQlE7OztBRVhSO0VGTEE7SUFvQlE7OztBQUlSO0VBQ0k7RUFDQTs7QUFHSjtFQUNJO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUV0REo7RUZnREE7SUFTUTs7O0FFekNSO0VGZ0NBO0lBYVE7OztBQUlSO0VBQ0k7RUFDQTtFQUNBO0VBQ0E7O0FFckVKO0VGaUVBO0lBT1E7OztBRXhEUjtFRmlEQTtJQVdROzs7QUFJUjtFQUNJO0VBQ0E7RUFDQTs7QUVuRko7RUZnRkE7SUFNUTs7O0FFOURSO0VGd0RBO0lBVVE7OztBQU1SO0VBQ0k7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFHSjtFQUNJO0VBQ0E7RUFDQTs7QUFFQTtFQUNJO0VBQ0E7O0FFbEhSO0VGMkdBO0lBV1E7OztBRXRHUjtFRjJGQTtJQWVROzs7QUFNUjtFQUNJO0VBQ0E7RUFDQTtFQUNBOztBQUdKO0VBQ0k7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDSTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUVwSlI7RUZ1SUE7SUFpQlE7OztBQUlSO0VBQ0k7RUFDQTtFQUNBOztBRS9KSjtFRjRKQTtJQU1ROzs7QUUxSlI7RUZvSkE7SUFVUTs7O0FBSVI7RUFDSTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDSTtFQUNBOztBQUlSO0VBQ0k7O0FBR0o7RUFDSTtFQUNBO0VBQ0E7O0FBR0o7RUFDSTtFQUNBO0VBQ0E7O0FBRUE7RUFDSTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FFaE5SO0VGcU1BO0lBZVE7OztBQU1SO0VBQ0k7RUFDQTtFQUNBO0VBQ0E7O0FBR0o7RUFDSTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNJO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBRTlPUjtFRmlPQTtJQWlCUTs7O0FBSVI7RUFDSTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFHSjtFQUNJO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0k7RUFDQTtFQUNBOztBRS9RUjtFRmdRQTtJQW1CUTtJQUNBIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAgICAqICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSAgKlxuICAgICogIC0tLS0tICAvY3NzLXBhZ2Uuc2NzcyAgLS0gIC9zcmMvc2Nzcy9wYWdlcy9jc3MtcGFnZS5zY3NzICAtLS0tLSAgKlxuICAgICogIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tICAqXG4qL1xuXG5AdXNlICcuLi9iYXNlL3ZhcmlhYmxlcycgYXMgdmFyO1xuQHVzZSAnLi4vYmFzZS9taXhpbnMnIGFzIG14O1xuXG5cbi8vICAtLS0tLSAgQ1NTIEN1c3RvbSBQcm9wZXJ0aWVzICAtLS0tLVxuOnJvb3Qge1xuICAgIC0tY3NzLXByaW1hcnk6ICAgICAgIzI2NGRlNDtcbiAgICAtLWNzcy1zZWNvbmRhcnk6ICAgICMyOTY1ZjE7XG4gICAgLS1jc3MtYWNjZW50LWJnOiAgICAjZjBmNGZmO1xuICAgIC0tY3NzLXRleHQ6ICAgICAgICAgIzFhMjM0MDtcbiAgICAtLWNzcy10ZXh0LWxpZ2h0OiAgICM0YTU1Njg7XG4gICAgLS1jc3MtY2FyZC1iZzogICAgICAjZmZmZmZmO1xuICAgIC0tY3NzLWNhcmQtYm9yZGVyOiAgcmdiYSgzOCwgNzcsIDIyOCwgMC4yKTtcbiAgICAtLWNzcy1jYXJkLXNoYWRvdzogIDAgNHB4IDE2cHggcmdiYSgzOCwgNzcsIDIyOCwgMC4xKTtcbiAgICAtLWNzcy10YWctYmc6ICAgICAgIHJnYmEoMzgsIDc3LCAyMjgsIDAuMDgpO1xuICAgIC0tY3NzLXRhZy1jb2xvcjogICAgIzI2NGRlNDtcbiAgICAtLWNzcy10YWctYm9yZGVyOiAgIHJnYmEoMzgsIDc3LCAyMjgsIDAuMyk7XG59XG5cblxuLy8gIC0tLS0tICBjc3MtcGFnZSAgLS0tLS1cbi5jc3MtcGFnZSB7XG5cbiAgICB3aWR0aDogMTAwJTtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBnYXA6IDRyZW07XG5cblxuICAgIC8vICAtLS0tLSAgSGVybyAgLS0tLS1cbiAgICAmX19oZXJvIHtcbiAgICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICAgIG1pbi1oZWlnaHQ6IDE4cmVtO1xuICAgICAgICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCAjMWEyMzdlIDAlLCB2YXIoLS1jc3MtcHJpbWFyeSkgNTAlLCB2YXIoLS1jc3Mtc2Vjb25kYXJ5KSAxMDAlKTtcbiAgICAgICAgYm9yZGVyLXJhZGl1czogMXJlbTtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgICAgIHBhZGRpbmc6IDNyZW0gMnJlbTtcblxuICAgICAgICBAaW5jbHVkZSBteC50YWJsZXQge1xuICAgICAgICAgICAgbWluLWhlaWdodDogMjRyZW07XG4gICAgICAgICAgICBwYWRkaW5nOiA0cmVtIDNyZW07XG4gICAgICAgIH1cblxuICAgICAgICBAaW5jbHVkZSBteC5kZXNrdG9wIHtcbiAgICAgICAgICAgIG1pbi1oZWlnaHQ6IDI4cmVtO1xuICAgICAgICB9XG5cbiAgICAgICAgQGluY2x1ZGUgbXguZGVza3RvcExHIHtcbiAgICAgICAgICAgIG1pbi1oZWlnaHQ6IDMycmVtO1xuICAgICAgICB9XG4gICAgfVxuXG4gICAgJl9faGVyby1iYWRnZSB7XG4gICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICAgICAgY29sb3I6ICNmZmY7XG4gICAgfVxuXG4gICAgJl9faGVyby10YWcge1xuICAgICAgICBkaXNwbGF5OiBibG9jaztcbiAgICAgICAgZm9udC1zaXplOiA0cmVtO1xuICAgICAgICBmb250LXdlaWdodDogODAwO1xuICAgICAgICBmb250LWZhbWlseTogbW9ub3NwYWNlO1xuICAgICAgICBsZXR0ZXItc3BhY2luZzogMC4zcmVtO1xuICAgICAgICBvcGFjaXR5OiAwLjk7XG5cbiAgICAgICAgQGluY2x1ZGUgbXgudGFibGV0IHtcbiAgICAgICAgICAgIGZvbnQtc2l6ZTogNnJlbTtcbiAgICAgICAgfVxuXG4gICAgICAgIEBpbmNsdWRlIG14LmRlc2t0b3Age1xuICAgICAgICAgICAgZm9udC1zaXplOiA4cmVtO1xuICAgICAgICB9XG4gICAgfVxuXG4gICAgJl9faGVyby10aXRsZSB7XG4gICAgICAgIGZvbnQtc2l6ZTogM3JlbTtcbiAgICAgICAgZm9udC13ZWlnaHQ6IDcwMDtcbiAgICAgICAgbWFyZ2luOiAwLjZyZW0gMCAwLjRyZW07XG4gICAgICAgIHRleHQtc2hhZG93OiAwIDJweCA4cHggcmdiYSgwLCAwLCAwLCAwLjMpO1xuXG4gICAgICAgIEBpbmNsdWRlIG14LnRhYmxldCB7XG4gICAgICAgICAgICBmb250LXNpemU6IDQuNXJlbTtcbiAgICAgICAgfVxuXG4gICAgICAgIEBpbmNsdWRlIG14LmRlc2t0b3Age1xuICAgICAgICAgICAgZm9udC1zaXplOiA1LjVyZW07XG4gICAgICAgIH1cbiAgICB9XG5cbiAgICAmX19oZXJvLXN1YnRpdGxlIHtcbiAgICAgICAgZm9udC1zaXplOiAxLjRyZW07XG4gICAgICAgIG9wYWNpdHk6IDAuODU7XG4gICAgICAgIGxldHRlci1zcGFjaW5nOiAwLjA1cmVtO1xuXG4gICAgICAgIEBpbmNsdWRlIG14LnRhYmxldCB7XG4gICAgICAgICAgICBmb250LXNpemU6IDEuOHJlbTtcbiAgICAgICAgfVxuXG4gICAgICAgIEBpbmNsdWRlIG14LmRlc2t0b3BMRyB7XG4gICAgICAgICAgICBmb250LXNpemU6IDJyZW07XG4gICAgICAgIH1cbiAgICB9XG5cblxuICAgIC8vICAtLS0tLSAgSW50cm8gIC0tLS0tXG4gICAgJl9faW50cm8ge1xuICAgICAgICB3aWR0aDogMTAwJTtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICAgICAgZ2FwOiAxLjZyZW07XG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWNzcy1hY2NlbnQtYmcpO1xuICAgICAgICBib3JkZXItbGVmdDogNXB4IHNvbGlkIHZhcigtLWNzcy1wcmltYXJ5KTtcbiAgICAgICAgYm9yZGVyLXJhZGl1czogMCAwLjhyZW0gMC44cmVtIDA7XG4gICAgICAgIHBhZGRpbmc6IDIuNXJlbTtcbiAgICB9XG5cbiAgICAmX19pbnRyby10ZXh0IHtcbiAgICAgICAgZm9udC1zaXplOiAxLjVyZW07XG4gICAgICAgIGxpbmUtaGVpZ2h0OiAxLjg7XG4gICAgICAgIGNvbG9yOiB2YXIoLS1jc3MtdGV4dCk7XG5cbiAgICAgICAgc3Ryb25nIHtcbiAgICAgICAgICAgIGNvbG9yOiB2YXIoLS1jc3MtcHJpbWFyeSk7XG4gICAgICAgICAgICBmb250LXdlaWdodDogNjAwO1xuICAgICAgICB9XG5cbiAgICAgICAgQGluY2x1ZGUgbXgudGFibGV0IHtcbiAgICAgICAgICAgIGZvbnQtc2l6ZTogMS42cmVtO1xuICAgICAgICB9XG5cbiAgICAgICAgQGluY2x1ZGUgbXguZGVza3RvcCB7XG4gICAgICAgICAgICBmb250LXNpemU6IDEuN3JlbTtcbiAgICAgICAgfVxuICAgIH1cblxuXG4gICAgLy8gIC0tLS0tICBGZWF0dXJlcyAgLS0tLS1cbiAgICAmX19mZWF0dXJlcyB7XG4gICAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgICAgICBnYXA6IDIuNXJlbTtcbiAgICB9XG5cbiAgICAmX19mZWF0dXJlcy10aXRsZSB7XG4gICAgICAgIGZvbnQtc2l6ZTogMi4ycmVtO1xuICAgICAgICBmb250LXdlaWdodDogNjAwO1xuICAgICAgICBjb2xvcjogdmFyKC0tY3NzLXByaW1hcnkpO1xuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG5cbiAgICAgICAgJjo6YWZ0ZXIge1xuICAgICAgICAgICAgY29udGVudDogJyc7XG4gICAgICAgICAgICBkaXNwbGF5OiBibG9jaztcbiAgICAgICAgICAgIHdpZHRoOiA2cmVtO1xuICAgICAgICAgICAgaGVpZ2h0OiAzcHg7XG4gICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1jc3MtcHJpbWFyeSk7XG4gICAgICAgICAgICBtYXJnaW46IDAuOHJlbSBhdXRvIDA7XG4gICAgICAgICAgICBib3JkZXItcmFkaXVzOiAycHg7XG4gICAgICAgIH1cblxuICAgICAgICBAaW5jbHVkZSBteC50YWJsZXQge1xuICAgICAgICAgICAgZm9udC1zaXplOiAyLjZyZW07XG4gICAgICAgIH1cbiAgICB9XG5cbiAgICAmX19mZWF0dXJlcy1ncmlkIHtcbiAgICAgICAgZGlzcGxheTogZ3JpZDtcbiAgICAgICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnI7XG4gICAgICAgIGdhcDogMnJlbTtcblxuICAgICAgICBAaW5jbHVkZSBteC50YWJsZXQge1xuICAgICAgICAgICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiByZXBlYXQoMiwgMWZyKTtcbiAgICAgICAgfVxuXG4gICAgICAgIEBpbmNsdWRlIG14LmRlc2t0b3BTTSB7XG4gICAgICAgICAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IHJlcGVhdCgzLCAxZnIpO1xuICAgICAgICB9XG4gICAgfVxuXG4gICAgJl9fZmVhdHVyZSB7XG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWNzcy1jYXJkLWJnKTtcbiAgICAgICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tY3NzLWNhcmQtYm9yZGVyKTtcbiAgICAgICAgYm9yZGVyLXJhZGl1czogMXJlbTtcbiAgICAgICAgcGFkZGluZzogMi41cmVtO1xuICAgICAgICBib3gtc2hhZG93OiB2YXIoLS1jc3MtY2FyZC1zaGFkb3cpO1xuICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgICAgICBnYXA6IDFyZW07XG4gICAgICAgIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjJzIGVhc2UsIGJveC1zaGFkb3cgMC4ycyBlYXNlO1xuXG4gICAgICAgICY6aG92ZXIge1xuICAgICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC00cHgpO1xuICAgICAgICAgICAgYm94LXNoYWRvdzogMCA4cHggMjhweCByZ2JhKDM4LCA3NywgMjI4LCAwLjIpO1xuICAgICAgICB9XG4gICAgfVxuXG4gICAgJl9fZmVhdHVyZS1pY29uIHtcbiAgICAgICAgZm9udC1zaXplOiAzcmVtO1xuICAgIH1cblxuICAgICZfX2ZlYXR1cmUtdGl0bGUge1xuICAgICAgICBmb250LXNpemU6IDEuOHJlbTtcbiAgICAgICAgZm9udC13ZWlnaHQ6IDYwMDtcbiAgICAgICAgY29sb3I6IHZhcigtLWNzcy1wcmltYXJ5KTtcbiAgICB9XG5cbiAgICAmX19mZWF0dXJlLXRleHQge1xuICAgICAgICBmb250LXNpemU6IDEuNHJlbTtcbiAgICAgICAgbGluZS1oZWlnaHQ6IDEuNzU7XG4gICAgICAgIGNvbG9yOiB2YXIoLS1jc3MtdGV4dC1saWdodCk7XG5cbiAgICAgICAgY29kZSB7XG4gICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1jc3MtdGFnLWJnKTtcbiAgICAgICAgICAgIGNvbG9yOiB2YXIoLS1jc3MtcHJpbWFyeSk7XG4gICAgICAgICAgICBwYWRkaW5nOiAwLjFyZW0gMC40cmVtO1xuICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogNHB4O1xuICAgICAgICAgICAgZm9udC1zaXplOiAxLjJyZW07XG4gICAgICAgICAgICBmb250LWZhbWlseTogbW9ub3NwYWNlO1xuICAgICAgICB9XG5cbiAgICAgICAgQGluY2x1ZGUgbXgudGFibGV0IHtcbiAgICAgICAgICAgIGZvbnQtc2l6ZTogMS41cmVtO1xuICAgICAgICB9XG4gICAgfVxuXG5cbiAgICAvLyAgLS0tLS0gIFRhZ3MgU2VjdGlvbiAgLS0tLS1cbiAgICAmX190YWdzLXNlY3Rpb24ge1xuICAgICAgICB3aWR0aDogMTAwJTtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICAgICAgZ2FwOiAycmVtO1xuICAgIH1cblxuICAgICZfX3RhZ3MtdGl0bGUge1xuICAgICAgICBmb250LXNpemU6IDIuMnJlbTtcbiAgICAgICAgZm9udC13ZWlnaHQ6IDYwMDtcbiAgICAgICAgY29sb3I6IHZhcigtLWNzcy1wcmltYXJ5KTtcbiAgICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xuXG4gICAgICAgICY6OmFmdGVyIHtcbiAgICAgICAgICAgIGNvbnRlbnQ6ICcnO1xuICAgICAgICAgICAgZGlzcGxheTogYmxvY2s7XG4gICAgICAgICAgICB3aWR0aDogNnJlbTtcbiAgICAgICAgICAgIGhlaWdodDogM3B4O1xuICAgICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tY3NzLXByaW1hcnkpO1xuICAgICAgICAgICAgbWFyZ2luOiAwLjhyZW0gYXV0byAwO1xuICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogMnB4O1xuICAgICAgICB9XG5cbiAgICAgICAgQGluY2x1ZGUgbXgudGFibGV0IHtcbiAgICAgICAgICAgIGZvbnQtc2l6ZTogMi42cmVtO1xuICAgICAgICB9XG4gICAgfVxuXG4gICAgJl9fdGFncyB7XG4gICAgICAgIGxpc3Qtc3R5bGU6IG5vbmU7XG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICAgIGZsZXgtd3JhcDogd3JhcDtcbiAgICAgICAgZ2FwOiAxcmVtO1xuICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICAgICAgcGFkZGluZzogMDtcbiAgICAgICAgbWFyZ2luOiAwO1xuICAgIH1cblxuICAgICZfX3RhZyB7XG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWNzcy10YWctYmcpO1xuICAgICAgICBjb2xvcjogdmFyKC0tY3NzLXRhZy1jb2xvcik7XG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWNzcy10YWctYm9yZGVyKTtcbiAgICAgICAgYm9yZGVyLXJhZGl1czogMnJlbTtcbiAgICAgICAgcGFkZGluZzogMC42cmVtIDEuNHJlbTtcbiAgICAgICAgZm9udC1zaXplOiAxLjNyZW07XG4gICAgICAgIGZvbnQtZmFtaWx5OiBtb25vc3BhY2U7XG4gICAgICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gICAgICAgIGN1cnNvcjogZGVmYXVsdDtcbiAgICAgICAgdHJhbnNpdGlvbjogYmFja2dyb3VuZC1jb2xvciAwLjJzIGVhc2UsIGNvbG9yIDAuMnMgZWFzZSwgdHJhbnNmb3JtIDAuMnMgZWFzZTtcblxuICAgICAgICAmOmhvdmVyIHtcbiAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWNzcy1wcmltYXJ5KTtcbiAgICAgICAgICAgIGNvbG9yOiAjZmZmO1xuICAgICAgICAgICAgdHJhbnNmb3JtOiBzY2FsZSgxLjA2KTtcbiAgICAgICAgfVxuXG4gICAgICAgIEBpbmNsdWRlIG14LnRhYmxldCB7XG4gICAgICAgICAgICBmb250LXNpemU6IDEuNHJlbTtcbiAgICAgICAgICAgIHBhZGRpbmc6IDAuN3JlbSAxLjZyZW07XG4gICAgICAgIH1cbiAgICB9XG5cbn1cbiIsIi8qXG4gICAgKiAgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSAgKlxuICAgICogIC0tLS0tICAvX3ZhcmlhYmxlcy5zY3NzICAtLSAgL3NyYy9zdHlsZXMvc2Nzcy9iYXNlL192YXJpYWJsZXMuc2NzcyAgLS0tLS0gICpcbiAgICAqICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tICAqXG4qL1xuXG4vLyAgLS0tLS0gIGJhc2UgZGVsIHByb3llY3RvICAtLS0tLVxuJGJhc2U6ICcvbWlzLXBsdWdpbnMtc3BhL3NwYS1sb2FkZXItY29udGVudC1odG1sLXYzJztcblxuXG5cbi8vICAtLS0tLSAgRnVlbnRlcyAgLS0tLS1cbiRmb250LXByaW1hcnk6IFwiTW9uc2VycmF0XCIsIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7XG5cblxuLy8gIC0tLS0tICBDb2xvcmVzICAtLS0tLVxuXG4kY29sb3ItcHJpbWFyeTogIzAwN0FDQztcblxuJGNvbG9yLWhlYWRlci10aXRsZTogJGNvbG9yLXByaW1hcnk7XG4kY29sb3ItaGVhZGVyLXBhZ2U6ICNGODlDMTU7XG4kY29sb3ItaGVhZGVyLXN1YnRpdGxlOiAjRDk0RDNEO1xuXG4kY29sb3ItZ3JpZDogI2U1ZTdlYjtcblxuLy8gIC0tLS0tICBGb25kb3MgbGlzb3MgIC0tLS0tXG4kYmctc2Nyb2xsYmFyOiAkY29sb3ItcHJpbWFyeTtcbiRiZy13aGl0ZTogI2ZmZmZmZjtcbiRiZy1saWdodDogI0Y3RTdDMDtcbiRiZy1kYXJrOiAjMUUyOTNCO1xuJGJnLWRhcmstZm9vdGVyOiAjMDIwNjE3O1xuXG5cbi8vICAtLS0tLSAgQmFja2dyb3VuZCBQcmluY2lwYWwgIC0tLS0tXG4kYmctbWFpbjogcmFkaWFsLWdyYWRpZW50KGNpcmNsZSwgcmdiKDI1NSwgMjU1LCAyNTUpLCByZ2IoMjE5LCAyMjgsIDI0MCksIHJnYigxNzYsIDE5NiwgMjM2KSk7XG5cblxuLy8gIC0tLS0tICBCYWNrZ3JvdW5kIEN1YWRyaWN1bGEgIC0tLS0tXG4kYmctZ3JpZC1saWdodDogbGluZWFyLWdyYWRpZW50KHRvIHJpZ2h0LCAkY29sb3ItZ3JpZCAxcHgsIHRyYW5zcGFyZW50IDFweCksXG4gICAgbGluZWFyLWdyYWRpZW50KHRvIGJvdHRvbSwgJGNvbG9yLWdyaWQgMXB4LCB0cmFuc3BhcmVudCAxcHgpO1xuXG5cbi8vICAtLS0tLSAgQmFja2dyb3VuZCBHcmFkaWVudGUgSGVhZGVyICAtLS0tLVxuJGJnLWdyYWRpZW50LWhlYWRlcjogbGluZWFyLWdyYWRpZW50KHRvIGxlZnQsIHJnYigxODksIDIyMCwgMjMwKSAyMCUsIHJnYigxMzMsIDE1NywgMTg5KSA0MCUsIHJnYigxMDAsIDE0MywgMjMwKSA2MCUsIHJnYigxOTcsIDIwMSwgMjIxKSA4MCUpO1xuXG4vLyAgLS0tLS0gIEJhY2tncm91bmQgR3JhZGllbnRlIEZvb3RlciAgLS0tLS1cbiRiZy1ncmFkaWVudC1mb290ZXI6IGxpbmVhci1ncmFkaWVudCh0byByaWdodCwgcmdiKDEzOSwgMTc1LCAxODcpIDIwJSwgcmdiKDE0NiwgMTc1LCAyMTIpIDQwJSwgcmdiKDEwMCwgMTQzLCAyMzApIDYwJSwgcmdiKDE5NywgMjA3LCAyNTApIDgwJSk7XG5cblxuLy8gIC0tLS0tICBCYWNrZ3JvdW5kIEN1YWRyaWN1bGEgNDB4NDAgIC0tLS0tXG4kYmctZ3JpZC1wYXR0ZXJuOiBsaW5lYXItZ3JhZGllbnQodG8gcmlnaHQsICRjb2xvci1ncmlkIDFweCwgdHJhbnNwYXJlbnQgMXB4KSxcbiAgICBsaW5lYXItZ3JhZGllbnQodG8gYm90dG9tLCAkY29sb3ItZ3JpZCAxcHgsIHRyYW5zcGFyZW50IDFweCk7XG5cbiRiZy1ncmlkLXNpemUtNDB4NDA6IDQwcHggNDBweDtcblxuXG4vLyAtLS0tLSBCcmVha3BvaW50cyAtLS0tLVxuJG1vYmlsZTogNDgwcHg7XG4kdGFibGV0OiA3NjhweDtcbiRkZXNrdG9wLXNtOiAxMDI0cHg7XG4kZGVza3RvcDogMTIwMHB4O1xuJGRlc2t0b3AtbGc6IDE0MDBweDtcbiIsIi8qXG4gICAgKiAgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSAgKlxuICAgICogIC0tLS0tICAvX21peGlucy5zY3NzICAtLSAgL3NyYy9zdHlsZXMvc2Nzcy9iYXNlL19taXhpbnMuc2NzcyAgLS0tLS0gICpcbiAgICAqICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tICAqXG4qL1xuXG5AdXNlICcuL192YXJpYWJsZXMnIGFzIHZhcjtcblxuLy8gIC0tLS0tICBtaXhpbiAtIG1vYmlsZSAtIEBtZWRpYShtaW4td2lkdGg6IDQ4MHB4KSAgLS0tLS1cbkBtaXhpbiBtb2JpbGUge1xuICAgIEBtZWRpYShtaW4td2lkdGg6IHZhci4kbW9iaWxlKSB7XG4gICAgICAgIEBjb250ZW50O1xuICAgIH1cbn1cblxuXG4vLyAgLS0tLS0gIG1peGluIC0gdGFibGV0IC0gQG1lZGlhKG1pbi13aWR0aDogNzY4cHgpICAtLS0tLVxuQG1peGluIHRhYmxldCB7XG4gICAgQG1lZGlhKG1pbi13aWR0aDogdmFyLiR0YWJsZXQpIHtcbiAgICAgICAgQGNvbnRlbnQ7XG4gICAgfVxufVxuXG5cbi8vICAtLS0tLSAgbWl4aW4gLSBkZXNrdG9wU00gLSBAbWVkaWEobWluLXdpZHRoOiAxMDI0cHgpICAtLS0tLVxuQG1peGluIGRlc2t0b3BTTSB7XG4gICAgQG1lZGlhKG1pbi13aWR0aDogdmFyLiRkZXNrdG9wLXNtKSB7XG4gICAgICAgIEBjb250ZW50O1xuICAgIH1cbn1cblxuXG4vLyAgLS0tLS0gIG1peGluIC0gZGVza3RvcCAtIEBtZWRpYShtaW4td2lkdGg6IDEyMDBweCkgIC0tLS0tXG5AbWl4aW4gZGVza3RvcCB7XG4gICAgQG1lZGlhKG1pbi13aWR0aDogdmFyLiRkZXNrdG9wKSB7XG4gICAgICAgIEBjb250ZW50O1xuICAgIH1cbn1cblxuXG4vLyAgLS0tLS0gIG1peGluIC0gZGVza3RvcExHIC0gQG1lZGlhKG1pbi13aWR0aDogMTQwMHB4KSAgLS0tLS1cbkBtaXhpbiBkZXNrdG9wTEcge1xuICAgIEBtZWRpYShtaW4td2lkdGg6IHZhci4kZGVza3RvcC1sZykge1xuICAgICAgICBAY29udGVudDtcbiAgICB9XG59XG4iXSwiZmlsZSI6ImNzcy1wYWdlLmNzcyJ9 */</span></span>
 <span class="line"></span></code></pre>
