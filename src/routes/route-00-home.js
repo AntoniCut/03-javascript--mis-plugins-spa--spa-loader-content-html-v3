@@ -6,7 +6,7 @@
 
 import { paths } from './paths.js';
 
-const { favicon, layoutHeader, layoutNavbar, pages, layoutFooter, styles, scripts } = paths;
+const { favicon, layoutHeader, layoutNavbar, pages, MarkdownShikiHtml, layoutFooter, styles, scripts } = paths;
 
 /** @typedef {import("../../types/index.js").Route} Route */
 
@@ -23,8 +23,7 @@ export const route00Home = {
         "layoutFooter": `${layoutFooter}`,
     },
     MarkdownShikiHtml: [
-        { url: `${scripts}/js/plugins/markdown-shiki-html.cjs.js`, target: '[data-shiki="codeCjsJs"]' },
-        { url: `${scripts}/js/plugins/markdown-shiki-html.esm.js`, target: '[data-shiki="codeEsmJs"]' },
+        { url: `${MarkdownShikiHtml}/plugins/spa-loader-content-html/v3/spa-loader-content-html-js.html`, target: '[data-shiki="codeEsmJs"]' },
     ],
     headerTitle: 'spa-loader-content-html — Plugin SPA v3',
     styles: [

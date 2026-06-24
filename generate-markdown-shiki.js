@@ -96,6 +96,15 @@ function deriveSource(htmlUrlPath) {
     //  -----  Derivar el path del archivo si termina en -js.html  -----
     if (relHtml.endsWith('-js.html')) {
         const relSrc = relHtml.replace(/-js\.html$/, '.js');
+        //  -----  Subpath plugins/ → src/plugins/ (fuentes de plugins)  -----
+        if (relSrc.startsWith('plugins/')) {
+            const pluginRelSrc = relSrc.replace(/^plugins\//, '');
+            return {
+                srcPath: join(__dirname, 'src/plugins', pluginRelSrc),
+                lang: 'javascript',
+                relHtml
+            };
+        }
         return {
             srcPath: join(__dirname, 'src/scripts/js', relSrc),
             lang: 'javascript',
