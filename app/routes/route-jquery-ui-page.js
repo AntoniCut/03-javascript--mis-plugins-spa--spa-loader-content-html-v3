@@ -23,6 +23,7 @@ export const routeJqueryUiPage = {
     MarkdownShikiHtml: [
         { url: `${MarkdownShikiHtml}/pages/jquery-ui-page-html.html`, target: '[data-shiki="codeHtml"]' },
         { url: `${MarkdownShikiHtml}/pages/jquery-ui-page-css.html`, target: '[data-shiki="codeCss"]' },
+        { url: `${MarkdownShikiHtml}/pages/jquery-ui-page-scss.html`, target: '[data-shiki="codeScss"]' },
         { url: `${MarkdownShikiHtml}/pages/jquery-ui-page.cjs-js.html`, target: '[data-shiki="codeCjsJs"]' },
         { url: `${MarkdownShikiHtml}/pages/jquery-ui-page.esm-js.html`, target: '[data-shiki="codeEsmJs"]' },
     ],

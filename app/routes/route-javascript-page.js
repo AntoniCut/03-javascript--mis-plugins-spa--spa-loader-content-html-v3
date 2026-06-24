@@ -23,6 +23,7 @@ export const routeJavascriptPage = {
     MarkdownShikiHtml: [
         { url: `${MarkdownShikiHtml}/pages/javascript-page-html.html`, target: '[data-shiki="codeHtml"]' },
         { url: `${MarkdownShikiHtml}/pages/javascript-page-css.html`, target: '[data-shiki="codeCss"]' },
+        { url: `${MarkdownShikiHtml}/pages/javascript-page-scss.html`, target: '[data-shiki="codeScss"]' },
         { url: `${MarkdownShikiHtml}/pages/javascript-page.cjs-js.html`, target: '[data-shiki="codeCjsJs"]' },
         { url: `${MarkdownShikiHtml}/pages/javascript-page.esm-js.html`, target: '[data-shiki="codeEsmJs"]' },
     ],

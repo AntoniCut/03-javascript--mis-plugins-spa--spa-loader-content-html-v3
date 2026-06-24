@@ -8,15 +8,17 @@
     *                                                                                 *
     *  Uso: pnpm code-highlight                                                       *
     *                                                                                 *
-    *  Convención de nombres:                                                         *
-    *    MarkdownShikiHtml path  →  fuente                                            *
-    *    .../01-markdown-shiki-ts.html   →  src/scripts/ts/.../01-markdown-shiki.ts   *
-    *    .../01-markdown-shiki-js.html   →  src/scripts/js/.../01-markdown-shiki.js   *
-    *    .../01-markdown-shiki-html.html →  src/pages/.../01-markdown-shiki.html      *
-    *    .../01-markdown-shiki-css.html  →  app/css/pages/.../01-markdown-shiki.css   *
-    *                                                                                 *
-    *  NOTA: las entradas -css leen el CSS compilado por Gulp (app/css/pages/),       *
-    *  por lo que la tarea `styles` debe ejecutarse antes que esta generación.        *
+*  Convención de nombres:                                                         *
+ *    MarkdownShikiHtml path  →  fuente                                            *
+ *    .../01-markdown-shiki-ts.html   →  src/scripts/ts/.../01-markdown-shiki.ts   *
+ *    .../01-markdown-shiki-js.html   →  src/scripts/js/.../01-markdown-shiki.js   *
+ *    .../01-markdown-shiki-html.html →  src/pages/.../01-markdown-shiki.html      *
+ *    .../01-markdown-shiki-css.html  →  app/css/pages/.../01-markdown-shiki.css   *
+ *    .../01-markdown-shiki-scss.html →  src/scss/pages/.../01-markdown-shiki.scss *
+ *                                                                                 *
+ *  NOTA: las entradas -css leen el CSS compilado por Gulp (app/css/pages/),       *
+ *  por lo que la tarea `styles` debe ejecutarse antes que esta generación.        *
+ *  Las entradas -scss leen directamente el SCSS fuente de src/scss/pages/.         *
     *  -----------------------------------------------------------------------------  *
 */
 
@@ -35,7 +37,7 @@ const SHIKI_THEME = 'dark-plus';
 
 /**
  * A partir del path URL de un archivo .html en markdown-shiki, deduce
- * el path del archivo fuente (.ts, .js, .html o .css) usando la convención
+ * el path del archivo fuente (.ts, .js, .html, .css o .scss) usando la convención
  * de nombres multi-sufijo.
  *
  * @param {string} htmlUrlPath  - p.ej. `/base/app/markdown-shiki/02-tipos-de-datos/01-booleans-ts.html`
@@ -71,6 +73,15 @@ function deriveSource(htmlUrlPath) {
         return {
             srcPath: join(__dirname, 'src/pages', relSrc),
             lang: 'html',
+            relHtml
+        };
+    }
+
+    if (relHtml.endsWith('-scss.html')) {
+        const relSrc = relHtml.replace(/-scss\.html$/, '.scss').replace(/^pages\//, '');
+        return {
+            srcPath: join(__dirname, 'src/scss/pages', relSrc),
+            lang: 'scss',
             relHtml
         };
     }
