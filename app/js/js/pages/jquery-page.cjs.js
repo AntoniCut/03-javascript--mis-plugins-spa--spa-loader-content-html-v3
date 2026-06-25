@@ -11,7 +11,6 @@
 
 (function () {
 
-    console.clear();
     console.log('\n');
     console.warn('-----  jquery-page.cjs.js  -----  jQuery vs Vanilla JS  -----');
     console.log('\n');

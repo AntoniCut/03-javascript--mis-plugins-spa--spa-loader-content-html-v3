@@ -11,6 +11,7 @@
 /** @typedef {import('../../../../types/index.js').RouteStyle} RouteStyle */
 
 
+
 /**
  * ------------------------------------------------------------ 
  * ----------  `spaLoaderContentHtml(options = {})`  ----------
@@ -80,23 +81,16 @@ export const spaLoaderContentHtml = (options = {}) => {
     const init = () => {
 
         console.log('\n');
-        console.warn('-------------------------------------------------------------------------------');
-        console.warn('-----  ✅ Plugin SPA cargado correctamente - spa-loader-content-html.js  -----');
-        console.warn('-------------------------------------------------------------------------------');
-        console.log('\n');
-
-        console.log("%c -------------------------------------------------------------------------------", "background:#2ecc71; color:white; padding:4px;");
-        console.log("%c -----  ✅ Plugin SPA cargado correctamente - spa-loader-content-html.js  -----", "background:#2ecc71; color:white; padding:4px;");
-        console.log("%c -------------------------------------------------------------------------------", "background:#2ecc71; color:white; padding:4px;");
-
-
+        console.log("%c ✅ Plugin SPA cargado correctamente - spa-loader-content-html.js", "background:#2ecc71; color:white; padding:4px;");
+        
+        /*
         console.log("%c Fondo rojo", "background:#e74c3c; color:white; padding:4px;");
         console.log("%c Fondo verde", "background:#2ecc71; color:white; padding:4px;");
         console.log("%c Fondo azul", "background:#3498db; color:white; padding:4px;");
         console.log("%c Fondo amarillo", "background:#f1c40f; color:black; padding:4px;");
         console.log("%c Gris", "background:#7f8c8d; color:white; padding:4px;");
         console.log("%c Negro", "background:#000; color:#0f0; padding:4px;");
-
+        */
 
         //  -----  Configurar listener para navegación (antes de la carga inicial para capturar clics durante la carga)  -----
         setupEventListeners();
@@ -104,6 +98,7 @@ export const spaLoaderContentHtml = (options = {}) => {
         //  -----  Buscar la entrada del manifest que corresponde a la URL actual  -----
         const entry = findManifestEntryByPath(window.location.pathname);
 
+        //  -----  Si se encuentra una entrada en el manifest, cargar la ruta correspondiente  -----
         if (entry) {
 
             //  -----  Importar dinámicamente el módulo de ruta y cargar su contenido  -----
@@ -114,9 +109,10 @@ export const spaLoaderContentHtml = (options = {}) => {
                 else
                     loadNotFoundRoute('init');
 
-                //  -----  Normalizar el state inicial con el objeto de ruta cargado  -----
+                /** Pathname inicial normalizado */
                 const initialPathname = buildPathname(route?.path || entry.path || '');
 
+                //  -----  Reemplazar el estado del historial con la ruta inicial para evitar duplicados en el historial  -----
                 history.replaceState(
                     {
                         id: route?.id || entry.id,
@@ -137,6 +133,7 @@ export const spaLoaderContentHtml = (options = {}) => {
             //  -----  Si no hay entrada en el manifest, intentar cargar la ruta 404  -----
             loadNotFoundRoute('init');
 
+            //  -----  Reemplazar el estado del historial con la ruta inicial para evitar duplicados en el historial  -----
             history.replaceState(
                 {
                     id: null,
@@ -210,7 +207,9 @@ export const spaLoaderContentHtml = (options = {}) => {
         try {
             return new URL(base + trimmed, location.origin).pathname;
 
-        } catch (e) {
+        } 
+        
+        catch (e) {
             return (base + trimmed).replace(/\/\/+/g, '/');
         }
 
@@ -231,7 +230,11 @@ export const spaLoaderContentHtml = (options = {}) => {
      * ---------------------------------------------------------
      * - Busca una entrada en el manifest por pathname normalizado.
      * @param {string} rawPathname - Pathname sin normalizar (por ejemplo, window.location.pathname)
-     * @returns {{ id: string, path: string, file: string }|undefined} - Entrada del manifest o undefined
+     * @returns {{ 
+            * id: string, 
+            * path: string, 
+            * file: string 
+        * }|undefined} - Entrada del manifest o undefined
      */
 
     const findManifestEntryByPath = (rawPathname = '') => {
@@ -283,11 +286,11 @@ export const spaLoaderContentHtml = (options = {}) => {
             /** - `URL completa del módulo de ruta para import()` */
             const moduleUrl = `${settings.routeModulesBase}/${file}.js`;
 
-            /** - `Módulo importado dinámicamente` */
+            /** @type {Record<string, unknown>} - `Módulo ESM importado` */
             const mod = await import(moduleUrl);
 
-            /** - `Primer export del módulo (el objeto Route)` */
-            const route = Object.values(mod)[0];
+             /** @type {Route|undefined} - `Primer export del módulo` */
+            const route = /** @type {Route|undefined} */ (Object.values(mod)[0]);
 
             //  -----  Cachear para futuras navegaciones  -----
             if (route)
@@ -311,7 +314,11 @@ export const spaLoaderContentHtml = (options = {}) => {
      * -----  `findNotFoundRoute()`  -----
      * -----------------------------------
      * - Obtiene la entrada 404 del manifest.
-     * @returns {{ id: string, path: string, file: string }|undefined} - Entrada 404 del manifest o undefined.
+     * @returns {{ 
+            * id: string, 
+            * path: string, 
+            * file: string 
+        * }|undefined} - Entrada 404 del manifest o undefined.
      */
 
     const findNotFoundRoute = () => {
@@ -356,8 +363,11 @@ export const spaLoaderContentHtml = (options = {}) => {
         //  -----  Importar dinámicamente el módulo de la ruta 404 y cargar su contenido  -----
         loadRouteModule(entry404.file).then((route) => {
 
+            //  -----  Si se pudo importar la ruta 404, cargar su contenido  -----
             if (route)
                 loadContent(route);
+            
+            //  -----  Si no se pudo importar la ruta 404, logueamos error y notificamos para evitar bloqueos del loader  -----
             else
                 notifyRouteLoadError(undefined, new Error('No se pudo importar la ruta 404.'), source);
 
@@ -464,7 +474,7 @@ export const spaLoaderContentHtml = (options = {}) => {
      * ----------------------------------------------------------
      * - Notifica un error durante la carga de ruta.
      * - Si ocurre en la carga inicial, desbloquea el loader con un fallback seguro.
-    * @param {Route|undefined} route - Ruta que se intentaba cargar cuando ocurrió el error (puede ser undefined si no se pudo determinar).
+     * @param {Route|undefined} route - Ruta que se intentaba cargar cuando ocurrió el error (puede ser undefined si no se pudo determinar).
      * @param {unknown} error - Error ocurrido durante la carga de la ruta, puede ser cualquier tipo (Error, string, etc.).
      * @param {string} source - Fuente del error, por ejemplo 'init' para errores durante la carga inicial.
      */
@@ -576,6 +586,7 @@ export const spaLoaderContentHtml = (options = {}) => {
             //  -----  Si hay url → restaurar visibilidad antes de cargar  -----
             el.style.display = '';
 
+            //*  -----  Cargar contenido HTML del componente en el contenedor correspondiente  -----
             await fetchHTML(url, selector);
 
         }
@@ -613,17 +624,19 @@ export const spaLoaderContentHtml = (options = {}) => {
 
 
     /**
-     * -----------------------------------------------------
+     * -------------------------------------------------------
      * -----  `resolveInjectedAssetUrl(value, baseUrl)`  -----
-     * -----------------------------------------------------
+     * -------------------------------------------------------
      * - Normaliza rutas de recursos dentro de HTML inyectado.
      * - Soporta rutas relativas al archivo HTML fuente y rutas absolutas prefijadas con settings.base.
      * @param {string} value - Valor del atributo (src, href, poster, etc.)
      * @param {string} baseUrl - URL del archivo HTML inyectado
      * @returns {string}
      */
+
     const resolveInjectedAssetUrl = (value, baseUrl) => {
 
+        /** - Valor del atributo normalizado */
         const raw = String(value || '').trim();
 
         //  -----  Ignorar anchors, data URI, protocolos externos y especiales  -----
@@ -633,20 +646,27 @@ export const spaLoaderContentHtml = (options = {}) => {
         //  -----  Si es ruta absoluta desde raíz, prefijar base de la SPA (si aplica)  -----
         if (raw.startsWith('/')) {
 
+            /** - Base de la SPA normalizada */
             const base = (settings.base || '').replace(/\/$/, '');
 
+            //  -----  Si no hay base, devolver la ruta tal cual  -----
             if (!base)
                 return raw;
 
+            //  -----  Si la ruta ya empieza con la base, devolver tal cual  -----
             if (raw === base || raw.startsWith(`${base}/`))
                 return raw;
 
+            //  -----  Prefijar base de la SPA a la ruta absoluta  -----
             return `${base}${raw}`;
+
         }
+
 
         //  -----  Resolver rutas relativas contra la URL del HTML inyectado  -----
         try {
 
+            /** - Resolver rutas relativas contra la URL del HTML inyectado */
             const resolved = new URL(raw, new URL(baseUrl, window.location.origin));
 
             return `${resolved.pathname}${resolved.search}${resolved.hash}`;
@@ -654,19 +674,23 @@ export const spaLoaderContentHtml = (options = {}) => {
         } catch (e) {
             return value;
         }
+
     };
 
 
+
     /**
-     * -------------------------------------------------------
+     * --------------------------------------------------------
      * -----  `rewriteInjectedHtmlUrls(html, sourceUrl)`  -----
-     * -------------------------------------------------------
+     * --------------------------------------------------------
      * - Reescribe URLs de recursos en HTML inyectado para evitar roturas en SPA.
      * @param {string} html - HTML crudo obtenido por fetch.
      * @param {string} sourceUrl - URL del archivo HTML origen.
-     * @returns {string}
+     * @returns {string} - HTML con URLs reescritas para src, href, poster y srcset.
      */
+
     const rewriteInjectedHtmlUrls = (html, sourceUrl) => {
+        
 
         const template = document.createElement('template');
 
@@ -1376,7 +1400,11 @@ export const spaLoaderContentHtml = (options = {}) => {
      * -----  `loadScripts({ src, isModule = false, exportFunctionName = null })`  -----
      * ---------------------------------------------------------------------------------
      * - `Función para cargar scripts dinámicamente desde las rutas definidas en route.scripts`
-     * @param {{ src: string, isModule?: boolean, exportFunctionName?: string|null }} options - Objeto con las opciones para cargar el script:
+     * @param {{ 
+        * src: string, 
+        * isModule?: boolean, 
+        * exportFunctionName?: string|null 
+     * }} options - Objeto con las opciones para cargar el script:
      *    - `src`: URL del script a cargar (puede ser relativa o absoluta)
      *    - `isModule`: Indica si el script debe cargarse como módulo ES6 (opcional, por defecto false)
      *    - `exportFunctionName`: Si isModule es true, nombre de la función exportada a ejecutar después de importar el módulo (opcional, por defecto null)

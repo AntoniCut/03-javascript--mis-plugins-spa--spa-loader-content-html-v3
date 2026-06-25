@@ -11,6 +11,7 @@
 /** @typedef {import('../../../../types/index.js').RouteStyle} RouteStyle */
 
 
+
 /**
  * ------------------------------------------------------------ 
  * ----------  `spaLoaderContentHtml(options = {})`  ----------
@@ -80,23 +81,16 @@ export const spaLoaderContentHtml = (options = {}) => {
     const init = () => {
 
         console.log('\n');
-        console.warn('-------------------------------------------------------------------------------');
-        console.warn('-----  ✅ Plugin SPA cargado correctamente - spa-loader-content-html.js  -----');
-        console.warn('-------------------------------------------------------------------------------');
-        console.log('\n');
-
-        console.log("%c -------------------------------------------------------------------------------", "background:#2ecc71; color:white; padding:4px;");
-        console.log("%c -----  ✅ Plugin SPA cargado correctamente - spa-loader-content-html.js  -----", "background:#2ecc71; color:white; padding:4px;");
-        console.log("%c -------------------------------------------------------------------------------", "background:#2ecc71; color:white; padding:4px;");
-
-
+        console.log("%c ✅ Plugin SPA cargado correctamente - spa-loader-content-html.js", "background:#2ecc71; color:white; padding:4px;");
+        
+        /*
         console.log("%c Fondo rojo", "background:#e74c3c; color:white; padding:4px;");
         console.log("%c Fondo verde", "background:#2ecc71; color:white; padding:4px;");
         console.log("%c Fondo azul", "background:#3498db; color:white; padding:4px;");
         console.log("%c Fondo amarillo", "background:#f1c40f; color:black; padding:4px;");
         console.log("%c Gris", "background:#7f8c8d; color:white; padding:4px;");
         console.log("%c Negro", "background:#000; color:#0f0; padding:4px;");
-
+        */
 
         //  -----  Configurar listener para navegación (antes de la carga inicial para capturar clics durante la carga)  -----
         setupEventListeners();
@@ -104,6 +98,7 @@ export const spaLoaderContentHtml = (options = {}) => {
         //  -----  Buscar la entrada del manifest que corresponde a la URL actual  -----
         const entry = findManifestEntryByPath(window.location.pathname);
 
+        //  -----  Si se encuentra una entrada en el manifest, cargar la ruta correspondiente  -----
         if (entry) {
 
             //  -----  Importar dinámicamente el módulo de ruta y cargar su contenido  -----
@@ -114,9 +109,10 @@ export const spaLoaderContentHtml = (options = {}) => {
                 else
                     loadNotFoundRoute('init');
 
-                //  -----  Normalizar el state inicial con el objeto de ruta cargado  -----
+                /** Pathname inicial normalizado */
                 const initialPathname = buildPathname(route?.path || entry.path || '');
 
+                //  -----  Reemplazar el estado del historial con la ruta inicial para evitar duplicados en el historial  -----
                 history.replaceState(
                     {
                         id: route?.id || entry.id,
@@ -137,6 +133,7 @@ export const spaLoaderContentHtml = (options = {}) => {
             //  -----  Si no hay entrada en el manifest, intentar cargar la ruta 404  -----
             loadNotFoundRoute('init');
 
+            //  -----  Reemplazar el estado del historial con la ruta inicial para evitar duplicados en el historial  -----
             history.replaceState(
                 {
                     id: null,
@@ -210,7 +207,9 @@ export const spaLoaderContentHtml = (options = {}) => {
         try {
             return new URL(base + trimmed, location.origin).pathname;
 
-        } catch (e) {
+        } 
+        
+        catch (e) {
             return (base + trimmed).replace(/\/\/+/g, '/');
         }
 
@@ -231,7 +230,11 @@ export const spaLoaderContentHtml = (options = {}) => {
      * ---------------------------------------------------------
      * - Busca una entrada en el manifest por pathname normalizado.
      * @param {string} rawPathname - Pathname sin normalizar (por ejemplo, window.location.pathname)
-     * @returns {{ id: string, path: string, file: string }|undefined} - Entrada del manifest o undefined
+     * @returns {{ 
+            * id: string, 
+            * path: string, 
+            * file: string 
+        * }|undefined} - Entrada del manifest o undefined
      */
 
     const findManifestEntryByPath = (rawPathname = '') => {
@@ -283,11 +286,11 @@ export const spaLoaderContentHtml = (options = {}) => {
             /** - `URL completa del módulo de ruta para import()` */
             const moduleUrl = `${settings.routeModulesBase}/${file}.js`;
 
-            /** - `Módulo importado dinámicamente` */
+            /** @type {Record<string, unknown>} - `Módulo ESM importado` */
             const mod = await import(moduleUrl);
 
-            /** - `Primer export del módulo (el objeto Route)` */
-            const route = Object.values(mod)[0];
+             /** @type {Route|undefined} - `Primer export del módulo` */
+            const route = /** @type {Route|undefined} */ (Object.values(mod)[0]);
 
             //  -----  Cachear para futuras navegaciones  -----
             if (route)
@@ -311,7 +314,11 @@ export const spaLoaderContentHtml = (options = {}) => {
      * -----  `findNotFoundRoute()`  -----
      * -----------------------------------
      * - Obtiene la entrada 404 del manifest.
-     * @returns {{ id: string, path: string, file: string }|undefined} - Entrada 404 del manifest o undefined.
+     * @returns {{ 
+            * id: string, 
+            * path: string, 
+            * file: string 
+        * }|undefined} - Entrada 404 del manifest o undefined.
      */
 
     const findNotFoundRoute = () => {
@@ -356,8 +363,11 @@ export const spaLoaderContentHtml = (options = {}) => {
         //  -----  Importar dinámicamente el módulo de la ruta 404 y cargar su contenido  -----
         loadRouteModule(entry404.file).then((route) => {
 
+            //  -----  Si se pudo importar la ruta 404, cargar su contenido  -----
             if (route)
                 loadContent(route);
+            
+            //  -----  Si no se pudo importar la ruta 404, logueamos error y notificamos para evitar bloqueos del loader  -----
             else
                 notifyRouteLoadError(undefined, new Error('No se pudo importar la ruta 404.'), source);
 
@@ -464,7 +474,7 @@ export const spaLoaderContentHtml = (options = {}) => {
      * ----------------------------------------------------------
      * - Notifica un error durante la carga de ruta.
      * - Si ocurre en la carga inicial, desbloquea el loader con un fallback seguro.
-    * @param {Route|undefined} route - Ruta que se intentaba cargar cuando ocurrió el error (puede ser undefined si no se pudo determinar).
+     * @param {Route|undefined} route - Ruta que se intentaba cargar cuando ocurrió el error (puede ser undefined si no se pudo determinar).
      * @param {unknown} error - Error ocurrido durante la carga de la ruta, puede ser cualquier tipo (Error, string, etc.).
      * @param {string} source - Fuente del error, por ejemplo 'init' para errores durante la carga inicial.
      */
@@ -576,6 +586,7 @@ export const spaLoaderContentHtml = (options = {}) => {
             //  -----  Si hay url → restaurar visibilidad antes de cargar  -----
             el.style.display = '';
 
+            //*  -----  Cargar contenido HTML del componente en el contenedor correspondiente  -----
             await fetchHTML(url, selector);
 
         }
@@ -613,17 +624,19 @@ export const spaLoaderContentHtml = (options = {}) => {
 
 
     /**
-     * -----------------------------------------------------
+     * -------------------------------------------------------
      * -----  `resolveInjectedAssetUrl(value, baseUrl)`  -----
-     * -----------------------------------------------------
+     * -------------------------------------------------------
      * - Normaliza rutas de recursos dentro de HTML inyectado.
      * - Soporta rutas relativas al archivo HTML fuente y rutas absolutas prefijadas con settings.base.
      * @param {string} value - Valor del atributo (src, href, poster, etc.)
      * @param {string} baseUrl - URL del archivo HTML inyectado
      * @returns {string}
      */
+
     const resolveInjectedAssetUrl = (value, baseUrl) => {
 
+        /** - Valor del atributo normalizado */
         const raw = String(value || '').trim();
 
         //  -----  Ignorar anchors, data URI, protocolos externos y especiales  -----
@@ -633,20 +646,27 @@ export const spaLoaderContentHtml = (options = {}) => {
         //  -----  Si es ruta absoluta desde raíz, prefijar base de la SPA (si aplica)  -----
         if (raw.startsWith('/')) {
 
+            /** - Base de la SPA normalizada */
             const base = (settings.base || '').replace(/\/$/, '');
 
+            //  -----  Si no hay base, devolver la ruta tal cual  -----
             if (!base)
                 return raw;
 
+            //  -----  Si la ruta ya empieza con la base, devolver tal cual  -----
             if (raw === base || raw.startsWith(`${base}/`))
                 return raw;
 
+            //  -----  Prefijar base de la SPA a la ruta absoluta  -----
             return `${base}${raw}`;
+
         }
+
 
         //  -----  Resolver rutas relativas contra la URL del HTML inyectado  -----
         try {
 
+            /** - Resolver rutas relativas contra la URL del HTML inyectado */
             const resolved = new URL(raw, new URL(baseUrl, window.location.origin));
 
             return `${resolved.pathname}${resolved.search}${resolved.hash}`;
@@ -654,72 +674,96 @@ export const spaLoaderContentHtml = (options = {}) => {
         } catch (e) {
             return value;
         }
+
     };
 
 
+
     /**
-     * -------------------------------------------------------
+     * --------------------------------------------------------
      * -----  `rewriteInjectedHtmlUrls(html, sourceUrl)`  -----
-     * -------------------------------------------------------
+     * --------------------------------------------------------
      * - Reescribe URLs de recursos en HTML inyectado para evitar roturas en SPA.
      * @param {string} html - HTML crudo obtenido por fetch.
      * @param {string} sourceUrl - URL del archivo HTML origen.
-     * @returns {string}
+     * @returns {string} - HTML con URLs reescritas para src, href, poster y srcset.
      */
+
     const rewriteInjectedHtmlUrls = (html, sourceUrl) => {
 
+        /** - contenedor temporal para manipular el HTML inyectado */
         const template = document.createElement('template');
 
+        //  -----  Asignar el HTML crudo al contenedor temporal  -----
         template.innerHTML = html;
 
+        //  -----  Reescribir URLs de recursos en todos los elementos con src, href, poster o srcset  -----
         template.content.querySelectorAll('[src],[href],[poster],[srcset]').forEach((node) => {
 
+            //  -----  Reescribir src  -----
             if (node.hasAttribute('src')) {
                 const src = node.getAttribute('src');
                 if (src)
                     node.setAttribute('src', resolveInjectedAssetUrl(src, sourceUrl));
             }
 
+            //  -----  Reescribir href  -----
             if (node.hasAttribute('href')) {
                 const href = node.getAttribute('href');
                 if (href)
                     node.setAttribute('href', resolveInjectedAssetUrl(href, sourceUrl));
             }
 
+            //  -----  Reescribir poster  -----
             if (node.hasAttribute('poster')) {
                 const poster = node.getAttribute('poster');
                 if (poster)
                     node.setAttribute('poster', resolveInjectedAssetUrl(poster, sourceUrl));
             }
 
+            //  -----  Reescribir srcset  -----
             if (node.hasAttribute('srcset')) {
 
+                /** - Obtener el atributo srcset */
                 const srcset = node.getAttribute('srcset');
 
+                //  -----  Si srcset existe, reescribir cada URL dentro de él  -----
                 if (srcset) {
 
-                    const normalized = srcset
-                        .split(',')
-                        .map((entry) => {
+                    /** - Reescribir cada URL en el atributo srcset */
+                    const normalized = 
+                    
+                        srcset
+                        
+                            .split(',')
+                        
+                            .map((entry) => {
 
-                            const value = entry.trim();
+                                /** - Reescribir cada URL en el atributo srcset */
+                                const value = entry.trim();
 
-                            if (!value)
-                                return value;
+                                //  -----  Ignorar entradas vacías  -----
+                                if (!value)
+                                    return value;
 
-                            const [srcCandidate, descriptor] = value.split(/\s+/, 2);
 
-                            const resolvedSrc = resolveInjectedAssetUrl(srcCandidate, sourceUrl);
+                                /** - Separar URL y descriptor */
+                                const [srcCandidate, descriptor] = value.split(/\s+/, 2);
 
-                            return descriptor ? `${resolvedSrc} ${descriptor}` : resolvedSrc;
-                        })
-                        .join(', ');
+                                const resolvedSrc = resolveInjectedAssetUrl(srcCandidate, sourceUrl);
+
+                                return descriptor ? `${resolvedSrc} ${descriptor}` : resolvedSrc;
+
+                            })
+                            
+                            .join(', ');
 
                     node.setAttribute('srcset', normalized);
                 }
             }
         });
 
+        //  -----  Devolver el HTML reescrito como string  -----
         return template.innerHTML;
     };
 
@@ -766,7 +810,7 @@ export const spaLoaderContentHtml = (options = {}) => {
         }
 
 
-        //  -----  Si hay URL ==> aseguramos que el contenedor esté visible  -----
+        //*  -----  Si hay URL ==> aseguramos que el contenedor esté visible  -----
 
         //  -----  para restaurar estado si antes estaba oculto  -----
         el.style.display = "";
@@ -774,14 +818,17 @@ export const spaLoaderContentHtml = (options = {}) => {
         //  -----  Intentar cargar el contenido HTML con fetch y manejar errores para mostrar mensaje en el contenedor  -----
         try {
 
-            /** @type {Response} - `Respuesta del fetch` */
+            /** - `Respuesta del fetch` */
             const res = await fetch(url);
 
+            //  -----  Si la respuesta no es OK, lanzar error para manejarlo en el catch  -----
             if (!res.ok)
                 throw new Error(res.statusText);
 
-            //  -----  Reescribir rutas de recursos para que funcionen con HTML inyectado en SPA  -----
+            /** - `Contenido HTML como texto` */
             const html = await res.text();
+            
+            //  -----  Reescribir URLs de recursos en el HTML inyectado para evitar roturas en SPA  -----
             el.innerHTML = rewriteInjectedHtmlUrls(html, url);
 
         } catch (e) {
@@ -885,11 +932,12 @@ export const spaLoaderContentHtml = (options = {}) => {
      * @return {void} - No devuelve nada, pero actualiza el favicon del documento.
      */
 
-    
-
     const updateFavicon = (favicon) => {
 
+        /**  - `URL absoluta del nuevo favicon` */
         const newAbsolute = new URL(favicon, document.baseURI).href;
+
+        /** - `URL del nuevo favicon con cache-busting` */
         const newHref = `${favicon}?v=${_faviconSessionKey}`;
 
         /** @type {HTMLLinkElement|null} - `Referencia al favicon existente` */
@@ -913,6 +961,7 @@ export const spaLoaderContentHtml = (options = {}) => {
 
             });
 
+            //  -----  Salir de la función después de actualizar el favicon existente  -----
             return;
 
         }
@@ -921,9 +970,13 @@ export const spaLoaderContentHtml = (options = {}) => {
         
         /** @type {HTMLLinkElement} - `Nuevo elemento favicon` */
         const link = document.createElement('link');
+        
+        //  -----  Configurar atributos del nuevo favicon  -----
         link.rel = 'icon';
         link.type = 'image/x-icon';
         link.href = newHref;
+
+        //  -----  Agregar el nuevo favicon al head del documento  -----
         document.head.appendChild(link);
 
     }
@@ -1040,7 +1093,7 @@ export const spaLoaderContentHtml = (options = {}) => {
         };
 
 
-        //  -----  Evitar bindings duplicados: clonar botones y reemplazarlos -----
+        //*  -----  Evitar bindings duplicados: clonar botones y reemplazarlos -----
 
         /** - `Nuevo botón open clonado` */
         const newBtnOpen = /** @type {HTMLElement} */ (btnOpen.cloneNode(true));
@@ -1376,7 +1429,11 @@ export const spaLoaderContentHtml = (options = {}) => {
      * -----  `loadScripts({ src, isModule = false, exportFunctionName = null })`  -----
      * ---------------------------------------------------------------------------------
      * - `Función para cargar scripts dinámicamente desde las rutas definidas en route.scripts`
-     * @param {{ src: string, isModule?: boolean, exportFunctionName?: string|null }} options - Objeto con las opciones para cargar el script:
+     * @param {{ 
+        * src: string, 
+        * isModule?: boolean, 
+        * exportFunctionName?: string|null 
+     * }} options - Objeto con las opciones para cargar el script:
      *    - `src`: URL del script a cargar (puede ser relativa o absoluta)
      *    - `isModule`: Indica si el script debe cargarse como módulo ES6 (opcional, por defecto false)
      *    - `exportFunctionName`: Si isModule es true, nombre de la función exportada a ejecutar después de importar el módulo (opcional, por defecto null)
@@ -1525,6 +1582,7 @@ export const spaLoaderContentHtml = (options = {}) => {
                     continue;
                 }
 
+                //  -----  Insertar el HTML renderizado de Shiki en el contenedor destino  -----
                 container.innerHTML = html;
 
             } catch (error) {

@@ -11,7 +11,6 @@
 
 (function () {
 
-    console.clear();
     console.log('\n');
     console.warn('-----  home.cjs.js  -----  spa-loader-content-html v3  -----');
     console.log('\n');

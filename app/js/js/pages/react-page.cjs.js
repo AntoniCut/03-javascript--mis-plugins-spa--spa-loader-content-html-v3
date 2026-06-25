@@ -10,7 +10,6 @@
 
 (function () {
 
-    console.clear();
     console.log('\n');
     console.warn('-----  react-page.cjs.js  -----  CommonJS (IIFE)  -----');
     console.log('\n');
