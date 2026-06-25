@@ -31,6 +31,19 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 
+//  -----  Importar tipos personalizados para JSDoc  -----
+/** @typedef {import('./types/index.js').Route} Route */
+/** @typedef {import('./types/index.js').MarkdownShikiEntry} MarkdownShikiEntry */
+/** @typedef {Record<string, Route>} RouteModule - Módulo de ruta importado dinámicamente. */
+
+
+/**
+ * @typedef {Object} ShikiGenResult - Resultado de generar (u omitir) un archivo HTML con Shiki.
+ * @property {'generated' | 'skipped'} status - Estado final de la operación.
+ * @property {string} message - Mensaje de log asociado al resultado.
+ */
+
+
 /** - `Directorio del archivo actual` */
 const __dirname  = dirname(fileURLToPath(import.meta.url));
 
@@ -71,7 +84,7 @@ const BANNER_PATTERN = /-----/;
  * @returns {{ srcPath: string, lang: string, relHtml: string } | null} - Objeto con la información del archivo fuente o `null` si no se puede derivar.
  */
 
-function deriveSource(htmlUrlPath) {
+const deriveSource = (htmlUrlPath) => {
 
     /** - `Índice del marcador en la URL` */
     const idx = htmlUrlPath.indexOf(MARKER);
@@ -82,39 +95,15 @@ function deriveSource(htmlUrlPath) {
 
     /** - `Ruta relativa del archivo HTML dentro de markdown-shiki` */
     const relHtml = htmlUrlPath.slice(idx + MARKER.length);
+   
 
-    //  -----  Derivar el path del archivo si termina en -ts.html  -----
-    if (relHtml.endsWith('-ts.html')) {
-        const relSrc = relHtml.replace(/-ts\.html$/, '.ts');
-        return {
-            srcPath: join(__dirname, 'src/scripts/ts', relSrc),
-            lang: 'typescript',
-            relHtml
-        };
-    }
-
-    //  -----  Derivar el path del archivo si termina en -js.html  -----
-    if (relHtml.endsWith('-js.html')) {
-        const relSrc = relHtml.replace(/-js\.html$/, '.js');
-        //  -----  Subpath plugins/ → src/plugins/ (fuentes de plugins)  -----
-        if (relSrc.startsWith('plugins/')) {
-            const pluginRelSrc = relSrc.replace(/^plugins\//, '');
-            return {
-                srcPath: join(__dirname, 'src/plugins', pluginRelSrc),
-                lang: 'javascript',
-                relHtml
-            };
-        }
-        return {
-            srcPath: join(__dirname, 'src/scripts/js', relSrc),
-            lang: 'javascript',
-            relHtml
-        };
-    }
-
-    //  -----  Derivar el path del archivo si termina en -html.html  -----
+    //*  -----  Derivar el path del archivo si termina en -html.html  -----
     if (relHtml.endsWith('-html.html')) {
+        
+        /** - `Ruta relativa del archivo fuente HTML` */
         const relSrc = relHtml.replace(/-html\.html$/, '.html').replace(/^pages\//, '');
+        
+        //  -----  Subpath pages/ → src/pages/ (fuentes de páginas)  -----
         return {
             srcPath: join(__dirname, 'src/pages', relSrc),
             lang: 'html',
@@ -122,19 +111,14 @@ function deriveSource(htmlUrlPath) {
         };
     }
 
-    //  -----  Derivar el path del archivo si termina en -scss.html  -----
-    if (relHtml.endsWith('-scss.html')) {
-        const relSrc = relHtml.replace(/-scss\.html$/, '.scss').replace(/^pages\//, '');
-        return {
-            srcPath: join(__dirname, 'src/scss/pages', relSrc),
-            lang: 'scss',
-            relHtml
-        };
-    }
 
-    //  -----  Derivar el path del archivo si termina en -css.html  -----
+    //*  -----  Derivar el path del archivo si termina en -css.html  -----
     if (relHtml.endsWith('-css.html')) {
+        
+        /** - `Ruta relativa del archivo fuente CSS` */
         const relSrc = relHtml.replace(/-css\.html$/, '.css').replace(/^pages\//, '');
+        
+        //  -----  Subpath pages/ → app/css/pages/ (fuentes de CSS)  -----
         return {
             srcPath: join(__dirname, 'app/css/pages', relSrc),
             lang: 'css',
@@ -142,10 +126,72 @@ function deriveSource(htmlUrlPath) {
         };
     }
 
-    //  -----  No se puede derivar el fuente  -----
+
+    //*  -----  Derivar el path del archivo si termina en -scss.html  -----
+    if (relHtml.endsWith('-scss.html')) {
+        
+        /** - `Ruta relativa del archivo fuente SCSS` */
+        const relSrc = relHtml.replace(/-scss\.html$/, '.scss').replace(/^pages\//, '');
+        
+        //  -----  Subpath pages/ → src/scss/pages/ (fuentes de SCSS)  -----
+        return {
+            srcPath: join(__dirname, 'src/scss/pages', relSrc),
+            lang: 'scss',
+            relHtml
+        };
+    }
+  
+
+
+    //*  -----  Derivar el path del archivo si termina en -js.html  -----
+    if (relHtml.endsWith('-js.html')) {
+        
+        /** - `Ruta relativa del archivo fuente JavaScript` */
+        const relSrc = relHtml.replace(/-js\.html$/, '.js');
+        
+        //  -----  Subpath plugins/ → src/plugins/ (fuentes de plugins)  -----
+        if (relSrc.startsWith('plugins/')) {
+            
+            /** - `Ruta relativa del archivo fuente del plugin` */
+            const pluginRelSrc = relSrc.replace(/^plugins\//, '');
+            
+            //  -----  Subpath plugins/ → src/plugins/ (fuentes de plugins)  -----
+            return {
+                srcPath: join(__dirname, 'src/plugins', pluginRelSrc),
+                lang: 'javascript',
+                relHtml
+            };
+        }
+
+        //  -----  Subpath scripts/ → src/scripts/js/ (fuentes de scripts)  -----
+        return {
+            srcPath: join(__dirname, 'src/scripts/js', relSrc),
+            lang: 'javascript',
+            relHtml
+        };
+    }
+
+
+    //*  -----  Derivar el path del archivo si termina en -ts.html  -----
+    if (relHtml.endsWith('-ts.html')) {
+        
+        /** - `Ruta relativa del archivo fuente TypeScript` */
+        const relSrc = relHtml.replace(/-ts\.html$/, '.ts');
+        
+        //  -----  Subpath scripts/ → src/scripts/ts/ (fuentes de scripts)  -----
+        return {
+            srcPath: join(__dirname, 'src/scripts/ts', relSrc),
+            lang: 'typescript',
+            relHtml
+        };
+    }
+
+
+    //*  -----  No se puede derivar el fuente  -----
     return null;
 
 }
+
 
 
 /**
@@ -175,7 +221,7 @@ function deriveSource(htmlUrlPath) {
  * @returns {string}    - Código fuente sin los banners iniciales.
  */
 
-function stripHeaderBanner(code) {
+const stripHeaderBanner = (code) => {
 
     //  -----  Eliminar prólogo específico de los archivos .cjs.js  -----
     //  -----  `// @ts-nocheck` + `"use strict";` antes del banner  -----
@@ -188,6 +234,7 @@ function stripHeaderBanner(code) {
     let firstIdx = -1;
     let firstEnd = -1;
 
+    //  -----  Iterar sobre todos los comentarios del código  -----
     for (const m of code.matchAll(ANY_COMMENT_RE)) {
 
         if (BANNER_PATTERN.test(m[0])) {
@@ -197,84 +244,116 @@ function stripHeaderBanner(code) {
         }
     }
 
-    if (firstIdx === -1) return code;
+    //  -----  Si no se encuentra ningún banner, devolver el código original  -----
+    if (firstIdx === -1) 
+        return code;
 
     //  -----  Desde el primer banner, consumir banners consecutivos (whitespace entre ellos)  -----
     let endIdx = firstEnd;
     const COMMENT_AFTER_BANNER_RE = /^\s*(?:\/\*[\s\S]*?\*\/|<!--[\s\S]*?-->|\/\/[^\n]*\n)/;
 
+    //  -----  Iterar mientras haya comentarios consecutivos después del primer banner  -----
     while (true) {
 
+        
+        /** - contiene el código restante después del último banner procesado */
         const rest = code.slice(endIdx);
+        
+        /** - contiene el siguiente comentario después del último banner procesado */
         const match = rest.match(COMMENT_AFTER_BANNER_RE);
 
-        if (!match) break;
-        if (!BANNER_PATTERN.test(match[0])) break;
+        //  -----  Si no hay más comentarios, salir del bucle  -----
+        if (!match) 
+            break;
+        
+        //  -----  Si el siguiente comentario no es un banner, salir del bucle  -----
+        if (!BANNER_PATTERN.test(match[0])) 
+            break;
 
+        //  -----  Avanzar el índice final al final del siguiente banner  -----
         endIdx += match[0].length;
     }
 
-    //  -----  Reconstruir: código antes del primer banner + código tras el último banner  -----
+    
+    /** - Contiene el código antes del primer banner */
     const before = code.slice(0, firstIdx);
+    
+    /** - Contiene el código después del último banner */
     const after = code.slice(endIdx).replace(/^\s*\n/, '');
 
+    //  -----  Devolver el código sin los banners iniciales, manteniendo el prólogo antes del primer banner  -----
     return (before + after).replace(/^\s*\n/, '');
+
 }
+
 
 
 /**
  * ---------------------------------------
  * -----  `generateMarkdownShiki()`  -----
  * ---------------------------------------
- * 
  * - Lee las rutas del SPA, deriva los archivos fuente y genera los bloques
  *   HTML resaltados con Shiki en src/markdown-shiki/.
- *
  * - Las entradas -css leen el CSS compilado por Gulp en app/css/pages/, por lo
  *   que la tarea `styles` debe haberse ejecutado antes.
- *
  * @async
  * @returns {Promise<{ generated: number, skipped: number }>}
  */
 
-export async function generateMarkdownShiki() {
+export const generateMarkdownShiki = async () => {
 
-    //  -----  Leer todos los archivos de ruta  -----
+    
+    /** - Contiene la ruta del directorio de rutas */
     const routesDir  = join(__dirname, 'src/routes');
+    
+    
+    /** - Contiene los archivos de ruta */
     const routeFiles = readdirSync(routesDir).filter(
         f => f.startsWith('route-') && f.endsWith('.js') && f !== 'route-manifest.js'
     );
 
-    //  -----  Recolectar todos los MarkdownShikiHtml únicos  -----
+    
+    /** @type {Set<string>} - Contiene los paths HTML únicos */
     const htmlPaths = new Set();
 
+    //  -----  Iterar sobre los archivos de ruta y extraer los paths HTML de MarkdownShikiHtml  -----
     for (const file of routeFiles) {
 
-        const mod   = await import(`./src/routes/${file}`);
+        
+        /** @type {RouteModule} */
+        const mod = await import(`./src/routes/${file}`);
+
+        /** @type {Route | undefined} */
         const route = Object.values(mod).find(
             v => v && typeof v === 'object' && Array.isArray(v.MarkdownShikiHtml)
         );
 
         if (route?.MarkdownShikiHtml) {
             for (const p of route.MarkdownShikiHtml) {
-                const urlStr = typeof p === 'string' ? p : p.url;
-                if (urlStr) htmlPaths.add(urlStr);
+                if (p.url) htmlPaths.add(p.url);
             }
         }
     }
 
 
     //  -----  Generar HTML para cada entrada (en paralelo con Promise.all)  -----
+    
+    /** @type {ShikiGenResult[]} */
     const results = await Promise.all(
 
         [...htmlPaths].map(async (htmlPath) => {
 
+            /** - Contiene la información derivada del path HTML */
             const derived = deriveSource(htmlPath);
 
+            //  -----  Si no se puede derivar el fuente, omitir la entrada  -----
             if (!derived) {
-                return { status: 'skipped', message: `⚠️  No se puede derivar el fuente para: ${htmlPath}` };
+                return { 
+                    status: 'skipped', 
+                    message: `⚠️  No se puede derivar el fuente para: ${htmlPath}` };
             }
 
+            //  -----  Desestructurar la información derivada  -----
             const { srcPath, lang, relHtml } = derived;
 
             if (!existsSync(srcPath)) {
@@ -285,27 +364,54 @@ export async function generateMarkdownShiki() {
                 };
             }
 
+            /** - Contiene el código fuente sin procesar */
             const rawCode = readFileSync(srcPath, 'utf-8');
+            
+            /** - Contiene el código fuente procesado */
             const code = STRIP_HEADER_BANNER ? stripHeaderBanner(rawCode) : rawCode;
+            
+            /** - Contiene el HTML generado a partir del código fuente */
             const html = await codeToHtml(code, { lang, theme: SHIKI_THEME });
 
+            /** - Contiene el path de salida del archivo HTML generado en src/markdown-shiki/ */
             const outPath = join(__dirname, 'src/markdown-shiki', relHtml);
+            
+            
+            //  -----  Crear directorio de salida si no existe  -----
             mkdirSync(dirname(outPath), { recursive: true });
+            
+            //  -----  Escribir el archivo HTML generado  -----
             writeFileSync(outPath, html, 'utf-8');
 
-            return { status: 'generated', message: `✅  src/markdown-shiki/${relHtml}` };
+            //  -----  Devolver el resultado de la generación  -----
+            return { 
+                status: 'generated', 
+                message: `✅  src/markdown-shiki/${relHtml}` 
+            };
+
         })
+
     );
 
-    //  -----  Imprimir resultados en orden para mantener logs legibles  -----
-    for (const r of results) console.log(r.message);
 
+    //  -----  Imprimir resultados en orden para mantener logs legibles  -----
+    for (const r of results) 
+        console.log(r.message);
+
+    /** - Contiene el número de archivos HTML generados */
     const generated = results.filter(r => r.status === 'generated').length;
+    
+    /** - Contiene el número de archivos HTML omitidos */
     const skipped   = results.filter(r => r.status === 'skipped').length;
 
     console.log(`\n🎉  Completado — generados: ${generated} | omitidos: ${skipped}`);
 
-    return { generated, skipped };
+    //  -----  Devolver el resumen de la operación  -----
+    return { 
+        generated, 
+        skipped 
+    };
+    
 }
 
 
