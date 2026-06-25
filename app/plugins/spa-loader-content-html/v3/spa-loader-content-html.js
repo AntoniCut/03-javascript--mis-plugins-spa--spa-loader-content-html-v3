@@ -690,60 +690,80 @@ export const spaLoaderContentHtml = (options = {}) => {
      */
 
     const rewriteInjectedHtmlUrls = (html, sourceUrl) => {
-        
 
+        /** - contenedor temporal para manipular el HTML inyectado */
         const template = document.createElement('template');
 
+        //  -----  Asignar el HTML crudo al contenedor temporal  -----
         template.innerHTML = html;
 
+        //  -----  Reescribir URLs de recursos en todos los elementos con src, href, poster o srcset  -----
         template.content.querySelectorAll('[src],[href],[poster],[srcset]').forEach((node) => {
 
+            //  -----  Reescribir src  -----
             if (node.hasAttribute('src')) {
                 const src = node.getAttribute('src');
                 if (src)
                     node.setAttribute('src', resolveInjectedAssetUrl(src, sourceUrl));
             }
 
+            //  -----  Reescribir href  -----
             if (node.hasAttribute('href')) {
                 const href = node.getAttribute('href');
                 if (href)
                     node.setAttribute('href', resolveInjectedAssetUrl(href, sourceUrl));
             }
 
+            //  -----  Reescribir poster  -----
             if (node.hasAttribute('poster')) {
                 const poster = node.getAttribute('poster');
                 if (poster)
                     node.setAttribute('poster', resolveInjectedAssetUrl(poster, sourceUrl));
             }
 
+            //  -----  Reescribir srcset  -----
             if (node.hasAttribute('srcset')) {
 
+                /** - Obtener el atributo srcset */
                 const srcset = node.getAttribute('srcset');
 
+                //  -----  Si srcset existe, reescribir cada URL dentro de él  -----
                 if (srcset) {
 
-                    const normalized = srcset
-                        .split(',')
-                        .map((entry) => {
+                    /** - Reescribir cada URL en el atributo srcset */
+                    const normalized = 
+                    
+                        srcset
+                        
+                            .split(',')
+                        
+                            .map((entry) => {
 
-                            const value = entry.trim();
+                                /** - Reescribir cada URL en el atributo srcset */
+                                const value = entry.trim();
 
-                            if (!value)
-                                return value;
+                                //  -----  Ignorar entradas vacías  -----
+                                if (!value)
+                                    return value;
 
-                            const [srcCandidate, descriptor] = value.split(/\s+/, 2);
 
-                            const resolvedSrc = resolveInjectedAssetUrl(srcCandidate, sourceUrl);
+                                /** - Separar URL y descriptor */
+                                const [srcCandidate, descriptor] = value.split(/\s+/, 2);
 
-                            return descriptor ? `${resolvedSrc} ${descriptor}` : resolvedSrc;
-                        })
-                        .join(', ');
+                                const resolvedSrc = resolveInjectedAssetUrl(srcCandidate, sourceUrl);
+
+                                return descriptor ? `${resolvedSrc} ${descriptor}` : resolvedSrc;
+
+                            })
+                            
+                            .join(', ');
 
                     node.setAttribute('srcset', normalized);
                 }
             }
         });
 
+        //  -----  Devolver el HTML reescrito como string  -----
         return template.innerHTML;
     };
 
@@ -790,7 +810,7 @@ export const spaLoaderContentHtml = (options = {}) => {
         }
 
 
-        //  -----  Si hay URL ==> aseguramos que el contenedor esté visible  -----
+        //*  -----  Si hay URL ==> aseguramos que el contenedor esté visible  -----
 
         //  -----  para restaurar estado si antes estaba oculto  -----
         el.style.display = "";
@@ -798,14 +818,17 @@ export const spaLoaderContentHtml = (options = {}) => {
         //  -----  Intentar cargar el contenido HTML con fetch y manejar errores para mostrar mensaje en el contenedor  -----
         try {
 
-            /** @type {Response} - `Respuesta del fetch` */
+            /** - `Respuesta del fetch` */
             const res = await fetch(url);
 
+            //  -----  Si la respuesta no es OK, lanzar error para manejarlo en el catch  -----
             if (!res.ok)
                 throw new Error(res.statusText);
 
-            //  -----  Reescribir rutas de recursos para que funcionen con HTML inyectado en SPA  -----
+            /** - `Contenido HTML como texto` */
             const html = await res.text();
+            
+            //  -----  Reescribir URLs de recursos en el HTML inyectado para evitar roturas en SPA  -----
             el.innerHTML = rewriteInjectedHtmlUrls(html, url);
 
         } catch (e) {
@@ -909,11 +932,12 @@ export const spaLoaderContentHtml = (options = {}) => {
      * @return {void} - No devuelve nada, pero actualiza el favicon del documento.
      */
 
-    
-
     const updateFavicon = (favicon) => {
 
+        /**  - `URL absoluta del nuevo favicon` */
         const newAbsolute = new URL(favicon, document.baseURI).href;
+
+        /** - `URL del nuevo favicon con cache-busting` */
         const newHref = `${favicon}?v=${_faviconSessionKey}`;
 
         /** @type {HTMLLinkElement|null} - `Referencia al favicon existente` */
@@ -937,6 +961,7 @@ export const spaLoaderContentHtml = (options = {}) => {
 
             });
 
+            //  -----  Salir de la función después de actualizar el favicon existente  -----
             return;
 
         }
@@ -945,9 +970,13 @@ export const spaLoaderContentHtml = (options = {}) => {
         
         /** @type {HTMLLinkElement} - `Nuevo elemento favicon` */
         const link = document.createElement('link');
+        
+        //  -----  Configurar atributos del nuevo favicon  -----
         link.rel = 'icon';
         link.type = 'image/x-icon';
         link.href = newHref;
+
+        //  -----  Agregar el nuevo favicon al head del documento  -----
         document.head.appendChild(link);
 
     }
@@ -1064,7 +1093,7 @@ export const spaLoaderContentHtml = (options = {}) => {
         };
 
 
-        //  -----  Evitar bindings duplicados: clonar botones y reemplazarlos -----
+        //*  -----  Evitar bindings duplicados: clonar botones y reemplazarlos -----
 
         /** - `Nuevo botón open clonado` */
         const newBtnOpen = /** @type {HTMLElement} */ (btnOpen.cloneNode(true));
@@ -1553,6 +1582,7 @@ export const spaLoaderContentHtml = (options = {}) => {
                     continue;
                 }
 
+                //  -----  Insertar el HTML renderizado de Shiki en el contenedor destino  -----
                 container.innerHTML = html;
 
             } catch (error) {
