@@ -11,7 +11,6 @@
 
 (function () {
 
-    console.clear();
     console.log('\n');
     console.warn('-----  jquery-ui-page.cjs.js  -----  jQuery UI  -----');
     console.log('\n');

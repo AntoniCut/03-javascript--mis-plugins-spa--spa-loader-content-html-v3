@@ -11,7 +11,6 @@
 
 (function () {
 
-    console.clear();
     console.log('\n');
     console.warn('-----  html-page.cjs.js  -----  CommonJS (IIFE)  -----');
     console.log('\n');
