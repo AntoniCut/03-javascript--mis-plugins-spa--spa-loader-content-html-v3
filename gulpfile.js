@@ -43,6 +43,11 @@ const paths = {
     appRoot: 'app',
     distRoot: 'dist',
 
+    root: {
+        assetsDir: path.join('assets'),
+        assets: path.posix.join('assets', '**/*'),
+    },
+
     src: {
 
         componentsDir: path.join('src', 'components'),
@@ -485,6 +490,34 @@ export const minifyAllJs = () =>
             .pipe(dest(paths.distRoot));
 
 
+/** Copia assets estáticos (no HTML/CSS/JS/map) de app/ → dist/. */
+export const copyStaticAssetsToDist = () =>
+
+    !existsDir(paths.appRoot)
+        ? Promise.resolve()
+        : src([
+            path.posix.join(paths.appRoot, '**/*'),
+            '!' + paths.app.html,
+            '!' + paths.app.css,
+            '!' + paths.app.js,
+            '!' + path.posix.join(paths.appRoot, '**/*.map'),
+        ], { base: '.', allowEmpty: true, encoding: false })
+            .pipe(safePipe())
+            .pipe(validateFiles('copyStaticAssetsToDist'))
+            .pipe(dest(paths.distRoot));
+
+
+/** Copia assets raíz del proyecto → dist/assets. */
+export const copyRootAssetsToDist = () =>
+
+    !existsDir(paths.root.assetsDir)
+        ? Promise.resolve()
+        : src(paths.root.assets, { base: '.', allowEmpty: true, encoding: false })
+            .pipe(safePipe())
+            .pipe(validateFiles('copyRootAssetsToDist'))
+            .pipe(dest(paths.distRoot));
+
+
 /**
  * ------------------------------
  * -----  `addTsNoCheck()`  -----
@@ -530,7 +563,9 @@ export const build = series(
         minifyAllJs,
         minifyAllCss,
         minifyRootIndex,
-        minifyHtml
+        minifyHtml,
+        copyStaticAssetsToDist,
+        copyRootAssetsToDist
     )
 );
 

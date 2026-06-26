@@ -321,4 +321,19 @@
         }
     }
 
+    &__intro--pipeline {
+        margin-bottom: 0;
+    }
+
+    &__tags--scripts &__tag {
+        background-color: rgba(46, 125, 50, 0.08);
+        color: #2e7d32;
+        border-color: rgba(46, 125, 50, 0.35);
+
+        &:hover {
+            background-color: #2e7d32;
+            color: #fff;
+        }
+    }
+
 }
