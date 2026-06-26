@@ -10,8 +10,8 @@
             "DOM"
         ],
         "moduleResolution": "bundler",
-        "ignoreDeprecations": "6.0",
         "baseUrl": ".",
+        "ignoreDeprecations": "5.0",
         "allowSyntheticDefaultImports": true,
         "resolveJsonModule": true,
         "noEmit": true

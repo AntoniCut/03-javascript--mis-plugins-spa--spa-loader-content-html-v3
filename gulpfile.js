@@ -7,33 +7,95 @@
 import gulp from "gulp";
 
 import gulpSass from 'gulp-sass';
-import dartSass from 'sass';
+import * as dartSass from 'sass';
 import { exec } from 'node:child_process';
+import { Transform } from 'stream';
+import fs from 'fs';
+import path from 'node:path';
 
 import { deleteAsync } from "del";
 
 import terser from "gulp-terser";
 import cleanCSS from "gulp-clean-css";
 import htmlmin from "gulp-htmlmin";
+import plumber from "gulp-plumber";
 
 import { generateMarkdownShiki } from './generate-markdown-shiki.js';
 
 
 
-//  -----  desestructuración de métodos de Gulp  -----
+/**  -----  desestructuración de métodos de Gulp  ----- */
 const { src, dest, watch, series, parallel } = gulp;
 
+/** `-----  Instancia de Dart Sass para gulp-sass como motor de compilación -----` */
 const sass = gulpSass(dartSass);
 
 
 /**
+ * ------------------------
+ * -----  `paths`  --------
+ * ------------------------
+ * - Rutas centralizadas de origen/destino para evitar hardcode.
+ */
+const paths = {
+
+    srcRoot: 'src',
+    appRoot: 'app',
+    distRoot: 'dist',
+
+    src: {
+
+        componentsDir: path.join('src', 'components'),
+        components:    path.posix.join('src', 'components', '**/*'),
+
+        effectsDir: path.join('src', 'effects'),
+        effects:    path.posix.join('src', 'effects', '**/*'),
+
+        markdownShikiDir: path.join('src', 'markdown-shiki'),
+        markdownShiki:    path.posix.join('src', 'markdown-shiki', '**/*'),
+
+        pagesDir: path.join('src', 'pages'),
+        pages:    path.posix.join('src', 'pages', '**/*'),
+
+        pluginsDir: path.join('src', 'plugins'),
+        plugins:    path.posix.join('src', 'plugins', '**/*'),
+
+        routesDir: path.join('src', 'routes'),
+        routes:    path.posix.join('src', 'routes', '**/*'),
+
+        spaDir: path.join('src', 'spa'),
+        spa:    path.posix.join('src', 'spa', '**/*'),
+
+        scriptsDir:   path.join('src', 'scripts'),
+        scripts:      path.posix.join('src', 'scripts', '**/*.js'),
+        scriptsNoMap: '!' + path.posix.join('src', 'scripts', '**/*.map'),
+
+        main: path.posix.join('src', 'main.js'),
+
+        scssGlobals:  path.posix.join('src', 'scss', 'globals.scss'),
+        scssPagesDir: path.join('src', 'scss', 'pages'),
+        scssPages:    path.posix.join('src', 'scss', 'pages', '**/*.scss'),
+        scssAll:      path.posix.join('src', 'scss', '**/*.scss'),
+    },
+
+    app: {
+        html:    path.posix.join('app', '**/*.html'),
+        css:     path.posix.join('app', '**/*.css'),
+        js:      path.posix.join('app', '**/*.js'),
+        jsNoMap: '!' + path.posix.join('app', '**/*.map'),
+    },
+
+};
+
+
+/**
  * -------------------------
- * -----  WATCH OPTIONS  ---
+ * -----  WATCH_OPTIONS  ---
  * -------------------------
  * - Opciones base para watchers de Gulp/Chokidar.
  * - Permite activar polling por variable de entorno para evitar ENOSPC en Linux.
  */
-const WATCH_OPTIONS = {
+const WATCH_OPTIONS = /** @type {import('gulp').WatchOptions} */ ({
     ignoreInitial: true,
     usePolling: process.env.CHOKIDAR_USEPOLLING === 'true',
     interval: Number(process.env.CHOKIDAR_INTERVAL || 250),
@@ -41,7 +103,53 @@ const WATCH_OPTIONS = {
         stabilityThreshold: 200,
         pollInterval: 100
     }
-};
+});
+
+
+/**
+ * ---------------------------
+ * -----  `safePipe()`  ------
+ * ---------------------------
+ * - Evita que Gulp se detenga ante errores en los streams de tareas.
+ * @returns {NodeJS.ReadWriteStream}
+ */
+const safePipe = () => plumber({
+    errorHandler(err) {
+        console.error(err.message);
+        this.emit('end');
+    },
+});
+
+
+/**
+ * -------------------------------
+ * -----  `validateFiles()`  -----
+ * -------------------------------
+ * - Transform no bloqueante: registra archivos vacíos o streams y los deja pasar.
+ * @param {string} taskName — Nombre de la tarea para mensajes de advertencia.
+ * @returns {Transform}
+ */
+const validateFiles = (taskName) => new Transform({
+    objectMode: true,
+    transform(file, _enc, cb) {
+        const rel = path.relative(process.cwd(), file.path || '');
+        if (file.stat?.isDirectory?.()) return cb(null, file);
+        if (file.isNull())   console.warn(`[${taskName}] Archivo vacío: ${rel}`);
+        if (file.isStream()) console.warn(`[${taskName}] Stream no soportado: ${rel}`);
+        cb(null, file);
+    },
+});
+
+
+/**
+ * ---------------------------
+ * -----  `existsDir()`  -----
+ * ---------------------------
+ * Comprueba si un directorio existe en disco.
+ * @param {string} dirPath
+ * @returns {boolean}
+ */
+const existsDir = (dirPath) => fs.existsSync(dirPath);
 
 
 
@@ -58,7 +166,6 @@ const WATCH_OPTIONS = {
  * ---------------------------
  * - Elimina la carpeta dist/ y su contenido.
  */
-
 export const cleanDist = () => deleteAsync(['dist']);
 
 
@@ -82,6 +189,65 @@ export const clean = parallel(cleanDist, cleanApp);
 
 
 /*
+    *  --------------------------
+    *  -----  COPY FACTORY  -----
+    *  --------------------------
+*/
+
+
+/**
+ * -------------------------------
+ * -----  `CopyTaskOptions`  -----
+ * -------------------------------
+ * @typedef {Object} CopyTaskOptions
+ * @property {string | string[]} glob      — Glob(s) de origen.
+ * @property {string}            checkPath — Ruta a verificar antes de copiar.
+ * @property {string}            [base]    — Base para src(). Default: paths.srcRoot.
+ * @property {string}            [destDir] — Directorio destino. Default: paths.appRoot.
+ * @property {boolean}           [isFile]  — true si checkPath es un archivo, no directorio.
+ * @property {string | string[]} [exclude] — Globs de exclusión adicionales.
+ */
+
+
+/**
+ * --------------------------------
+ * -----  `createCopyTask()`  -----
+ * --------------------------------
+ * - Crea una tarea Gulp de copia con validación y manejo de errores.
+ * @param {string} name — Nombre visible de la tarea.
+ * @param {CopyTaskOptions} opts
+ * @returns {import('gulp').TaskFunction}
+ */
+const createCopyTask = (name, opts) => {
+
+    /** @returns {NodeJS.ReadWriteStream | Promise<void>} */
+    const fn = () => {
+
+        const exists = opts.isFile ? fs.existsSync(opts.checkPath) : existsDir(opts.checkPath);
+
+        if (!exists) return Promise.resolve();
+
+        const globs = opts.exclude
+            ? /** @type {string[]} */ ([].concat(opts.glob, opts.exclude))
+            : opts.glob;
+
+        /** @type {Record<string, unknown>} */
+        const srcOpts = { base: opts.base ?? paths.srcRoot, allowEmpty: true };
+
+        return src(globs, srcOpts)
+            .pipe(safePipe())
+            .pipe(validateFiles(name))
+            .pipe(dest(opts.destDir ?? paths.appRoot));
+    };
+
+    fn.displayName = name;
+
+    return fn;
+};
+
+
+
+/*
     -------------------------------------
     -----  📋  --  COPY  src → app  -----
     -------------------------------------
@@ -90,110 +256,42 @@ export const clean = parallel(cleanDist, cleanApp);
 */
 
 
-/**
- * --------------------------------
- * -----  `copyComponents()`  -----
- * --------------------------------
- * - Copia src/components/ → app/components/.
- */
-export const copyComponents = () =>
-    src('src/components/**/*', { base: 'src' }).pipe(dest('app'));
+/** Copia src/components/ → app/components/. */
+export const copyComponents = createCopyTask('copyComponents', { glob: paths.src.components, checkPath: paths.src.componentsDir });
 
+/** Copia src/effects/ → app/effects/. */
+export const copyEffects = createCopyTask('copyEffects', { glob: paths.src.effects, checkPath: paths.src.effectsDir });
 
-/**
- * -----------------------------
- * -----  `copyEffects()`  -----
- * -----------------------------
- * - Copia src/effects/ → app/effects/.
- */
-export const copyEffects = () =>
-    src('src/effects/**/*', { base: 'src' }).pipe(dest('app'));
+/** Copia src/markdown-shiki/ → app/markdown-shiki/. */
+export const copyMarkdownShiki = createCopyTask('copyMarkdownShiki', { glob: paths.src.markdownShiki, checkPath: paths.src.markdownShikiDir });
 
+/** Copia src/pages/ → app/pages/. */
+export const copyPages = createCopyTask('copyPages', { glob: paths.src.pages, checkPath: paths.src.pagesDir });
 
-/**
- * -----------------------------------
- * -----  `copyMarkdownShiki()`  -----
- * -----------------------------------
- * - Copia src/markdown-shiki/ → app/markdown-shiki/.
- */
-export const copyMarkdownShiki = () =>
-    src('src/markdown-shiki/**/*', { base: 'src' }).pipe(dest('app'));
+/** Copia src/plugins/ → app/plugins/. */
+export const copyPlugins = createCopyTask('copyPlugins', { glob: paths.src.plugins, checkPath: paths.src.pluginsDir });
 
+/** Copia src/routes/ → app/routes/. */
+export const copyRoutes = createCopyTask('copyRoutes', { glob: paths.src.routes, checkPath: paths.src.routesDir });
 
-/**
- * --------------------------------
- * -----  `generateShiki()`  -----
- * --------------------------------
- * - Genera los bloques HTML resaltados con Shiki en src/markdown-shiki/.
- * - Las entradas -css leen el CSS compilado en app/css/pages/, por lo que
- *   esta tarea debe ejecutarse DESPUÉS de `styles` y ANTES de `copyMarkdownShiki`.
- * @returns {Promise<void>}
- */
-const generateShiki = async () => {
-    await generateMarkdownShiki();
-};
+/** Copia src/spa/ → app/spa/. */
+export const copySpa = createCopyTask('copySpa', { glob: paths.src.spa, checkPath: paths.src.spaDir });
 
+/** Copia src/main.js → app/main.js. */
+export const copyMain = createCopyTask('copyMain', {
+    glob:      paths.src.main,
+    checkPath: paths.src.main,
+    isFile:    true,
+});
 
-/**
- * ---------------------------
- * -----  `copyPages()`  -----
- * ---------------------------
- * - Copia src/pages/ → app/pages/.
- */
-export const copyPages = () =>
-    src('src/pages/**/*', { base: 'src' }).pipe(dest('app'));
-
-
-/**
- * -----------------------------
- * -----  `copyPlugins()`  -----
- * -----------------------------
- * - Copia src/plugins/ → app/plugins/.
- */
-export const copyPlugins = () =>
-    src('src/plugins/**/*', { base: 'src' }).pipe(dest('app'));
-
-
-/**
- * ----------------------------
- * -----  `copyRoutes()`  -----
- * ----------------------------
- * - Copia src/routes/ → app/routes/.
- */
-export const copyRoutes = () =>
-    src('src/routes/**/*', { base: 'src' }).pipe(dest('app'));
-
-
-/**
- * -------------------------
- * -----  `copySpa()`  -----
- * -------------------------
- * - Copia src/spa/ → app/spa/.
- */
-export const copySpa = () =>
-    src('src/spa/**/*', { base: 'src' }).pipe(dest('app'));
-
-
-/**
- * --------------------------
- * -----  `copyMain()`  -----
- * --------------------------
- * - Copia src/main.js → app/main.js.
- */
-export const copyMain = () =>
-    src('src/main.js').pipe(dest('app'));
-
-
-/**
- * -----------------------------
- * -----  `copyScripts()`  -----
- * -----------------------------
- * - Copia src/scripts/*.js → app/js/ 
- * - (renombra la carpeta scripts a js).
- */
-export const copyScripts = () =>
-    src(['src/scripts/**/*.js', '!src/scripts/**/*.map'], { base: 'src/scripts' })
-        .pipe(dest('app/js'));
+/** Copia src/scripts/ → app/js/ (renombra carpeta). */
+export const copyScripts = createCopyTask('copyScripts', {
+    glob:      paths.src.scripts,
+    checkPath: paths.src.scriptsDir,
+    base:      paths.src.scriptsDir,
+    destDir:   path.posix.join(paths.appRoot, 'js'),
+    exclude:   paths.src.scriptsNoMap,
+});
 
 
 
@@ -205,39 +303,32 @@ export const copyScripts = () =>
     los CSS compilados en app/css.
 */
 
-/**
- * ---------------------
- * -----  `css()`  -----
- * ---------------------
- * - Compila src/scss/globals.scss → app/css/globals.css.
- */
+
+/** Compila src/scss/globals.scss → app/css/globals.css. */
 export const css = () =>
-    src('src/scss/globals.scss', { sourcemaps: true })
-        .pipe(sass().on('error', sass.logError))
-        .pipe(dest('app/css', { sourcemaps: true }));
+
+    !fs.existsSync(paths.src.scssGlobals)
+        ? Promise.resolve()
+        : src(paths.src.scssGlobals, { sourcemaps: true, allowEmpty: true })
+            .pipe(safePipe())
+            .pipe(sass().on('error', sass.logError))
+            .pipe(validateFiles('css'))
+            .pipe(dest(path.posix.join(paths.appRoot, 'css'), { sourcemaps: true }));
 
 
-/**
- * --------------------------
- * -----  `cssPages()`  -----
- * --------------------------
- * - Compila src/scss/pages/*.scss → app/css/pages/*.css conservando la estructura.
- */
+/** Compila src/scss/pages/*.scss → app/css/pages/*.css. */
 export const cssPages = () =>
-    src('src/scss/pages/**/*.scss', {
-        base: 'src/scss/pages',
-        sourcemaps: true
-    })
-        .pipe(sass().on('error', sass.logError))
-        .pipe(dest('app/css/pages', { sourcemaps: true }));
+
+    !existsDir(paths.src.scssPagesDir)
+        ? Promise.resolve()
+        : src(paths.src.scssPages, { base: paths.src.scssPagesDir, sourcemaps: true, allowEmpty: true })
+            .pipe(safePipe())
+            .pipe(sass().on('error', sass.logError))
+            .pipe(validateFiles('cssPages'))
+            .pipe(dest(path.posix.join(paths.appRoot, 'css', 'pages'), { sourcemaps: true }));
 
 
-/**
- * ------------------------
- * -----  `styles()`  -----
- * ------------------------
- * - Ejecuta css() y cssPages() en paralelo.
- */
+/** Compila globals + pages en paralelo. */
 export const styles = parallel(css, cssPages);
 
 
@@ -251,8 +342,23 @@ export const styles = parallel(css, cssPages);
 */
 
 
+/**
+ * --------------------------------
+ * -----  `generateShiki()`  -----
+ * --------------------------------
+ * - Genera los bloques HTML resaltados con Shiki en src/markdown-shiki/.
+ * - Debe ejecutarse DESPUÉS de `styles` (lee el CSS compilado en app/css/pages/)
+ *   y ANTES de `copyMarkdownShiki`.
+ * @returns {Promise<void>}
+ */
+const generateShiki = async () => {
+    await generateMarkdownShiki();
+};
 
-//  -----  buildSources: copias + compilación SCSS en paralelo (produce app/css/)  -----
+generateShiki.displayName = 'generateShiki';
+
+
+//  buildSources: copias + compilación SCSS en paralelo (produce app/css/)
 const buildSources = parallel(
     copyComponents,
     copyEffects,
@@ -265,8 +371,8 @@ const buildSources = parallel(
     styles
 );
 
-//  -----  copyAll: buildSources → generateShiki → copyMarkdownShiki  -----
-//  generateShiki lee el CSS compilado por styles, y copyMarkdownShiki copia
+//  copyAll: buildSources → generateShiki → copyMarkdownShiki
+//  generateShiki lee el CSS compilado por styles; copyMarkdownShiki copia
 //  el HTML recién generado a app/markdown-shiki/.
 const copyAll = series(
     buildSources,
@@ -285,25 +391,29 @@ const copyAll = series(
 */
 
 
-/**
- * ---------------------------
- * -----  `watchTask()`  -----
- * ---------------------------
- * - Observa todos los archivos de src/ y ejecuta la tarea
- * de copia o compilación correspondiente en cada cambio.
- */
+/** Observa src/ y recompila en cada cambio. */
 const watchTask = () => {
-    watch('src/components/**/*', WATCH_OPTIONS, copyComponents);
-    watch('src/effects/**/*', WATCH_OPTIONS, copyEffects);
-    watch('src/markdown-shiki/**/*', WATCH_OPTIONS, copyMarkdownShiki);
-    watch('src/pages/**/*', WATCH_OPTIONS, copyPages);
-    watch('src/plugins/**/*', WATCH_OPTIONS, copyPlugins);
-    watch('src/routes/**/*', WATCH_OPTIONS, copyRoutes);
-    watch('src/spa/**/*', WATCH_OPTIONS, copySpa);
-    watch('src/scripts/**/*.js', WATCH_OPTIONS, copyScripts);
-    watch('src/main.js', WATCH_OPTIONS, copyMain);
-    watch('src/scss/**/*.scss', WATCH_OPTIONS, series(styles, generateShiki, copyMarkdownShiki));
+
+    /** @type {Array<[string | string[], import('gulp').TaskFunction]>} */
+    const watchers = [
+        [paths.src.components,    copyComponents],
+        [paths.src.effects,       copyEffects],
+        [paths.src.markdownShiki, copyMarkdownShiki],
+        [paths.src.pages,         copyPages],
+        [paths.src.plugins,       copyPlugins],
+        [paths.src.routes,        copyRoutes],
+        [paths.src.spa,           copySpa],
+        [paths.src.scripts,       copyScripts],
+        [paths.src.main,          copyMain],
+        [paths.src.scssAll,       series(styles, generateShiki, copyMarkdownShiki)],
+    ];
+
+    for (const [glob, task] of watchers) {
+        watch(glob, WATCH_OPTIONS, task);
+    }
 };
+
+watchTask.displayName = 'watch';
 
 
 /**
@@ -315,13 +425,8 @@ const watchTask = () => {
 export const dev = series(copyAll, watchTask);
 
 
-/**
- * ---------------------------
- * -----  `watchStyles()`  -----
- * ---------------------------
- * - Observa únicamente los archivos SCSS y recompila los estilos al detectar cambios.
- */
-export const watchStyles = () => watch('src/styles/scss/**/*.scss', WATCH_OPTIONS, styles);
+/** Observa únicamente los archivos SCSS y recompila estilos. */
+export const watchStyles = () => watch(paths.src.scssAll, WATCH_OPTIONS, styles);
 
 
 
@@ -333,83 +438,68 @@ export const watchStyles = () => watch('src/styles/scss/**/*.scss', WATCH_OPTION
     deposita en dist/ manteniendo la estructura.
 */
 
-/**
- * --------------------------------
- * -----  `minifyRootIndex()`  -----
- * --------------------------------
- * - Minifica index.html de la raíz → dist/index.html.
- */
+
+/** Minifica index.html raíz → dist/index.html. */
 export const minifyRootIndex = () =>
-    src('index.html')
+
+    src('index.html', { allowEmpty: true })
+        .pipe(safePipe())
         .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
-        .pipe(dest('dist'));
+        .pipe(validateFiles('minifyRootIndex'))
+        .pipe(dest(paths.distRoot));
 
 
-/**
- * ---------------------------
- * -----  `minifyHtml()`  -----
- * ---------------------------
- * - Minifica todos los archivos HTML de app/ → dist/ conservando la estructura.
- */
+/** Minifica todos los HTML de app/ → dist/. */
 export const minifyHtml = () =>
-    src('app/**/*.html', { base: '.' })
-        .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
-        .pipe(dest('dist'));
+
+    !existsDir(paths.appRoot)
+        ? Promise.resolve()
+        : src(paths.app.html, { base: '.', allowEmpty: true })
+            .pipe(safePipe())
+            .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
+            .pipe(validateFiles('minifyHtml'))
+            .pipe(dest(paths.distRoot));
 
 
-/**
- * ------------------------------
- * -----  `minifyAllCss()`  -----
- * ------------------------------
- * - Minifica todos los archivos CSS de app/ → dist/ conservando la estructura.
- */
+/** Minifica todos los CSS de app/ → dist/. */
 export const minifyAllCss = () =>
-    src('app/**/*.css', { base: '.' })
-        .pipe(cleanCSS())
-        .pipe(dest('dist'));
+
+    !existsDir(paths.appRoot)
+        ? Promise.resolve()
+        : src(paths.app.css, { base: '.', allowEmpty: true })
+            .pipe(safePipe())
+            .pipe(cleanCSS())
+            .pipe(validateFiles('minifyAllCss'))
+            .pipe(dest(paths.distRoot));
 
 
-/**
- * -----------------------------
- * -----  `minifyAllJs()`  -----
- * -----------------------------
- * - Minifica todos los archivos JS de app/ → dist/ conservando la estructura.
- */
+/** Minifica todos los JS de app/ → dist/. */
 export const minifyAllJs = () =>
-    src(['app/**/*.js', '!app/**/*.map'], { base: '.' })
-        .pipe(terser())
-        .pipe(dest('dist'));
 
+    !existsDir(paths.appRoot)
+        ? Promise.resolve()
+        : src([paths.app.js, paths.app.jsNoMap], { base: '.', allowEmpty: true })
+            .pipe(safePipe())
+            .pipe(terser())
+            .pipe(validateFiles('minifyAllJs'))
+            .pipe(dest(paths.distRoot));
 
 
 /**
  * ------------------------------
  * -----  `addTsNoCheck()`  -----
  * ------------------------------
- * - Agrega //@ts-nocheck al inicio de los archivos JS en modo desarrollo.
- * - Solo se ejecuta cuando NODE_ENV === 'development'.
- * @param {() => void} cb - Callback de Gulp para indicar que la tarea ha terminado.
+ * - Agrega //@ts-nocheck al inicio de los archivos JS (solo en desarrollo).
+ * @param {(err?: Error | null) => void} cb — Callback de Gulp.
  */
 export function addTsNoCheck(cb) {
-
-    //  -----  Solo ejecutar en desarrollo  -----
-    if (process.env.NODE_ENV === 'development') {
-        
-        exec('node addTsNoCheck.js', (err, stdout, stderr) => {
-            
-            if (err) {
-                console.error(err);
-                return cb(err);
-            }
-            console.log(stdout);
-            console.error(stderr);
-            cb();
-        });
-
-    }
-         
-    else 
+    if (process.env.NODE_ENV !== 'development') return cb();
+    exec('node addTsNoCheck.js', (err, stdout, stderr) => {
+        if (err) { console.error(err); return cb(err); }
+        if (stdout) console.log(stdout);
+        if (stderr) console.error(stderr);
         cb();
+    });
 }
 
 
@@ -446,7 +536,7 @@ export const build = series(
 
 
 
-/*  
+/*
     ------------------------------
     -----  🔥  DEFAULT TASK  -----
     ------------------------------
