@@ -5,9 +5,13 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "CHOKIDAR_USEPOLLING=true CHOKIDAR_INTERVAL=350 gulp dev",
-    "dev:watch": "gulp dev",
+    "dev": "concurrently -k -n watch,serve -c yellow,cyan \"pnpm run dev:watch\" \"pnpm run serve:dev\"",
+    "dev:watch": "CHOKIDAR_USEPOLLING=true CHOKIDAR_INTERVAL=350 gulp dev",
+    "serve:dev": "node server/dev-server.js",
+    "stop:dev": "node server/stop-dev-server.js",
+    "server": "pnpm run serve:dev",
     "build": "gulp build",
+    "preview": "node server/preview-server.js --open",
     "add:ts-nocheck": "cross-env NODE_ENV=development node addTsNoCheck.js",
     "code-highlight": "gulp styles && node generate-markdown-shiki.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,8 +21,12 @@
   "license": "ISC",
   "devDependencies": {
     "@types/gulp": "^4.0.18",
+    "browser-sync": "^3.0.3",
+    "concurrently": "^9.2.1",
     "cross-env": "^7.0.3",
     "del": "^8.0.1",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
     "gulp": "^5.0.1",
     "gulp-clean-css": "^4.3.0",
     "gulp-htmlmin": "^5.0.1",
