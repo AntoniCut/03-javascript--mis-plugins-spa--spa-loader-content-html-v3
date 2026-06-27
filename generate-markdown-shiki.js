@@ -13,7 +13,7 @@
     *    MarkdownShikiHtml path  →  fuente                                            *
     *    .../01-markdown-shiki-ts.html   →  src/scripts/ts/.../01-markdown-shiki.ts   *
     *    .../01-markdown-shiki-js.html   →  src/scripts/js/.../01-markdown-shiki.js   *
-    *    .../01-markdown-shiki-html.html →  src/pages/.../01-markdown-shiki.html      *
+    *    .../01-markdown-shiki-html.html →  src/pages-components/.../01-markdown-shiki.html *
     *    .../01-markdown-shiki-css.html  →  app/css/pages/.../01-markdown-shiki.css   *
     *    .../01-markdown-shiki-scss.html →  src/scss/pages/.../01-markdown-shiki.scss *
     *                                                                                 *
@@ -99,13 +99,16 @@ const deriveSource = (htmlUrlPath) => {
 
     //*  -----  Derivar el path del archivo si termina en -html.html  -----
     if (relHtml.endsWith('-html.html')) {
-        
+
         /** - `Ruta relativa del archivo fuente HTML` */
         const relSrc = relHtml.replace(/-html\.html$/, '.html').replace(/^pages\//, '');
-        
-        //  -----  Subpath pages/ → src/pages/ (fuentes de páginas)  -----
+
+        //  -----  Subpath pages/ → src/pages-components/ (fuentes de page-components)  -----
+        //  -----  El contenido real de cada vista vive ahora en pages-components/,  -----
+        //  -----  mientras que src/pages/ solo conserva el wrapper con el placeholder  -----
+        //  -----  data-component-page y la sección Markdown.                                -----
         return {
-            srcPath: join(__dirname, 'src/pages', relSrc),
+            srcPath: join(__dirname, 'src/pages-components', relSrc),
             lang: 'html',
             relHtml
         };
