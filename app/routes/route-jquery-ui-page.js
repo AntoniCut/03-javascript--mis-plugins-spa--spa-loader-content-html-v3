@@ -6,7 +6,7 @@
 
 import { paths } from './paths.js';
 
-const { favicon, layoutHeader, layoutNavbar, pages, MarkdownShikiHtml, layoutFooter, styles, scripts } = paths;
+const { favicon, layoutHeader, layoutNavbar, pages, pagesComponents, MarkdownShikiHtml, layoutFooter, styles, scripts } = paths;
 
 /** @type {import("../../types/index.js").Route} */
 export const routeJqueryUiPage = {
@@ -20,6 +20,9 @@ export const routeJqueryUiPage = {
         "layoutMain": `${pages}/jquery-ui-page.html`,
         "layoutFooter": `${layoutFooter}`,
     },
+    pagesComponents: [
+        { url: `${pagesComponents}/jquery-ui-page.html`, target: '[data-component-page="jqueryUiPage"]' },
+    ],
     MarkdownShikiHtml: [
         { url: `${MarkdownShikiHtml}/pages/jquery-ui-page-html.html`, target: '[data-shiki="codeHtml"]' },
         { url: `${MarkdownShikiHtml}/pages/jquery-ui-page-css.html`, target: '[data-shiki="codeCss"]' },

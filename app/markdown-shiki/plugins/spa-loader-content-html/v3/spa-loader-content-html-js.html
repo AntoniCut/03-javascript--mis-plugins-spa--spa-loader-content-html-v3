@@ -537,6 +537,9 @@
 <span class="line"><span style="color:#6A9955">            //  -----  para asegurar que el loader se desbloquee y los listeners se notifiquen correctamente                      -----</span></span>
 <span class="line"><span style="color:#DCDCAA">            notifyRouteLoaded</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">route</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
+<span class="line"><span style="color:#6A9955">            //  -----  Renderizar componentes de página (pagesComponents) aunque la ruta no defina 'components'  -----</span></span>
+<span class="line"><span style="color:#C586C0">            await</span><span style="color:#DCDCAA"> renderPageComponents</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">route</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#C586C0">            return</span><span style="color:#D4D4D4">;</span></span>
 <span class="line"><span style="color:#D4D4D4">        }</span></span>
 <span class="line"></span>
@@ -601,6 +604,9 @@
 <span class="line"></span>
 <span class="line"><span style="color:#6A9955">        //  -----  Aplicar metadatos de la ruta  -----</span></span>
 <span class="line"><span style="color:#C586C0">        await</span><span style="color:#DCDCAA"> applyRouteMeta</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">route</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">        //  -----  Renderizar componentes de página (pagesComponents) dentro de la vista ya cargada  -----</span></span>
+<span class="line"><span style="color:#C586C0">        await</span><span style="color:#DCDCAA"> renderPageComponents</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">route</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#6A9955">        //  -----  Notificar fin de carga de ruta para el loader inicial y listeners externos  -----</span></span>
 <span class="line"><span style="color:#DCDCAA">        notifyRouteLoaded</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">route</span><span style="color:#D4D4D4">);</span></span>
@@ -771,22 +777,28 @@
 <span class="line"></span>
 <span class="line"></span>
 <span class="line"><span style="color:#6A9955">    /**</span></span>
-<span class="line"><span style="color:#6A9955">    * ----------------------------------------</span></span>
-<span class="line"><span style="color:#6A9955">    * -----  `fetchHTML(url, selector)`  -----</span></span>
-<span class="line"><span style="color:#6A9955">    * ----------------------------------------</span></span>
-<span class="line"><span style="color:#6A9955">    * </span><span style="color:#569CD6">@async</span></span>
-<span class="line"><span style="color:#6A9955">    * - `Carga contenido HTML en un selector específico`</span></span>
-<span class="line"><span style="color:#6A9955">    * </span><span style="color:#569CD6">@param</span><span style="color:#4EC9B0"> {string|undefined}</span><span style="color:#9CDCFE"> url</span><span style="color:#6A9955"> - URL del archivo HTML</span></span>
-<span class="line"><span style="color:#6A9955">    * </span><span style="color:#569CD6">@param</span><span style="color:#4EC9B0"> {string}</span><span style="color:#9CDCFE"> selector</span><span style="color:#6A9955"> - Selector CSS (ID recomendado, sin '#')</span></span>
-<span class="line"><span style="color:#6A9955">    * </span><span style="color:#569CD6">@returns</span><span style="color:#4EC9B0"> {Promise&#x3C;void>}</span><span style="color:#6A9955"> - Promesa que se resuelve cuando el contenido se ha cargado o se ha manejado un error</span></span>
-<span class="line"><span style="color:#6A9955">    * </span></span>
-<span class="line"><span style="color:#6A9955">    */</span></span>
+<span class="line"><span style="color:#6A9955">     * ----------------------------------------</span></span>
+<span class="line"><span style="color:#6A9955">     * -----  `fetchHTML(url, selector)`  -----</span></span>
+<span class="line"><span style="color:#6A9955">     * ----------------------------------------</span></span>
+<span class="line"><span style="color:#6A9955">     * </span><span style="color:#569CD6">@async</span></span>
+<span class="line"><span style="color:#6A9955">     * - `Carga contenido HTML en un selector específico`</span></span>
+<span class="line"><span style="color:#6A9955">     * </span><span style="color:#569CD6">@param</span><span style="color:#4EC9B0"> {string|undefined}</span><span style="color:#9CDCFE"> url</span><span style="color:#6A9955"> - URL del archivo HTML</span></span>
+<span class="line"><span style="color:#6A9955">     * </span><span style="color:#569CD6">@param</span><span style="color:#4EC9B0"> {string}</span><span style="color:#9CDCFE"> selector</span><span style="color:#6A9955"> - Selector CSS de destino. Se acepta tanto un ID sin `#` (p.ej. `'layoutMain'`, por retrocompatibilidad) como un selector CSS completo (p.ej. `'[data-component-page="htmlPage"]'` o `'.my-class'`).</span></span>
+<span class="line"><span style="color:#6A9955">     * </span><span style="color:#569CD6">@returns</span><span style="color:#4EC9B0"> {Promise&#x3C;void>}</span><span style="color:#6A9955"> - Promesa que se resuelve cuando el contenido se ha cargado o se ha manejado un error</span></span>
+<span class="line"><span style="color:#6A9955">     * </span></span>
+<span class="line"><span style="color:#6A9955">     */</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#569CD6">    const</span><span style="color:#DCDCAA"> fetchHTML</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">async</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">selector</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A9955">        /** </span><span style="color:#569CD6">@type</span><span style="color:#4EC9B0"> {HTMLElement|null}</span><span style="color:#6A9955"> - `Referencia al contenedor donde se cargará el HTML` */</span></span>
-<span class="line"><span style="color:#569CD6">        const</span><span style="color:#4FC1FF"> el</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">`#</span><span style="color:#569CD6">${</span><span style="color:#9CDCFE">selector</span><span style="color:#569CD6">}</span><span style="color:#CE9178">`</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#6A9955">        /**</span></span>
+<span class="line"><span style="color:#6A9955">         * </span><span style="color:#569CD6">@type</span><span style="color:#4EC9B0"> {HTMLElement|null}</span><span style="color:#6A9955"> - `Referencia al contenedor donde se cargará el HTML`</span></span>
+<span class="line"><span style="color:#6A9955">         * - `Si el selector es un ID sin '#' (formato legacy) se resuelve como '#selector'.`</span></span>
+<span class="line"><span style="color:#6A9955">         * - `Si ya es un selector CSS (empieza por '[', '.' o '#') se usa tal cual.`</span></span>
+<span class="line"><span style="color:#6A9955">         */</span></span>
+<span class="line"><span style="color:#569CD6">        const</span><span style="color:#4FC1FF"> el</span><span style="color:#D4D4D4"> = (</span><span style="color:#569CD6">typeof</span><span style="color:#9CDCFE"> selector</span><span style="color:#D4D4D4"> === </span><span style="color:#CE9178">'string'</span><span style="color:#D4D4D4"> &#x26;&#x26;</span><span style="color:#D16969"> /</span><span style="color:#DCDCAA">^</span><span style="color:#CE9178">[</span><span style="color:#D16969">.</span><span style="color:#D7BA7D">\[</span><span style="color:#D16969">#</span><span style="color:#CE9178">]</span><span style="color:#D16969">/</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">test</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">selector</span><span style="color:#D4D4D4">))</span></span>
+<span class="line"><span style="color:#D4D4D4">            ? </span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">selector</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"><span style="color:#D4D4D4">            : </span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">`#</span><span style="color:#569CD6">${</span><span style="color:#9CDCFE">selector</span><span style="color:#569CD6">}</span><span style="color:#CE9178">`</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#6A9955">        //  -----  Si el contenedor NO existe simplemente avisamos  -----</span></span>
 <span class="line"><span style="color:#C586C0">        if</span><span style="color:#D4D4D4"> (!</span><span style="color:#9CDCFE">el</span><span style="color:#D4D4D4">) {</span></span>
@@ -1581,6 +1593,64 @@
 <span class="line"><span style="color:#D4D4D4">            } </span><span style="color:#C586C0">catch</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">error</span><span style="color:#D4D4D4">) {</span></span>
 <span class="line"><span style="color:#9CDCFE">                console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">error</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">`❌ Error cargando archivo Shiki: </span><span style="color:#569CD6">${</span><span style="color:#9CDCFE">url</span><span style="color:#569CD6">}</span><span style="color:#CE9178">`</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">error</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"><span style="color:#D4D4D4">            }</span></span>
+<span class="line"><span style="color:#D4D4D4">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">    /*</span></span>
+<span class="line"><span style="color:#6A9955">        *  --------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">        *  -----  Renderizado de Page Components  -----  *</span></span>
+<span class="line"><span style="color:#6A9955">        *  --------------------------------------------  *</span></span>
+<span class="line"><span style="color:#6A9955">    */</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">    /**</span></span>
+<span class="line"><span style="color:#6A9955">     * -------------------------------------------</span></span>
+<span class="line"><span style="color:#6A9955">     * -----  `renderPageComponents(route)`  -----</span></span>
+<span class="line"><span style="color:#6A9955">     * -------------------------------------------</span></span>
+<span class="line"><span style="color:#6A9955">     * </span><span style="color:#569CD6">@async</span></span>
+<span class="line"><span style="color:#6A9955">     * - `Función para renderizar componentes HTML dentro de cada página`</span></span>
+<span class="line"><span style="color:#6A9955">     * - `Carga cada componente definido en 'route.pagesComponents' en su contenedor destino (selector CSS),`</span></span>
+<span class="line"><span style="color:#6A9955">     *   `delegando la inyección en 'fetchHTML' para mantener el mismo comportamiento que los componentes del DOM.`</span></span>
+<span class="line"><span style="color:#6A9955">     * - `Permite renderizar más de un componente por página (la ruta puede definir un array de entradas).`</span></span>
+<span class="line"><span style="color:#6A9955">     * </span><span style="color:#569CD6">@param</span><span style="color:#4EC9B0"> {Route}</span><span style="color:#9CDCFE"> route</span><span style="color:#6A9955"> - Ruta de la cual cargar los componentes de página.</span></span>
+<span class="line"><span style="color:#6A9955">     * </span><span style="color:#569CD6">@returns</span><span style="color:#4EC9B0"> {Promise&#x3C;void>}</span><span style="color:#6A9955"> - Promesa que se resuelve cuando todos los componentes de página se han renderizado (o se han omitido/amaiado errores).</span></span>
+<span class="line"><span style="color:#6A9955">     */</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#DCDCAA"> renderPageComponents</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">async</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">route</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">        //  -----  Validación (caso válido: la mayoría de rutas no definen pagesComponents)  -----</span></span>
+<span class="line"><span style="color:#C586C0">        if</span><span style="color:#D4D4D4"> (!</span><span style="color:#9CDCFE">route</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">pagesComponents</span><span style="color:#D4D4D4"> || !</span><span style="color:#9CDCFE">Array</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">isArray</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">route</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">pagesComponents</span><span style="color:#D4D4D4">)) {</span></span>
+<span class="line"><span style="color:#C586C0">            return</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">        //  -----  Renderizar cada componente de página en su contenedor destino  -----</span></span>
+<span class="line"><span style="color:#C586C0">        for</span><span style="color:#D4D4D4"> (</span><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> entry</span><span style="color:#569CD6"> of</span><span style="color:#9CDCFE"> route</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">pagesComponents</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">            /**</span></span>
+<span class="line"><span style="color:#6A9955">             * Cada entrada es un objeto { url: string, target: string }</span></span>
+<span class="line"><span style="color:#6A9955">             * donde target es un selector CSS del contenedor destino (p.ej. '[data-component-page="htmlPage"]').</span></span>
+<span class="line"><span style="color:#6A9955">             */</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">            </span></span>
+<span class="line"><span style="color:#6A9955">            /** </span><span style="color:#569CD6">@type</span><span style="color:#4EC9B0"> {string|undefined}</span><span style="color:#6A9955"> - URL del componente de página */</span></span>
+<span class="line"><span style="color:#569CD6">            const</span><span style="color:#4FC1FF"> url</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">entry</span><span style="color:#D4D4D4">?.</span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">            /** </span><span style="color:#569CD6">@type</span><span style="color:#4EC9B0"> {string|undefined}</span><span style="color:#6A9955"> - Selector CSS del contenedor destino */</span></span>
+<span class="line"><span style="color:#569CD6">            const</span><span style="color:#4FC1FF"> target</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">entry</span><span style="color:#D4D4D4">?.</span><span style="color:#9CDCFE">target</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">            //  -----  Validación de la entrada: debe tener url y target  -----</span></span>
+<span class="line"><span style="color:#C586C0">            if</span><span style="color:#D4D4D4"> (!</span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4"> || !</span><span style="color:#9CDCFE">target</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#9CDCFE">                console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">warn</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'⚠️ Entrada pagesComponents incompleta (falta url o target). Se omite.'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#C586C0">                continue</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">            }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">            //  -----  Cargar el componente HTML en el contenedor destino usando fetchHTML  -----</span></span>
+<span class="line"><span style="color:#6A9955">            //  -----  (mismo renderizado que los componentes del DOM: visibility, inyección y manejo de errores)  -----</span></span>
+<span class="line"><span style="color:#C586C0">            await</span><span style="color:#DCDCAA"> fetchHTML</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">target</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#D4D4D4">        }</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#D4D4D4">    }</span></span>

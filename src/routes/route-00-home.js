@@ -6,7 +6,7 @@
 
 import { paths } from './paths.js';
 
-const { favicon, layoutHeader, layoutNavbar, pages, MarkdownShikiHtml, layoutFooter, styles, scripts } = paths;
+const { favicon, layoutHeader, layoutNavbar, pages, pagesComponents, MarkdownShikiHtml, layoutFooter, styles, scripts } = paths;
 
 /** @typedef {import("../../types/index.js").Route} Route */
 
@@ -22,6 +22,9 @@ export const route00Home = {
         "layoutMain": `${pages}/home.html`,
         "layoutFooter": `${layoutFooter}`,
     },
+    pagesComponents: [
+        { url: `${pagesComponents}/home.html`, target: '[data-component-page="home"]' },
+    ],
     MarkdownShikiHtml: [
         { url: `${MarkdownShikiHtml}/plugins/spa-loader-content-html/v3/spa-loader-content-html-js.html`, target: '[data-shiki="codeEsmJs"]' },
     ],

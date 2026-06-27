@@ -544,6 +544,9 @@ export const spaLoaderContentHtml = (options = {}) => {
             //  -----  para asegurar que el loader se desbloquee y los listeners se notifiquen correctamente                      -----
             notifyRouteLoaded(route);
 
+            //  -----  Renderizar componentes de página (pagesComponents) aunque la ruta no defina 'components'  -----
+            await renderPageComponents(route);
+
             return;
         }
 
@@ -608,6 +611,9 @@ export const spaLoaderContentHtml = (options = {}) => {
 
         //  -----  Aplicar metadatos de la ruta  -----
         await applyRouteMeta(route);
+
+        //  -----  Renderizar componentes de página (pagesComponents) dentro de la vista ya cargada  -----
+        await renderPageComponents(route);
 
         //  -----  Notificar fin de carga de ruta para el loader inicial y listeners externos  -----
         notifyRouteLoaded(route);
@@ -778,22 +784,28 @@ export const spaLoaderContentHtml = (options = {}) => {
 
 
     /**
-    * ----------------------------------------
-    * -----  `fetchHTML(url, selector)`  -----
-    * ----------------------------------------
-    * @async
-    * - `Carga contenido HTML en un selector específico`
-    * @param {string|undefined} url - URL del archivo HTML
-    * @param {string} selector - Selector CSS (ID recomendado, sin '#')
-    * @returns {Promise<void>} - Promesa que se resuelve cuando el contenido se ha cargado o se ha manejado un error
-    * 
-    */
+     * ----------------------------------------
+     * -----  `fetchHTML(url, selector)`  -----
+     * ----------------------------------------
+     * @async
+     * - `Carga contenido HTML en un selector específico`
+     * @param {string|undefined} url - URL del archivo HTML
+     * @param {string} selector - Selector CSS de destino. Se acepta tanto un ID sin `#` (p.ej. `'layoutMain'`, por retrocompatibilidad) como un selector CSS completo (p.ej. `'[data-component-page="htmlPage"]'` o `'.my-class'`).
+     * @returns {Promise<void>} - Promesa que se resuelve cuando el contenido se ha cargado o se ha manejado un error
+     * 
+     */
 
     const fetchHTML = async (url, selector) => {
 
 
-        /** @type {HTMLElement|null} - `Referencia al contenedor donde se cargará el HTML` */
-        const el = document.querySelector(`#${selector}`);
+        /**
+         * @type {HTMLElement|null} - `Referencia al contenedor donde se cargará el HTML`
+         * - `Si el selector es un ID sin '#' (formato legacy) se resuelve como '#selector'.`
+         * - `Si ya es un selector CSS (empieza por '[', '.' o '#') se usa tal cual.`
+         */
+        const el = (typeof selector === 'string' && /^[.\[#]/.test(selector))
+            ? document.querySelector(selector)
+            : document.querySelector(`#${selector}`);
 
         //  -----  Si el contenedor NO existe simplemente avisamos  -----
         if (!el) {
@@ -1588,6 +1600,64 @@ export const spaLoaderContentHtml = (options = {}) => {
             } catch (error) {
                 console.error(`❌ Error cargando archivo Shiki: ${url}`, error);
             }
+        }
+
+    }
+
+
+
+    /*
+        *  --------------------------------------------  *
+        *  -----  Renderizado de Page Components  -----  *
+        *  --------------------------------------------  *
+    */
+
+
+    /**
+     * -------------------------------------------
+     * -----  `renderPageComponents(route)`  -----
+     * -------------------------------------------
+     * @async
+     * - `Función para renderizar componentes HTML dentro de cada página`
+     * - `Carga cada componente definido en 'route.pagesComponents' en su contenedor destino (selector CSS),`
+     *   `delegando la inyección en 'fetchHTML' para mantener el mismo comportamiento que los componentes del DOM.`
+     * - `Permite renderizar más de un componente por página (la ruta puede definir un array de entradas).`
+     * @param {Route} route - Ruta de la cual cargar los componentes de página.
+     * @returns {Promise<void>} - Promesa que se resuelve cuando todos los componentes de página se han renderizado (o se han omitido/amaiado errores).
+     */
+
+    const renderPageComponents = async (route) => {
+
+        //  -----  Validación (caso válido: la mayoría de rutas no definen pagesComponents)  -----
+        if (!route.pagesComponents || !Array.isArray(route.pagesComponents)) {
+            return;
+        }
+
+        //  -----  Renderizar cada componente de página en su contenedor destino  -----
+        for (const entry of route.pagesComponents) {
+
+            /**
+             * Cada entrada es un objeto { url: string, target: string }
+             * donde target es un selector CSS del contenedor destino (p.ej. '[data-component-page="htmlPage"]').
+             */
+
+            
+            /** @type {string|undefined} - URL del componente de página */
+            const url = entry?.url;
+
+            /** @type {string|undefined} - Selector CSS del contenedor destino */
+            const target = entry?.target;
+
+            //  -----  Validación de la entrada: debe tener url y target  -----
+            if (!url || !target) {
+                console.warn('⚠️ Entrada pagesComponents incompleta (falta url o target). Se omite.');
+                continue;
+            }
+
+            //  -----  Cargar el componente HTML en el contenedor destino usando fetchHTML  -----
+            //  -----  (mismo renderizado que los componentes del DOM: visibility, inyección y manejo de errores)  -----
+            await fetchHTML(url, target);
+
         }
 
     }

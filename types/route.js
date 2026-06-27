@@ -49,6 +49,18 @@ export { };
  */
 
 
+/**
+ * ---------------------------------
+ * -----  `PageComponentEntry`  -----
+ * ---------------------------------
+ * @typedef {Object} PageComponentEntry - Entrada de componente HTML que se renderiza dentro de la página actual.
+ *                                        A diferencia de `components` (que pueblan regiones del layout mediante ID),
+ *                                          `pagesComponents` inyecta HTML en contenedores de la propia vista usando selectores CSS arbitrarios.
+ * @property {string} url - URL absoluta al archivo .html del componente de página.
+ * @property {string} target - Selector CSS del contenedor DOM donde se insertará el componente (p.ej. `'[data-component-page="htmlPage"]'`). Permite renderizar varios componentes en la misma página.
+ */
+
+
 
 /**
  * ---------------------
@@ -61,6 +73,7 @@ export { };
  * @property {string} headerTitle - Título que se mostrará dentro del layout-header.
  * @property {string} favicon - Ruta del favicon específico de la vista.
  * @property {RouteComponents} components - Mapa selector → URL de componente HTML.
+ * @property {PageComponentEntry[]} [pagesComponents] - Lista de componentes HTML que se renderizan dentro de la propia página (en contenedores con `data-component-page="..."`). Cada entrada define `{ url, target }`. Opcional.
  * @property {MarkdownShikiEntry[]} MarkdownShikiHtml - Rutas a los archivos .html generados por Shiki para mostrar código.
  *                                          Ejecuta `pnpm code-highlight` para regenerarlos.
  * @property {RouteStyle[]|null} styles - Lista de hojas CSS asociadas a la vista (opcional).

@@ -1,12 +1,23 @@
 /*
-    *  --------------------------------------------------------------------------  *
+    *  ---------------------------------------------------------------------  *
     *  -----  /route-html-page.js  --  /src/routes/route-html-page.js  -----  *
-    *  --------------------------------------------------------------------------  *
+    *  ---------------------------------------------------------------------  *
 */
+
 
 import { paths } from './paths.js';
 
-const { favicon, layoutHeader, layoutNavbar, pages, MarkdownShikiHtml, layoutFooter, styles, scripts } = paths;
+const { 
+    favicon, 
+    layoutHeader, 
+    layoutNavbar, 
+    pages, 
+    pagesComponents,
+    MarkdownShikiHtml, 
+    layoutFooter, 
+    styles, 
+    scripts 
+} = paths;
 
 /** @type {import("../../types/index.js").Route} */
 export const routeHtmlPage = {
@@ -20,6 +31,9 @@ export const routeHtmlPage = {
         "layoutMain": `${pages}/html-page.html`,
         "layoutFooter": `${layoutFooter}`,
     },
+    pagesComponents: [
+        { url: `${pagesComponents}/html-page.html`, target: '[data-component-page="htmlPage"]' },
+    ], 
     MarkdownShikiHtml: [
         { url: `${MarkdownShikiHtml}/pages/html-page-html.html`, target: '[data-shiki="codeHtml"]' },
         { url: `${MarkdownShikiHtml}/pages/html-page-css.html`, target: '[data-shiki="codeCss"]' },

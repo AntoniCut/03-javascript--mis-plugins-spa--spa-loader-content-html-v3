@@ -62,6 +62,9 @@ const paths = {
         pagesDir: path.join('src', 'pages'),
         pages:    path.posix.join('src', 'pages', '**/*'),
 
+        pagesComponentsDir: path.join('src', 'pages-components'),
+        pagesComponents:    path.posix.join('src', 'pages-components', '**/*'),
+
         pluginsDir: path.join('src', 'plugins'),
         plugins:    path.posix.join('src', 'plugins', '**/*'),
 
@@ -273,6 +276,9 @@ export const copyMarkdownShiki = createCopyTask('copyMarkdownShiki', { glob: pat
 /** Copia src/pages/ → app/pages/. */
 export const copyPages = createCopyTask('copyPages', { glob: paths.src.pages, checkPath: paths.src.pagesDir });
 
+/** Copia src/pages-components/ → app/pages-components/. */
+export const copyPagesComponents = createCopyTask('copyPagesComponents', { glob: paths.src.pagesComponents, checkPath: paths.src.pagesComponentsDir });
+
 /** Copia src/plugins/ → app/plugins/. */
 export const copyPlugins = createCopyTask('copyPlugins', { glob: paths.src.plugins, checkPath: paths.src.pluginsDir });
 
@@ -368,6 +374,7 @@ const buildSources = parallel(
     copyComponents,
     copyEffects,
     copyPages,
+    copyPagesComponents,
     copyPlugins,
     copyRoutes,
     copySpa,
@@ -405,6 +412,7 @@ const watchTask = () => {
         [paths.src.effects,       copyEffects],
         [paths.src.markdownShiki, copyMarkdownShiki],
         [paths.src.pages,         copyPages],
+        [paths.src.pagesComponents, copyPagesComponents],
         [paths.src.plugins,       copyPlugins],
         [paths.src.routes,        copyRoutes],
         [paths.src.spa,           copySpa],
