@@ -8,20 +8,19 @@
 @use '../base/mixins' as mx;
 
 
-//  -----  CSS Custom Properties  -----
-:root {
-    --jq-primary:      #21759b;
-    --jq-secondary:    #0769ad;
-    --jq-accent-bg:    #eef6fb;
-    --jq-text:         #0d2035;
-    --jq-text-light:   #3a5672;
-    --jq-card-bg:      #ffffff;
-    --jq-card-border:  rgba(33, 117, 155, 0.2);
-    --jq-card-shadow:  0 4px 16px rgba(33, 117, 155, 0.1);
-    --jq-tag-bg:       rgba(33, 117, 155, 0.08);
-    --jq-tag-color:    #21759b;
-    --jq-tag-border:   rgba(33, 117, 155, 0.3);
-}
+//  -----  Variables SCSS  -----
+$jq-primary: #21759b;
+$jq-secondary: #0769ad;
+$jq-accent-bg: #eef6fb;
+$jq-text: #0d2035;
+$jq-text-light: #3a5672;
+$jq-card-bg: #ffffff;
+$jq-card-border: rgba(33, 117, 155, 0.2);
+$jq-card-shadow: 0 4px 16px rgba(33, 117, 155, 0.1);
+$jq-tag-bg: rgba(33, 117, 155, 0.08);
+$jq-tag-color: #21759b;
+$jq-tag-border: rgba(33, 117, 155, 0.3);
+
 
 
 //  -----  jquery-page  -----
@@ -38,7 +37,7 @@
     &__hero {
         width: 100%;
         min-height: 18rem;
-        background: linear-gradient(135deg, #0d2035 0%, var(--jq-secondary) 55%, var(--jq-primary) 100%);
+        background: linear-gradient(135deg, #0d2035 0%, $jq-secondary 55%, $jq-primary 100%);
         border-radius: 1rem;
         display: flex;
         justify-content: center;
@@ -117,8 +116,8 @@
         display: flex;
         flex-direction: column;
         gap: 1.6rem;
-        background-color: var(--jq-accent-bg);
-        border-left: 5px solid var(--jq-primary);
+        background-color: $jq-accent-bg;
+        border-left: 5px solid $jq-primary;
         border-radius: 0 0.8rem 0.8rem 0;
         padding: 2.5rem;
     }
@@ -126,16 +125,16 @@
     &__intro-text {
         font-size: 1.5rem;
         line-height: 1.8;
-        color: var(--jq-text);
+        color: $jq-text;
 
         strong {
-            color: var(--jq-primary);
+            color: $jq-primary;
             font-weight: 600;
         }
 
         code {
-            background-color: var(--jq-tag-bg);
-            color: var(--jq-primary);
+            background-color: $jq-tag-bg;
+            color: $jq-primary;
             padding: 0.1rem 0.4rem;
             border-radius: 4px;
             font-size: 1.3rem;
@@ -163,7 +162,7 @@
     &__features-title {
         font-size: 2.2rem;
         font-weight: 600;
-        color: var(--jq-primary);
+        color: $jq-primary;
         text-align: center;
 
         &::after {
@@ -171,7 +170,7 @@
             display: block;
             width: 6rem;
             height: 3px;
-            background-color: var(--jq-primary);
+            background-color: $jq-primary;
             margin: 0.8rem auto 0;
             border-radius: 2px;
         }
@@ -196,11 +195,11 @@
     }
 
     &__feature {
-        background-color: var(--jq-card-bg);
-        border: 1px solid var(--jq-card-border);
+        background-color: $jq-card-bg;
+        border: 1px solid $jq-card-border;
         border-radius: 1rem;
         padding: 2.5rem;
-        box-shadow: var(--jq-card-shadow);
+        box-shadow: $jq-card-shadow;
         display: flex;
         flex-direction: column;
         gap: 1rem;
@@ -219,17 +218,17 @@
     &__feature-title {
         font-size: 1.8rem;
         font-weight: 600;
-        color: var(--jq-primary);
+        color: $jq-primary;
     }
 
     &__feature-text {
         font-size: 1.4rem;
         line-height: 1.75;
-        color: var(--jq-text-light);
+        color: $jq-text-light;
 
         code {
-            background-color: var(--jq-tag-bg);
-            color: var(--jq-primary);
+            background-color: $jq-tag-bg;
+            color: $jq-primary;
             padding: 0.1rem 0.4rem;
             border-radius: 4px;
             font-size: 1.2rem;
@@ -253,7 +252,7 @@
     &__tags-title {
         font-size: 2.2rem;
         font-weight: 600;
-        color: var(--jq-primary);
+        color: $jq-primary;
         text-align: center;
 
         &::after {
@@ -261,7 +260,7 @@
             display: block;
             width: 6rem;
             height: 3px;
-            background-color: var(--jq-primary);
+            background-color: $jq-primary;
             margin: 0.8rem auto 0;
             border-radius: 2px;
         }
@@ -282,9 +281,9 @@
     }
 
     &__tag {
-        background-color: var(--jq-tag-bg);
-        color: var(--jq-tag-color);
-        border: 1px solid var(--jq-tag-border);
+        background-color: $jq-tag-bg;
+        color: $jq-tag-color;
+        border: 1px solid $jq-tag-border;
         border-radius: 2rem;
         padding: 0.6rem 1.4rem;
         font-size: 1.3rem;
@@ -294,7 +293,7 @@
         transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 
         &:hover {
-            background-color: var(--jq-primary);
+            background-color: $jq-primary;
             color: #fff;
             transform: scale(1.06);
         }

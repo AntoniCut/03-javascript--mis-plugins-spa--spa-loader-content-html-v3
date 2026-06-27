@@ -91,12 +91,7 @@
     backdrop-filter: blur(12px);
     transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
 
-    // &:hover {
-    //     transform: translateY(-4px);
-    //     box-shadow: 0 24px 50px rgba(15, 23, 42, 0.24);
-    //     border-color: rgba(255, 255, 255, 0.42);
-    // }
-
+    
     @include mix.tablet {
         width: 20rem;
         flex: 0 0 20rem;
@@ -212,7 +207,7 @@
     text-align: center;
     font-weight: 900;
     line-height: 1.1;
-    color: #0f172a;
+    color: var.$color-primary;
     text-align: center;
     text-wrap: balance;
 
@@ -230,7 +225,7 @@
     font-weight: 700;
     line-height: 1.5;
     text-align: center;
-    color: #1e293b;
+    color: var.$color-secondary;
 
     &:empty {
         display: none;

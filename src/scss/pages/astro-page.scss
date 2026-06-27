@@ -4,19 +4,24 @@
     *  ----------------------------------------------------------------  *
 */
 
+@use '../base/variables' as var;
+
 //  -----  Variables  -----
-:root {
-    --astro-primary: #ff5d01;
-    --astro-secondary: #ff7c47;
-    --astro-accent-bg: #fff4ef;
-    --astro-text: #2c3e50;
-    --astro-text-light: #5d6d7e;
-    --astro-card-bg: #ffffff;
-    --astro-card-border: rgba(255, 93, 1, 0.2);
-    --astro-card-shadow: 0 4px 16px rgba(255, 93, 1, 0.1);
-    --astro-tag-bg: rgba(255, 93, 1, 0.08);
-    --astro-tag-color: #ff5d01;
-    --astro-tag-border: rgba(255, 93, 1, 0.3);
+$astro-primary: #ff5d01;
+$astro-secondary: #ff7c47;
+$astro-accent-bg: #fff4ef;
+$astro-text: #2c3e50;
+$astro-text-light: #5d6d7e;
+$astro-card-bg: #ffffff;
+$astro-card-border: rgba(255, 93, 1, 0.2);
+$astro-card-shadow: 0 4px 16px rgba(255, 93, 1, 0.1);
+$astro-tag-bg: rgba(255, 93, 1, 0.08);
+$astro-tag-color: #ff5d01;
+$astro-tag-border: rgba(255, 93, 1, 0.3);
+
+.main__title {
+    color: $astro-accent-bg;
+    background: linear-gradient(135deg, $astro-primary 0%, $astro-secondary 60%, #ff8c42 100%);
 }
 
 .astro-page {
@@ -30,7 +35,7 @@
 .astro-page__hero {
     width: 100%;
     min-height: 18rem;
-    background: linear-gradient(135deg, var(--astro-primary) 0%, var(--astro-secondary) 60%, #ff8c42 100%);
+    background: linear-gradient(135deg, $astro-primary 0%, $astro-secondary 60%, #ff8c42 100%);
     border-radius: 1rem;
     display: flex;
     justify-content: center;
@@ -125,8 +130,8 @@
     display: flex;
     flex-direction: column;
     gap: 1.6rem;
-    background-color: var(--astro-accent-bg);
-    border-left: 5px solid var(--astro-primary);
+    background-color: $astro-accent-bg;
+    border-left: 5px solid $astro-primary;
     border-radius: 0 0.8rem 0.8rem 0;
     padding: 2.5rem;
 }
@@ -134,11 +139,11 @@
 .astro-page__intro-text {
     font-size: 1.5rem;
     line-height: 1.8;
-    color: var(--astro-text);
+    color: $astro-text;
 }
 
 .astro-page__intro-text strong {
-    color: var(--astro-primary);
+    color: $astro-primary;
     font-weight: 600;
 }
 
@@ -164,7 +169,7 @@
 .astro-page__features-title {
     font-size: 2.2rem;
     font-weight: 600;
-    color: var(--astro-primary);
+    color: $astro-primary;
     text-align: center;
 }
 
@@ -173,7 +178,7 @@
     display: block;
     width: 6rem;
     height: 3px;
-    background-color: var(--astro-primary);
+    background-color: $astro-primary;
     margin: 0.8rem auto 0;
     border-radius: 2px;
 }
@@ -203,11 +208,11 @@
 }
 
 .astro-page__feature {
-    background-color: var(--astro-card-bg);
-    border: 1px solid var(--astro-card-border);
+    background-color: $astro-card-bg;
+    border: 1px solid $astro-card-border;
     border-radius: 1rem;
     padding: 2.5rem;
-    box-shadow: var(--astro-card-shadow);
+    box-shadow: $astro-card-shadow;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -226,18 +231,18 @@
 .astro-page__feature-title {
     font-size: 1.8rem;
     font-weight: 600;
-    color: var(--astro-primary);
+    color: $astro-primary;
 }
 
 .astro-page__feature-text {
     font-size: 1.4rem;
     line-height: 1.75;
-    color: var(--astro-text-light);
+    color: $astro-text-light;
 }
 
 .astro-page__feature-text code {
-    background-color: var(--astro-tag-bg);
-    color: var(--astro-primary);
+    background-color: $astro-tag-bg;
+    color: $astro-primary;
     padding: 0.1rem 0.4rem;
     border-radius: 4px;
     font-size: 1.2rem;
@@ -260,7 +265,7 @@
 .astro-page__concepts-title {
     font-size: 2.2rem;
     font-weight: 600;
-    color: var(--astro-primary);
+    color: $astro-primary;
     text-align: center;
 }
 
@@ -269,7 +274,7 @@
     display: block;
     width: 6rem;
     height: 3px;
-    background-color: var(--astro-primary);
+    background-color: $astro-primary;
     margin: 0.8rem auto 0;
     border-radius: 2px;
 }
@@ -291,9 +296,9 @@
 }
 
 .astro-page__concept {
-    background-color: var(--astro-tag-bg);
-    color: var(--astro-tag-color);
-    border: 1px solid var(--astro-tag-border);
+    background-color: $astro-tag-bg;
+    color: $astro-tag-color;
+    border: 1px solid $astro-tag-border;
     border-radius: 2rem;
     padding: 0.6rem 1.4rem;
     font-size: 1.3rem;
@@ -304,7 +309,7 @@
 }
 
 .astro-page__concept:hover {
-    background-color: var(--astro-primary);
+    background-color: $astro-primary;
     color: #fff;
     transform: scale(1.06);
 }

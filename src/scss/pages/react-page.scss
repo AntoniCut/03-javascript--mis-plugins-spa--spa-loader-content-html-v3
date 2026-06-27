@@ -5,19 +5,18 @@
 */
 
 //  -----  Variables  -----
-:root {
-    --react-primary: #61dafb;
-    --react-secondary: #149eca;
-    --react-accent-bg: #f0f9fb;
-    --react-text: #2c3e50;
-    --react-text-light: #5d6d7e;
-    --react-card-bg: #ffffff;
-    --react-card-border: rgba(97, 218, 251, 0.2);
-    --react-card-shadow: 0 4px 16px rgba(97, 218, 251, 0.1);
-    --react-tag-bg: rgba(97, 218, 251, 0.08);
-    --react-tag-color: #61dafb;
-    --react-tag-border: rgba(97, 218, 251, 0.3);
-}
+$react-primary: #61dafb;
+$react-secondary: #149eca;
+$react-accent-bg: #f0f9fb;
+$react-text: #2c3e50;
+$react-text-light: #5d6d7e;
+$react-card-bg: #ffffff;
+$react-card-border: rgba(97, 218, 251, 0.2);
+$react-card-shadow: 0 4px 16px rgba(97, 218, 251, 0.1);
+$react-tag-bg: rgba(97, 218, 251, 0.08);
+$react-tag-color: #61dafb;
+$react-tag-border: rgba(97, 218, 251, 0.3);
+
 
 .react-page {
     width: 100%;
@@ -30,7 +29,7 @@
 .react-page__hero {
     width: 100%;
     min-height: 18rem;
-    background: linear-gradient(135deg, var(--react-primary) 0%, var(--react-secondary) 60%, #78e4f5 100%);
+    background: linear-gradient(135deg, $react-primary 0%, $react-secondary 60%, #78e4f5 100%);
     border-radius: 1rem;
     display: flex;
     justify-content: center;
@@ -125,8 +124,8 @@
     display: flex;
     flex-direction: column;
     gap: 1.6rem;
-    background-color: var(--react-accent-bg);
-    border-left: 5px solid var(--react-primary);
+    background-color: $react-accent-bg;
+    border-left: 5px solid $react-primary;
     border-radius: 0 0.8rem 0.8rem 0;
     padding: 2.5rem;
 }
@@ -134,11 +133,11 @@
 .react-page__intro-text {
     font-size: 1.5rem;
     line-height: 1.8;
-    color: var(--react-text);
+    color: $react-text;
 }
 
 .react-page__intro-text strong {
-    color: var(--react-primary);
+    color: $react-primary;
     font-weight: 600;
 }
 
@@ -164,7 +163,7 @@
 .react-page__features-title {
     font-size: 2.2rem;
     font-weight: 600;
-    color: var(--react-primary);
+    color: $react-primary;
     text-align: center;
 }
 
@@ -173,7 +172,7 @@
     display: block;
     width: 6rem;
     height: 3px;
-    background-color: var(--react-primary);
+    background-color: $react-primary;
     margin: 0.8rem auto 0;
     border-radius: 2px;
 }
@@ -203,11 +202,11 @@
 }
 
 .react-page__feature {
-    background-color: var(--react-card-bg);
-    border: 1px solid var(--react-card-border);
+    background-color: $react-card-bg;
+    border: 1px solid $react-card-border;
     border-radius: 1rem;
     padding: 2.5rem;
-    box-shadow: var(--react-card-shadow);
+    box-shadow: $react-card-shadow;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -226,18 +225,18 @@
 .react-page__feature-title {
     font-size: 1.8rem;
     font-weight: 600;
-    color: var(--react-primary);
+    color: $react-primary;
 }
 
 .react-page__feature-text {
     font-size: 1.4rem;
     line-height: 1.75;
-    color: var(--react-text-light);
+    color: $react-text-light;
 }
 
 .react-page__feature-text code {
-    background-color: var(--react-tag-bg);
-    color: var(--react-primary);
+    background-color: $react-tag-bg;
+    color: $react-primary;
     padding: 0.1rem 0.4rem;
     border-radius: 4px;
     font-size: 1.2rem;
@@ -260,7 +259,7 @@
 .react-page__concepts-title {
     font-size: 2.2rem;
     font-weight: 600;
-    color: var(--react-primary);
+    color: $react-primary;
     text-align: center;
 }
 
@@ -269,7 +268,7 @@
     display: block;
     width: 6rem;
     height: 3px;
-    background-color: var(--react-primary);
+    background-color: $react-primary;
     margin: 0.8rem auto 0;
     border-radius: 2px;
 }
@@ -291,9 +290,9 @@
 }
 
 .react-page__concept {
-    background-color: var(--react-tag-bg);
-    color: var(--react-tag-color);
-    border: 1px solid var(--react-tag-border);
+    background-color: $react-tag-bg;
+    color: $react-tag-color;
+    border: 1px solid $react-tag-border;
     border-radius: 2rem;
     padding: 0.6rem 1.4rem;
     font-size: 1.3rem;
@@ -304,7 +303,7 @@
 }
 
 .react-page__concept:hover {
-    background-color: var(--react-primary);
+    background-color: $react-primary;
     color: #fff;
     transform: scale(1.06);
 }
