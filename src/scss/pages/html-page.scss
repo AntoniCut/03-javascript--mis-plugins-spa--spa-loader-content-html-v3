@@ -312,3 +312,22 @@ $shadow-hero-title:     var.$shadow-text;
     }
 
 }
+
+
+//  -----  Markdown: color del título (tema html)  -----
+.markdown__title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: $html-primary;
+    text-align: center;
+}
+
+.markdown__title::after {
+    content: "";
+    display: block;
+    width: 6rem;
+    height: 3px;
+    background-color: $html-primary;
+    margin: 0.8rem auto 0;
+    border-radius: 2px;
+}

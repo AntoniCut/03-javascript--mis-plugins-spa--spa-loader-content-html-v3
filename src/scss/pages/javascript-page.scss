@@ -191,7 +191,7 @@ $shadow-hero-title:     0 2px 8px rgba(0, 0, 0, 0.5);
     &__features-title {
         font-size: 2.2rem;
         font-weight: 600;
-        color: $js-on-primary;
+        color: $js-primary;
         text-align: center;
 
         &::after {
@@ -199,7 +199,7 @@ $shadow-hero-title:     0 2px 8px rgba(0, 0, 0, 0.5);
             display: block;
             width: 6rem;
             height: 3px;
-            background-color: $js-primary-dark;
+            background-color: $js-primary;
             margin: 0.8rem auto 0;
             border-radius: 2px;
         }
@@ -247,7 +247,7 @@ $shadow-hero-title:     0 2px 8px rgba(0, 0, 0, 0.5);
     &__feature-title {
         font-size: 1.8rem;
         font-weight: 600;
-        color: $js-on-primary;
+        color: $js-primary;
     }
 
     &__feature-text {
@@ -281,7 +281,7 @@ $shadow-hero-title:     0 2px 8px rgba(0, 0, 0, 0.5);
     &__tags-title {
         font-size: 2.2rem;
         font-weight: 600;
-        color: $js-on-primary;
+        color: $js-primary;
         text-align: center;
 
         &::after {
@@ -289,7 +289,7 @@ $shadow-hero-title:     0 2px 8px rgba(0, 0, 0, 0.5);
             display: block;
             width: 6rem;
             height: 3px;
-            background-color: $js-primary-dark;
+            background-color: $js-primary;
             margin: 0.8rem auto 0;
             border-radius: 2px;
         }
@@ -333,4 +333,23 @@ $shadow-hero-title:     0 2px 8px rgba(0, 0, 0, 0.5);
         }
     }
 
+}
+
+
+//  -----  Markdown: color del título (tema javascript)  -----
+.markdown__title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: $js-primary;
+    text-align: center;
+}
+
+.markdown__title::after {
+    content: "";
+    display: block;
+    width: 6rem;
+    height: 3px;
+    background-color: $js-primary;
+    margin: 0.8rem auto 0;
+    border-radius: 2px;
 }

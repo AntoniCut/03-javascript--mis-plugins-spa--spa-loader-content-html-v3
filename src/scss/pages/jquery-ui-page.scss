@@ -9,7 +9,7 @@
 
 
 //  -----  Variables SCSS  -----
-$jqui-primary:          #4c6d94;
+$jqui-primary:          #faa523;
 $jqui-secondary:        #3a7ab8;
 $jqui-accent:           #f9a825;
 $jqui-accent-bg:        #f0f5fb;
@@ -52,7 +52,8 @@ $shadow-hero-title:     0 2px 8px rgba(0, 0, 0, 0.35);
     &__hero {
         width: 100%;
         min-height: 18rem;
-        background: linear-gradient(135deg, $jqui-text 0%, $jqui-primary 45%, $jqui-secondary 75%, $jqui-accent 100%);
+        //background: linear-gradient(135deg, $jqui-text 0%, $jqui-primary 45%, $jqui-secondary 75%, $jqui-accent 100%);
+        background: linear-gradient(135deg, $jqui-text 0%, $jqui-accent 55%, $jqui-primary 100%);
         border-radius: 1rem;
         display: flex;
         justify-content: center;
@@ -324,4 +325,23 @@ $shadow-hero-title:     0 2px 8px rgba(0, 0, 0, 0.35);
         }
     }
 
+}
+
+
+//  -----  Markdown: color del título (tema jquery-ui)  -----
+.markdown__title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: $jqui-primary;
+    text-align: center;
+}
+
+.markdown__title::after {
+    content: "";
+    display: block;
+    width: 6rem;
+    height: 3px;
+    background-color: $jqui-primary;
+    margin: 0.8rem auto 0;
+    border-radius: 2px;
 }

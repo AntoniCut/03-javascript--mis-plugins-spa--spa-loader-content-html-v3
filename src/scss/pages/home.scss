@@ -354,3 +354,22 @@ $shadow-hero-title:    0 2px 8px rgba(0, 0, 0, 0.35);
     }
 
 }
+
+
+//  -----  Markdown: color del título (tema home)  -----
+.markdown__title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: $spa-primary;
+    text-align: center;
+}
+
+.markdown__title::after {
+    content: "";
+    display: block;
+    width: 6rem;
+    height: 3px;
+    background-color: $spa-primary;
+    margin: 0.8rem auto 0;
+    border-radius: 2px;
+}

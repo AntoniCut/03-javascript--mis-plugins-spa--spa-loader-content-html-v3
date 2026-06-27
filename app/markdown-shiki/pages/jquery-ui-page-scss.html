@@ -3,7 +3,7 @@
 <span class="line"></span>
 <span class="line"></span>
 <span class="line"><span style="color:#6A9955">//  -----  Variables SCSS  -----</span></span>
-<span class="line"><span style="color:#9CDCFE">$jqui-primary</span><span style="color:#D4D4D4">:          </span><span style="color:#CE9178">#4c6d94</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">$jqui-primary</span><span style="color:#D4D4D4">:          </span><span style="color:#CE9178">#faa523</span><span style="color:#D4D4D4">;</span></span>
 <span class="line"><span style="color:#9CDCFE">$jqui-secondary</span><span style="color:#D4D4D4">:        </span><span style="color:#CE9178">#3a7ab8</span><span style="color:#D4D4D4">;</span></span>
 <span class="line"><span style="color:#9CDCFE">$jqui-accent</span><span style="color:#D4D4D4">:           </span><span style="color:#CE9178">#f9a825</span><span style="color:#D4D4D4">;</span></span>
 <span class="line"><span style="color:#9CDCFE">$jqui-accent-bg</span><span style="color:#D4D4D4">:        </span><span style="color:#CE9178">#f0f5fb</span><span style="color:#D4D4D4">;</span></span>
@@ -46,7 +46,8 @@
 <span class="line"><span style="color:#569CD6">    &#x26;</span><span style="color:#9CDCFE">__hero</span><span style="color:#D4D4D4"> {</span></span>
 <span class="line"><span style="color:#9CDCFE">        width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">100%</span><span style="color:#D4D4D4">;</span></span>
 <span class="line"><span style="color:#9CDCFE">        min-height</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">18rem</span><span style="color:#D4D4D4">;</span></span>
-<span class="line"><span style="color:#9CDCFE">        background</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">linear-gradient</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">135deg</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">$jqui-text</span><span style="color:#B5CEA8"> 0%</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">$jqui-primary</span><span style="color:#B5CEA8"> 45%</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">$jqui-secondary</span><span style="color:#B5CEA8"> 75%</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">$jqui-accent</span><span style="color:#B5CEA8"> 100%</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#6A9955">        //background: linear-gradient(135deg, $jqui-text 0%, $jqui-primary 45%, $jqui-secondary 75%, $jqui-accent 100%);</span></span>
+<span class="line"><span style="color:#9CDCFE">        background</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">linear-gradient</span><span style="color:#D4D4D4">(</span><span style="color:#B5CEA8">135deg</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">$jqui-text</span><span style="color:#B5CEA8"> 0%</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">$jqui-accent</span><span style="color:#B5CEA8"> 55%</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">$jqui-primary</span><span style="color:#B5CEA8"> 100%</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"><span style="color:#9CDCFE">        border-radius</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1rem</span><span style="color:#D4D4D4">;</span></span>
 <span class="line"><span style="color:#9CDCFE">        display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">flex</span><span style="color:#D4D4D4">;</span></span>
 <span class="line"><span style="color:#9CDCFE">        justify-content</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">center</span><span style="color:#D4D4D4">;</span></span>
@@ -319,4 +320,22 @@
 <span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#D4D4D4">}</span></span>
-<span class="line"></span></code></pre>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">//  -----  Markdown: color del título (tema jquery-ui)  -----</span></span>
+<span class="line"><span style="color:#D7BA7D">.markdown__title</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    font-size</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2.2rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    font-weight</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">600</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    color</span><span style="color:#D4D4D4">: </span><span style="color:#9CDCFE">$jqui-primary</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    text-align</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">center</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D7BA7D">.markdown__title::after</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#D7BA7D">    content</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">""</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">block</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">6rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    height</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">3px</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    background-color</span><span style="color:#D4D4D4">: </span><span style="color:#9CDCFE">$jqui-primary</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    margin</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">0.8rem</span><span style="color:#CE9178"> auto</span><span style="color:#B5CEA8"> 0</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    border-radius</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">2px</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>

@@ -9,8 +9,8 @@
 
 
 //  -----  Variables SCSS  -----
-$jq-primary:          #78cff5;;
-$jq-secondary:        #0769ad;
+$jq-primary:          #0769ad;
+$jq-secondary:        #4099d8;
 $jq-accent-bg:        #eef6fb;
 $jq-text:             #0d2035;
 $jq-text-light:       #3a5672;
@@ -318,4 +318,23 @@ $shadow-hero-title:   0 2px 8px rgba(0, 0, 0, 0.35);
         }
     }
 
+}
+
+
+//  -----  Markdown: color del título (tema jquery)  -----
+.markdown__title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: $jq-primary;
+    text-align: center;
+}
+
+.markdown__title::after {
+    content: "";
+    display: block;
+    width: 6rem;
+    height: 3px;
+    background-color: $jq-primary;
+    margin: 0.8rem auto 0;
+    border-radius: 2px;
 }
