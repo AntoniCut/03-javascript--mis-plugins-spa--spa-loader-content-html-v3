@@ -13,8 +13,12 @@ $font-primary: "Monserrat", Arial, Helvetica, sans-serif;
 
 
 //  -----  Colores  -----
-$color-primary: #f0db4f;
+$color-primary:   #f0db4f;
 $color-secondary: #61dafb;
+$color-white:     #ffffff;
+$color-light:     #E6EBF1;
+$color-navy:      #0f172a;
+$color-focus:     #f89c15;
 
 
 //  -----  Fondos lisos  -----
@@ -32,9 +36,14 @@ $bg-gradient-header: linear-gradient(to left, rgb(189, 220, 230) 20%, rgb(133, 1
 $bg-gradient-footer: linear-gradient(to right, rgb(139, 175, 187) 20%, rgb(146, 175, 212) 40%, rgb(100, 143, 230) 60%, rgb(197, 207, 250) 80%);
 
 
+//  -----  Sombras  -----
+$shadow-outer: 0px 4px 10px rgba(0, 0, 0, 0.3);
+$shadow-text:  0 2px 8px rgba(0, 0, 0, 0.3);
+
+
 // ----- Breakpoints -----
-$mobile: 480px;
-$tablet: 768px;
-$desktop-sm: 1024px;
-$desktop: 1200px;
-$desktop-lg: 1400px;
+$mobile:      480px;
+$tablet:      768px;
+$desktop-sm:  1024px;
+$desktop:     1200px;
+$desktop-lg:  1400px;

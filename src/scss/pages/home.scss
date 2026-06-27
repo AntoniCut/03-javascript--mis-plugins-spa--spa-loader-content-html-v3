@@ -9,24 +9,42 @@
 
 
 //  -----  Variables SCSS  -----
-$spa-primary: #5e35b1;
-$spa-secondary: #7c4dff;
-$spa-accent-bg: #f3f0ff;
-$spa-text: #1a1033;
-$spa-text-light: #4a4069;
-$spa-card-bg: #ffffff;
-$spa-card-border: rgba(94, 53, 177, 0.2);
-$spa-card-shadow: 0 4px 16px rgba(94, 53, 177, 0.1);
-$spa-tag-bg: rgba(94, 53, 177, 0.08);
-$spa-tag-color: #5e35b1;
-$spa-tag-border: rgba(94, 53, 177, 0.3);
-$spa-event-bg: rgba(124, 77, 255, 0.08);
-$spa-event-color: #7c4dff;
-$spa-event-border: rgba(124, 77, 255, 0.35);
+$spa-primary:          #5e35b1;
+$spa-secondary:        #7c4dff;
+$spa-hero-base:        #1a0e30;
+$spa-scripts-color:    #2e7d32;
+$spa-accent-bg:        #f3f0ff;
+$spa-text:             #1a1033;
+$spa-text-light:       #4a4069;
+$spa-card-bg:          var.$color-white;
+$spa-card-border:      rgba($spa-primary, 0.2);
+$spa-card-shadow:      0 4px 16px rgba($spa-primary, 0.1);
+$spa-card-shadow-hover: 0 8px 28px rgba($spa-primary, 0.2);
+$spa-tag-bg:           rgba($spa-primary, 0.08);
+$spa-tag-color:        $spa-primary;
+$spa-tag-border:       rgba($spa-primary, 0.3);
+$spa-event-bg:         rgba($spa-secondary, 0.08);
+$spa-event-color:      $spa-secondary;
+$spa-event-border:     rgba($spa-secondary, 0.35);
+$spa-scripts-bg:       rgba($spa-scripts-color, 0.08);
+$spa-scripts-border:   rgba($spa-scripts-color, 0.35);
+$color-white:          var.$color-white;
+$shadow-hero-title:    0 2px 8px rgba(0, 0, 0, 0.35);
 
+
+//  -----  Layout Header  -----
+.header__dynamic-title {
+    color: $spa-primary;
+}
 
 
 //  -----  home-page  -----
+
+.main__title {
+    color: $spa-primary;
+    background: var.$bg-gradient-header;
+}
+
 .home-page {
 
     width: 100%;
@@ -40,7 +58,7 @@ $spa-event-border: rgba(124, 77, 255, 0.35);
     &__hero {
         width: 100%;
         min-height: 18rem;
-        background: linear-gradient(135deg, #1a0e30 0%, $spa-primary 55%, $spa-secondary 100%);
+        background: linear-gradient(135deg, $spa-hero-base 0%, $spa-primary 55%, $spa-secondary 100%);
         border-radius: 1rem;
         display: flex;
         justify-content: center;
@@ -63,7 +81,7 @@ $spa-event-border: rgba(124, 77, 255, 0.35);
 
     &__hero-badge {
         text-align: center;
-        color: #fff;
+        color: $color-white;
     }
 
     &__hero-tag {
@@ -87,7 +105,7 @@ $spa-event-border: rgba(124, 77, 255, 0.35);
         font-size: 2.4rem;
         font-weight: 700;
         margin: 0.6rem 0 0.4rem;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+        text-shadow: $shadow-hero-title;
         font-family: monospace;
         letter-spacing: 0.05rem;
 
@@ -212,7 +230,7 @@ $spa-event-border: rgba(124, 77, 255, 0.35);
 
         &:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 28px rgba(94, 53, 177, 0.2);
+            box-shadow: $spa-card-shadow-hover;
         }
     }
 
@@ -299,7 +317,7 @@ $spa-event-border: rgba(124, 77, 255, 0.35);
 
         &:hover {
             background-color: $spa-primary;
-            color: #fff;
+            color: $color-white;
             transform: scale(1.06);
         }
 
@@ -316,7 +334,7 @@ $spa-event-border: rgba(124, 77, 255, 0.35);
 
         &:hover {
             background-color: $spa-secondary;
-            color: #fff;
+            color: $color-white;
         }
     }
 
@@ -325,13 +343,13 @@ $spa-event-border: rgba(124, 77, 255, 0.35);
     }
 
     &__tags--scripts &__tag {
-        background-color: rgba(46, 125, 50, 0.08);
-        color: #2e7d32;
-        border-color: rgba(46, 125, 50, 0.35);
+        background-color: $spa-scripts-bg;
+        color: $spa-scripts-color;
+        border-color: $spa-scripts-border;
 
         &:hover {
-            background-color: #2e7d32;
-            color: #fff;
+            background-color: $spa-scripts-color;
+            color: $color-white;
         }
     }
 

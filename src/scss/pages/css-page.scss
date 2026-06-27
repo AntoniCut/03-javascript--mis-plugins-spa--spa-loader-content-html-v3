@@ -9,21 +9,38 @@
 
 
 //  -----  Variables SCSS  -----
-$css-primary: #264de4;
-$css-secondary: #2965f1;
-$css-accent-bg: #f0f4ff;
-$css-text: #1a2340;
-$css-text-light: #4a5568;
-$css-card-bg: #ffffff;
-$css-card-border: rgba(38, 77, 228, 0.2);
-$css-card-shadow: 0 4px 16px rgba(38, 77, 228, 0.1);
-$css-tag-bg: rgba(38, 77, 228, 0.08);
-$css-tag-color: #264de4;
-$css-tag-border: rgba(38, 77, 228, 0.3);
+$css-primary:          #264de4;
+$css-secondary:        #2965f1;
+$css-hero-base:        #1a237e;
+$css-accent-bg:        #f0f4ff;
+$css-text:             #1a2340;
+$css-text-light:       #4a5568;
+$css-card-bg:          var.$color-white;
+$css-card-border:      rgba($css-primary, 0.2);
+$css-card-shadow:      0 4px 16px rgba($css-primary, 0.1);
+$css-card-shadow-hover: 0 8px 28px rgba($css-primary, 0.2);
+$css-tag-bg:           rgba($css-primary, 0.08);
+$css-tag-color:        $css-primary;
+$css-tag-border:       rgba($css-primary, 0.3);
+$color-white:          var.$color-white;
+$shadow-hero-title:    var.$shadow-text;
 
+
+//  -----  Layout Header  -----
+.header__dynamic-title {
+    color: $css-primary;
+}
 
 
 //  -----  css-page  -----
+
+.main__title {
+    color: $css-primary;
+    background: var.$bg-gradient-header;
+}
+
+
+/
 .css-page {
 
     width: 100%;
@@ -37,7 +54,7 @@ $css-tag-border: rgba(38, 77, 228, 0.3);
     &__hero {
         width: 100%;
         min-height: 18rem;
-        background: linear-gradient(135deg, #1a237e 0%, $css-primary 50%, $css-secondary 100%);
+        background: linear-gradient(135deg, $css-hero-base 0%, $css-primary 50%, $css-secondary 100%);
         border-radius: 1rem;
         display: flex;
         justify-content: center;
@@ -60,7 +77,7 @@ $css-tag-border: rgba(38, 77, 228, 0.3);
 
     &__hero-badge {
         text-align: center;
-        color: #fff;
+        color: $color-white;
     }
 
     &__hero-tag {
@@ -84,7 +101,7 @@ $css-tag-border: rgba(38, 77, 228, 0.3);
         font-size: 3rem;
         font-weight: 700;
         margin: 0.6rem 0 0.4rem;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        text-shadow: $shadow-hero-title;
 
         @include mx.tablet {
             font-size: 4.5rem;
@@ -198,7 +215,7 @@ $css-tag-border: rgba(38, 77, 228, 0.3);
 
         &:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 28px rgba(38, 77, 228, 0.2);
+            box-shadow: $css-card-shadow-hover;
         }
     }
 
@@ -285,7 +302,7 @@ $css-tag-border: rgba(38, 77, 228, 0.3);
 
         &:hover {
             background-color: $css-primary;
-            color: #fff;
+            color: $color-white;
             transform: scale(1.06);
         }
 

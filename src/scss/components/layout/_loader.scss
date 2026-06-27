@@ -7,6 +7,12 @@
 @use '../../base/variables' as var;
 
 
+//  -----  Variables  -----
+$bg-loader:           var.$bg-main;
+$shadow-loader-text:  var.$shadow-outer;
+$color-spinner-accent: cornflowerblue;
+
+
 /*  
     --------------------------------------
     -----  Loader Pantalla Completa  -----  
@@ -20,7 +26,7 @@
     position: fixed;
     inset: 0;
     
-    background: radial-gradient(circle, rgb(255, 255, 255), rgb(219, 228, 240), rgb(176, 196, 236));
+    background: $bg-loader;
         
     display: flex;
     flex-direction: column;
@@ -44,14 +50,14 @@
     font-family: var.$font-primary;
     font-size: 3rem;
     color: var.$color-primary;
-    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-shadow: $shadow-loader-text;
 }
 
 .spinner {
     width: 15rem;
     height: 15rem;
     border: 10px solid var.$color-primary;
-    border-top: 10px solid cornflowerblue;
+    border-top: 10px solid $color-spinner-accent;
     border-radius: 100%;
     animation: spin 1s linear infinite;
     will-change: transform;

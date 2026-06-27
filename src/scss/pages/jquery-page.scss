@@ -1,7 +1,7 @@
 /*
-    *  ----------------------------------------------------------------  *
+    *  ---------------------------------------------------------------------  *
     *  -----  /jquery-page.scss  --  /src/scss/pages/jquery-page.scss  -----  *
-    *  ----------------------------------------------------------------  *
+    *  ---------------------------------------------------------------------  *
 */
 
 @use '../base/variables' as var;
@@ -9,21 +9,35 @@
 
 
 //  -----  Variables SCSS  -----
-$jq-primary: #21759b;
-$jq-secondary: #0769ad;
-$jq-accent-bg: #eef6fb;
-$jq-text: #0d2035;
-$jq-text-light: #3a5672;
-$jq-card-bg: #ffffff;
-$jq-card-border: rgba(33, 117, 155, 0.2);
-$jq-card-shadow: 0 4px 16px rgba(33, 117, 155, 0.1);
-$jq-tag-bg: rgba(33, 117, 155, 0.08);
-$jq-tag-color: #21759b;
-$jq-tag-border: rgba(33, 117, 155, 0.3);
+$jq-primary:          #78cff5;;
+$jq-secondary:        #0769ad;
+$jq-accent-bg:        #eef6fb;
+$jq-text:             #0d2035;
+$jq-text-light:       #3a5672;
+$jq-card-bg:          var.$color-white;
+$jq-card-border:      rgba($jq-primary, 0.2);
+$jq-card-shadow:      0 4px 16px rgba($jq-primary, 0.1);
+$jq-card-shadow-hover: 0 8px 28px rgba($jq-primary, 0.2);
+$jq-tag-bg:           rgba($jq-primary, 0.08);
+$jq-tag-color:        $jq-primary;
+$jq-tag-border:       rgba($jq-primary, 0.3);
+$color-white:         var.$color-white;
+$shadow-hero-title:   0 2px 8px rgba(0, 0, 0, 0.35);
 
+
+//  -----  Layout Header  -----
+.header__dynamic-title {
+    color: $jq-primary;
+}
 
 
 //  -----  jquery-page  -----
+
+.main__title {
+    color: $jq-primary;
+    background: var.$bg-gradient-header;
+}
+
 .jquery-page {
 
     width: 100%;
@@ -37,7 +51,7 @@ $jq-tag-border: rgba(33, 117, 155, 0.3);
     &__hero {
         width: 100%;
         min-height: 18rem;
-        background: linear-gradient(135deg, #0d2035 0%, $jq-secondary 55%, $jq-primary 100%);
+        background: linear-gradient(135deg, $jq-text 0%, $jq-secondary 55%, $jq-primary 100%);
         border-radius: 1rem;
         display: flex;
         justify-content: center;
@@ -60,7 +74,7 @@ $jq-tag-border: rgba(33, 117, 155, 0.3);
 
     &__hero-badge {
         text-align: center;
-        color: #fff;
+        color: $color-white;
     }
 
     &__hero-tag {
@@ -84,7 +98,7 @@ $jq-tag-border: rgba(33, 117, 155, 0.3);
         font-size: 3rem;
         font-weight: 700;
         margin: 0.6rem 0 0.4rem;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+        text-shadow: $shadow-hero-title;
 
         @include mx.tablet {
             font-size: 4.5rem;
@@ -207,7 +221,7 @@ $jq-tag-border: rgba(33, 117, 155, 0.3);
 
         &:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 28px rgba(33, 117, 155, 0.2);
+            box-shadow: $jq-card-shadow-hover;
         }
     }
 
@@ -294,7 +308,7 @@ $jq-tag-border: rgba(33, 117, 155, 0.3);
 
         &:hover {
             background-color: $jq-primary;
-            color: #fff;
+            color: $color-white;
             transform: scale(1.06);
         }
 

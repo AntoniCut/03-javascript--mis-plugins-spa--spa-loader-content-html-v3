@@ -8,6 +8,20 @@
 @use '../../base/mixins' as mix;
 
 
+//  -----  Variables  -----
+$shadow-footer-outer: var.$shadow-outer;
+$footer-shadow-title:        2px 2px 5px rgba(0, 0, 0, 0.5);
+$footer-border-list:         rgba(var.$color-light, 0.12);
+$footer-border-list-hover:   rgba(var.$color-light, 0.2);
+$footer-bg-list:             linear-gradient(180deg, rgba(var.$color-white, 0.08), rgba(var.$color-white, 0.04));
+$footer-bg-list-hover:       linear-gradient(180deg, rgba(var.$color-white, 0.11), rgba(var.$color-white, 0.06));
+$footer-shadow-list:         0 10px 24px rgba(var.$color-navy, 0.12);
+$footer-shadow-list-hover:   0 14px 28px rgba(var.$color-navy, 0.16);
+$color-link:          rgba(var.$color-light, 0.88);
+$bg-link-dot:         rgba(var.$color-focus, 0.85);
+$shadow-link-dot:     0 0 0 0.35rem rgba(var.$color-focus, 0.12);
+$footer-outline-focus:       rgba(var.$color-focus, 0.9);
+
 
 .layout__footer {
     width: 100%;
@@ -22,7 +36,7 @@
     padding: 2rem;
     text-align: center;
     background: var.$bg-gradient-footer;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: $shadow-footer-outer;
 }
 
 .footer__header {
@@ -34,15 +48,15 @@
 .footer__title {
     width: 102.4rem;
     font-size: 2.4rem;
-    color: #E6EBF1;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    color: var.$color-light;
+    text-shadow: $footer-shadow-title;
 }
 
 .footer__separator {
     max-width: 102.4rem;
     width: 100%;
     height: 2px;
-    background-color: #E6EBF1;
+    background-color: var.$color-light;
 }
 
 .footer__main {
@@ -79,18 +93,18 @@
     break-inside: avoid;
     -webkit-column-break-inside: avoid;
     page-break-inside: avoid;
-    border: 1px solid rgba(230, 235, 241, 0.12);
+    border: 1px solid $footer-border-list;
     border-radius: 1.8rem;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
-    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+    background: $footer-bg-list;
+    box-shadow: $footer-shadow-list;
     backdrop-filter: blur(8px);
     transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
 
     &:hover {
         transform: translateY(-0.2rem);
-        border-color: rgba(230, 235, 241, 0.2);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.06));
-        box-shadow: 0 14px 28px rgba(15, 23, 42, 0.16);
+        border-color: $footer-border-list-hover;
+        background: $footer-bg-list-hover;
+        box-shadow: $footer-shadow-list-hover;
     }
 }
 
@@ -105,7 +119,7 @@
     font-size: 1.8rem;
     font-weight: 800;
     line-height: 1.3;
-    color: #fff;
+    color: var.$color-white;
     text-align: left;
     text-wrap: balance;
 }
@@ -117,7 +131,7 @@
     min-height: 3.2rem;
     padding-left: 1.4rem;
     margin-left: 0;
-    color: rgba(230, 235, 241, 0.88);
+    color: $color-link;
     text-decoration: none;
     transition: transform 160ms ease, color 160ms ease;
 
@@ -128,17 +142,17 @@
         width: 0.7rem;
         height: 0.7rem;
         border-radius: 999px;
-        background: rgba(248, 156, 21, 0.85);
-        box-shadow: 0 0 0 0.35rem rgba(248, 156, 21, 0.12);
+        background: $bg-link-dot;
+        box-shadow: $shadow-link-dot;
     }
 
     &:hover {
-        color: #fff;
+        color: var.$color-white;
         transform: translateX(0.4rem);
     }
 
     &:focus-visible {
-        outline: 2px solid rgba(248, 156, 21, 0.9);
+        outline: 2px solid $footer-outline-focus;
         outline-offset: 4px;
         border-radius: 0.8rem;
     }

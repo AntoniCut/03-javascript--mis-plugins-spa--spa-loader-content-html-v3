@@ -9,22 +9,36 @@
 
 
 //  -----  Variables SCSS  -----
-$jqui-primary: #4c6d94;
-$jqui-secondary: #3a7ab8;
-$jqui-accent: #f9a825;
-$jqui-accent-bg: #f0f5fb;
-$jqui-text: #0d1f30;
-$jqui-text-light: #3d5470;
-$jqui-card-bg: #ffffff;
-$jqui-card-border: rgba(76, 109, 148, 0.2);
-$jqui-card-shadow: 0 4px 16px rgba(76, 109, 148, 0.1);
-$jqui-tag-bg: rgba(76, 109, 148, 0.08);
-$jqui-tag-color: #4c6d94;
-$jqui-tag-border: rgba(76, 109, 148, 0.3);
+$jqui-primary:          #4c6d94;
+$jqui-secondary:        #3a7ab8;
+$jqui-accent:           #f9a825;
+$jqui-accent-bg:        #f0f5fb;
+$jqui-text:             #0d1f30;
+$jqui-text-light:       #3d5470;
+$jqui-card-bg:          var.$color-white;
+$jqui-card-border:      rgba($jqui-primary, 0.2);
+$jqui-card-shadow:      0 4px 16px rgba($jqui-primary, 0.1);
+$jqui-card-shadow-hover: 0 8px 28px rgba($jqui-primary, 0.2);
+$jqui-tag-bg:           rgba($jqui-primary, 0.08);
+$jqui-tag-color:        $jqui-primary;
+$jqui-tag-border:       rgba($jqui-primary, 0.3);
+$color-white:           var.$color-white;
+$shadow-hero-title:     0 2px 8px rgba(0, 0, 0, 0.35);
 
+
+//  -----  Layout Header  -----
+.header__dynamic-title {
+    color: $jqui-primary;
+}
 
 
 //  -----  jquery-ui-page  -----
+
+.main__title {
+    color: $jqui-primary;
+    background: var.$bg-gradient-header;
+}
+
 .jquery-ui-page {
 
     width: 100%;
@@ -38,7 +52,7 @@ $jqui-tag-border: rgba(76, 109, 148, 0.3);
     &__hero {
         width: 100%;
         min-height: 18rem;
-        background: linear-gradient(135deg, #0d1f30 0%, $jqui-primary 45%, $jqui-secondary 75%, $jqui-accent 100%);
+        background: linear-gradient(135deg, $jqui-text 0%, $jqui-primary 45%, $jqui-secondary 75%, $jqui-accent 100%);
         border-radius: 1rem;
         display: flex;
         justify-content: center;
@@ -61,7 +75,7 @@ $jqui-tag-border: rgba(76, 109, 148, 0.3);
 
     &__hero-badge {
         text-align: center;
-        color: #fff;
+        color: $color-white;
     }
 
     &__hero-tag {
@@ -85,7 +99,7 @@ $jqui-tag-border: rgba(76, 109, 148, 0.3);
         font-size: 3rem;
         font-weight: 700;
         margin: 0.6rem 0 0.4rem;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+        text-shadow: $shadow-hero-title;
 
         @include mx.tablet {
             font-size: 4.5rem;
@@ -213,7 +227,7 @@ $jqui-tag-border: rgba(76, 109, 148, 0.3);
 
         &:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 28px rgba(76, 109, 148, 0.2);
+            box-shadow: $jqui-card-shadow-hover;
         }
     }
 
@@ -300,7 +314,7 @@ $jqui-tag-border: rgba(76, 109, 148, 0.3);
 
         &:hover {
             background-color: $jqui-primary;
-            color: #fff;
+            color: $color-white;
             transform: scale(1.06);
         }
 

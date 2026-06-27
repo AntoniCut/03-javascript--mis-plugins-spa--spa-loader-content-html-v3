@@ -8,6 +8,18 @@
 @use '../../base/variables' as var;
 
 
+//  -----  Variables  -----
+$color-black:       #000000;
+$shadow-main-title: 0 2px 4px rgba(0, 0, 0, 0.3);
+// Sección img-script
+$bg-text:              #c6d6f3;
+$border-script:        #34495e;
+$bg-script:            #1e1e1e;
+$bg-script-track:      #2c3e50;
+$bg-script-thumb:      linear-gradient(180deg, #f1c40f, #2980b9);
+$bg-script-thumb-hover: linear-gradient(180deg, #f39c12, #3498db);
+
+
 .layout__main {
     flex: 1;
     width: 100%;
@@ -32,9 +44,9 @@
     padding: 2rem;
     font-size: 3rem;
     font-weight: 600;
-    color: black;
+    color: $color-black;
     background-color: var.$color-primary;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: $shadow-main-title;
     text-align: center;
     border-radius: 5px;
 }
@@ -56,7 +68,7 @@
 .main__text {
     padding: 2rem;
     font-size: 1.6rem;
-    background-color: #c6d6f3;
+    background-color: $bg-text;
 }
 
 
@@ -68,8 +80,8 @@
     max-width: 50rem;
     height: 60rem;
     overflow: auto;
-    border: 2px solid #34495e;
-    background-color: #1e1e1e;
+    border: 2px solid $border-script;
+    background-color: $bg-script;
     padding: 0.5rem;
 
     /*  -----  Ancho y Alto Barras  -----  */
@@ -80,18 +92,18 @@
 
     /*  -----  Fondo del track (canal del scroll)  -----  */
     &::-webkit-scrollbar-track {
-        background: #2c3e50;
+        background: $bg-script-track;
         border-radius: 10px;
     }
 
     /*  -----  Barra deslizante (thumb)  -----  */
     &::-webkit-scrollbar-thumb {
-        background: linear-gradient(180deg, #f1c40f, #2980b9);
+        background: $bg-script-thumb;
         border-radius: 10px;
     }
 
     /*  -----  Hover sobre la barra deslizante  -----  */
     &::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(180deg, #f39c12, #3498db);
+        background: $bg-script-thumb-hover;
     }
 }

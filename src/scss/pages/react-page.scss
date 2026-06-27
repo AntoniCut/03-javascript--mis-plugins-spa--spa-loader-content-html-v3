@@ -4,19 +4,39 @@
     *  ----------------------------------------------------------------  *
 */
 
-//  -----  Variables  -----
-$react-primary: #61dafb;
-$react-secondary: #149eca;
-$react-accent-bg: #f0f9fb;
-$react-text: #2c3e50;
-$react-text-light: #5d6d7e;
-$react-card-bg: #ffffff;
-$react-card-border: rgba(97, 218, 251, 0.2);
-$react-card-shadow: 0 4px 16px rgba(97, 218, 251, 0.1);
-$react-tag-bg: rgba(97, 218, 251, 0.08);
-$react-tag-color: #61dafb;
-$react-tag-border: rgba(97, 218, 251, 0.3);
+@use '../base/variables' as var;
 
+
+//  -----  Variables  -----
+$react-primary:          var.$color-secondary;
+$react-secondary:        #149eca;
+$react-hero-end:         #78e4f5;
+$react-accent-bg:        #f0f9fb;
+$react-text:             #2c3e50;
+$react-text-light:       #5d6d7e;
+$react-card-bg:          var.$color-white;
+$react-card-border:      rgba($react-primary, 0.2);
+$react-card-shadow:      0 4px 16px rgba($react-primary, 0.1);
+$react-card-shadow-hover: 0 8px 28px rgba($react-primary, 0.2);
+$react-tag-bg:           rgba($react-primary, 0.08);
+$react-tag-color:        $react-primary;
+$react-tag-border:       rgba($react-primary, 0.3);
+$color-white:            var.$color-white;
+$shadow-hero-title:      var.$shadow-text;
+
+
+//  -----  Layout Header  -----
+.header__dynamic-title {
+    color: $react-primary;
+}
+
+
+//  -----  react-page  -----
+
+.main__title {
+    color: $react-primary;
+    background: var.$bg-gradient-header;
+}
 
 .react-page {
     width: 100%;
@@ -29,7 +49,7 @@ $react-tag-border: rgba(97, 218, 251, 0.3);
 .react-page__hero {
     width: 100%;
     min-height: 18rem;
-    background: linear-gradient(135deg, $react-primary 0%, $react-secondary 60%, #78e4f5 100%);
+    background: linear-gradient(135deg, $react-primary 0%, $react-secondary 60%, $react-hero-end 100%);
     border-radius: 1rem;
     display: flex;
     justify-content: center;
@@ -58,7 +78,7 @@ $react-tag-border: rgba(97, 218, 251, 0.3);
 
 .react-page__hero-badge {
     text-align: center;
-    color: #fff;
+    color: $color-white;
 }
 
 .react-page__hero-tag {
@@ -86,7 +106,7 @@ $react-tag-border: rgba(97, 218, 251, 0.3);
     font-size: 3rem;
     font-weight: 700;
     margin: 0.6rem 0 0.4rem;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: $shadow-hero-title;
 }
 
 @media (min-width: 768px) {
@@ -215,7 +235,7 @@ $react-tag-border: rgba(97, 218, 251, 0.3);
 
 .react-page__feature:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 28px rgba(97, 218, 251, 0.2);
+    box-shadow: $react-card-shadow-hover;
 }
 
 .react-page__feature-icon {
@@ -304,7 +324,7 @@ $react-tag-border: rgba(97, 218, 251, 0.3);
 
 .react-page__concept:hover {
     background-color: $react-primary;
-    color: #fff;
+    color: $color-white;
     transform: scale(1.06);
 }
 

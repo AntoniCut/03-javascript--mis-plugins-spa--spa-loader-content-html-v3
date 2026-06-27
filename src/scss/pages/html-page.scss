@@ -9,21 +9,37 @@
 
 
 //  -----  Variables SCSS  -----
-$html-primary: #e44d26;
-$html-secondary: #f16529;
-$html-accent-bg: #fff8f3;
-$html-text: #2c3e50;
-$html-text-light: #5d6d7e;
-$html-card-bg: #ffffff;
-$html-card-border: rgba(228, 77, 38, 0.2);
-$html-card-shadow: 0 4px 16px rgba(228, 77, 38, 0.1);
-$html-tag-bg: rgba(228, 77, 38, 0.08);
-$html-tag-color: #e44d26;
-$html-tag-border: rgba(228, 77, 38, 0.3);
+$html-primary:          #e44d26;
+$html-secondary:        #f16529;
+$html-hero-end:         #ff8c42;
+$html-accent-bg:        #fff8f3;
+$html-text:             #2c3e50;
+$html-text-light:       #5d6d7e;
+$html-card-bg:          var.$color-white;
+$html-card-border:      rgba($html-primary, 0.2);
+$html-card-shadow:      0 4px 16px rgba($html-primary, 0.1);
+$html-card-shadow-hover: 0 8px 28px rgba($html-primary, 0.2);
+$html-tag-bg:           rgba($html-primary, 0.08);
+$html-tag-color:        $html-primary;
+$html-tag-border:       rgba($html-primary, 0.3);
+$color-white:           var.$color-white;
+$shadow-hero-title:     var.$shadow-text;
 
+
+
+//  -----  Layout Header  -----
+.header__dynamic-title {
+    color: $html-primary;
+}
 
 
 //  -----  html-page  -----
+
+.main__title {
+    color: $html-primary;
+    background: var.$bg-gradient-header;
+}
+
 .html-page {
 
     width: 100%;
@@ -37,7 +53,7 @@ $html-tag-border: rgba(228, 77, 38, 0.3);
     &__hero {
         width: 100%;
         min-height: 18rem;
-        background: linear-gradient(135deg, $html-primary 0%, $html-secondary 60%, #ff8c42 100%);
+        background: linear-gradient(135deg, $html-primary 0%, $html-secondary 60%, $html-hero-end 100%);
         border-radius: 1rem;
         display: flex;
         justify-content: center;
@@ -60,7 +76,7 @@ $html-tag-border: rgba(228, 77, 38, 0.3);
 
     &__hero-badge {
         text-align: center;
-        color: #fff;
+        color: $color-white;
     }
 
     &__hero-tag {
@@ -84,7 +100,7 @@ $html-tag-border: rgba(228, 77, 38, 0.3);
         font-size: 3rem;
         font-weight: 700;
         margin: 0.6rem 0 0.4rem;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        text-shadow: $shadow-hero-title;
 
         @include mx.tablet {
             font-size: 4.5rem;
@@ -198,7 +214,7 @@ $html-tag-border: rgba(228, 77, 38, 0.3);
 
         &:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 28px rgba(228, 77, 38, 0.2);
+            box-shadow: $html-card-shadow-hover;
         }
     }
 
@@ -285,7 +301,7 @@ $html-tag-border: rgba(228, 77, 38, 0.3);
 
         &:hover {
             background-color: $html-primary;
-            color: #fff;
+            color: $color-white;
             transform: scale(1.06);
         }
 

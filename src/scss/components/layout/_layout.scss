@@ -7,6 +7,13 @@
 @use '../../base/variables' as var;
 
 
+//  -----  Variables  -----
+$shadow-body:    inset 50px 50px 100px rgb(209, 220, 235);
+$layout-bg-btn:         cornflowerblue;
+$color-btn-text: var.$color-white;
+$layout-bg-btn-hover:   rgb(24, 56, 116);
+
+
 html {
     font-size: 10px;
 }
@@ -17,7 +24,7 @@ body {
     font-family: var.$font-primary;
     font-style: normal;
     font-size: 1.6rem;
-    box-shadow: inset 50px 50px 100px rgb(209, 220, 235);
+    box-shadow: $shadow-body;
 }
 
 .layout {
@@ -54,8 +61,8 @@ body {
 
 button {
     padding: 1rem 2rem;
-    background-color: cornflowerblue;
-    color: #fff;
+    background-color: $layout-bg-btn;
+    color: $color-btn-text;
     border: none;
     outline: none;
     cursor: pointer;
@@ -63,5 +70,5 @@ button {
 }
 
 button:hover {
-    background-color: rgb(24, 56, 116);
+    background-color: $layout-bg-btn-hover;
 }

@@ -9,23 +9,41 @@
 
 
 //  -----  Variables SCSS  -----
-$js-primary: #f7df1e;
-$js-primary-dark: #c8a800;
-$js-on-primary: #323330;
-$js-secondary: #323330;
-$js-accent-bg: #fefde8;
-$js-text: #1a1a1a;
-$js-text-light: #555555;
-$js-card-bg: #ffffff;
-$js-card-border: rgba(200, 168, 0, 0.3);
-$js-card-shadow: 0 4px 16px rgba(200, 168, 0, 0.12);
-$js-tag-bg: rgba(247, 223, 30, 0.15);
-$js-tag-color: #6b5a00;
-$js-tag-border: rgba(200, 168, 0, 0.4);
+$js-primary:            #f7df1e;
+$js-primary-dark:       #c8a800;
+$js-on-primary:         #323330;
+$js-secondary:          #323330;
+$js-hero-mid:           #4a4a40;
+$js-accent-bg:          #fefde8;
+$js-text:               #1a1a1a;
+$js-text-light:         #555555;
+$js-card-bg:            var.$color-white;
+$js-card-border:        rgba($js-primary-dark, 0.3);
+$js-card-shadow:        0 4px 16px rgba($js-primary-dark, 0.12);
+$js-card-shadow-hover:  0 8px 28px rgba($js-primary-dark, 0.22);
+$js-tag-bg:             rgba($js-primary, 0.15);
+$js-tag-color:          #6b5a00;
+$js-tag-border:         rgba($js-primary-dark, 0.4);
+$js-hero-glow:          rgba($js-primary, 0.04);
+$js-hero-text-glow:     0 0 30px rgba($js-primary, 0.5);
+$js-hero-subtitle-color: rgba(255, 255, 255, 0.75);
+$color-white:           var.$color-white;
+$shadow-hero-title:     0 2px 8px rgba(0, 0, 0, 0.5);
 
+
+//  -----  Layout Header  -----
+.header__dynamic-title {
+    color: $js-primary;
+}
 
 
 //  -----  js-page  -----
+
+.main__title {
+    color: $js-primary;
+    background: var.$bg-gradient-header;
+}
+
 .js-page {
 
     width: 100%;
@@ -39,7 +57,7 @@ $js-tag-border: rgba(200, 168, 0, 0.4);
     &__hero {
         width: 100%;
         min-height: 18rem;
-        background: linear-gradient(135deg, $js-secondary 0%, #4a4a40 50%, #1a1a1a 100%);
+        background: linear-gradient(135deg, $js-secondary 0%, $js-hero-mid 50%, $js-text 100%);
         border-radius: 1rem;
         display: flex;
         justify-content: center;
@@ -53,7 +71,7 @@ $js-tag-border: rgba(200, 168, 0, 0.4);
             position: absolute;
             font-size: 20rem;
             font-weight: 900;
-            color: rgba(247, 223, 30, 0.04);
+            color: $js-hero-glow;
             font-family: monospace;
             right: -2rem;
             bottom: -4rem;
@@ -88,7 +106,7 @@ $js-tag-border: rgba(200, 168, 0, 0.4);
         font-family: monospace;
         letter-spacing: 0.3rem;
         color: $js-primary;
-        text-shadow: 0 0 30px rgba(247, 223, 30, 0.5);
+        text-shadow: $js-hero-text-glow;
 
         @include mx.tablet {
             font-size: 6rem;
@@ -103,8 +121,8 @@ $js-tag-border: rgba(200, 168, 0, 0.4);
         font-size: 3rem;
         font-weight: 700;
         margin: 0.6rem 0 0.4rem;
-        color: #fff;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        color: $color-white;
+        text-shadow: $shadow-hero-title;
 
         @include mx.tablet {
             font-size: 4.5rem;
@@ -117,7 +135,7 @@ $js-tag-border: rgba(200, 168, 0, 0.4);
 
     &__hero-subtitle {
         font-size: 1.4rem;
-        color: rgba(255, 255, 255, 0.75);
+        color: $js-hero-subtitle-color;
         letter-spacing: 0.05rem;
 
         @include mx.tablet {
@@ -218,7 +236,7 @@ $js-tag-border: rgba(200, 168, 0, 0.4);
 
         &:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 28px rgba(200, 168, 0, 0.22);
+            box-shadow: $js-card-shadow-hover;
         }
     }
 

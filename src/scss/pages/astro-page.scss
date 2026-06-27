@@ -7,21 +7,34 @@
 @use '../base/variables' as var;
 
 //  -----  Variables  -----
-$astro-primary: #ff5d01;
-$astro-secondary: #ff7c47;
-$astro-accent-bg: #fff4ef;
-$astro-text: #2c3e50;
-$astro-text-light: #5d6d7e;
-$astro-card-bg: #ffffff;
-$astro-card-border: rgba(255, 93, 1, 0.2);
-$astro-card-shadow: 0 4px 16px rgba(255, 93, 1, 0.1);
-$astro-tag-bg: rgba(255, 93, 1, 0.08);
-$astro-tag-color: #ff5d01;
-$astro-tag-border: rgba(255, 93, 1, 0.3);
+$astro-primary:          #ff5d01;
+$astro-secondary:        #ff7c47;
+$astro-hero-end:         #ff8c42;
+$astro-accent-bg:        #fff4ef;
+$astro-text:             #2c3e50;
+$astro-text-light:       #5d6d7e;
+$astro-card-bg:          var.$color-white;
+$astro-card-border:      rgba($astro-primary, 0.2);
+$astro-card-shadow:      0 4px 16px rgba($astro-primary, 0.1);
+$astro-card-shadow-hover: 0 8px 28px rgba($astro-primary, 0.2);
+$astro-tag-bg:           rgba($astro-primary, 0.08);
+$astro-tag-color:        $astro-primary;
+$astro-tag-border:       rgba($astro-primary, 0.3);
+$color-white:            var.$color-white;
+$shadow-hero-title:      var.$shadow-text;
+
+
+//  -----  Layout Header  -----
+.header__dynamic-title {
+    color: $astro-primary;
+}
+
+
+//  -----  astro-page  -----
 
 .main__title {
-    color: $astro-accent-bg;
-    background: linear-gradient(135deg, $astro-primary 0%, $astro-secondary 60%, #ff8c42 100%);
+    color: $astro-primary;
+    background: var.$bg-gradient-header;
 }
 
 .astro-page {
@@ -35,7 +48,7 @@ $astro-tag-border: rgba(255, 93, 1, 0.3);
 .astro-page__hero {
     width: 100%;
     min-height: 18rem;
-    background: linear-gradient(135deg, $astro-primary 0%, $astro-secondary 60%, #ff8c42 100%);
+    background: linear-gradient(135deg, $astro-primary 0%, $astro-secondary 60%, $astro-hero-end 100%);
     border-radius: 1rem;
     display: flex;
     justify-content: center;
@@ -64,7 +77,7 @@ $astro-tag-border: rgba(255, 93, 1, 0.3);
 
 .astro-page__hero-badge {
     text-align: center;
-    color: #fff;
+    color: $color-white;
 }
 
 .astro-page__hero-tag {
@@ -92,7 +105,7 @@ $astro-tag-border: rgba(255, 93, 1, 0.3);
     font-size: 3rem;
     font-weight: 700;
     margin: 0.6rem 0 0.4rem;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: $shadow-hero-title;
 }
 
 @media (min-width: 768px) {
@@ -221,7 +234,7 @@ $astro-tag-border: rgba(255, 93, 1, 0.3);
 
 .astro-page__feature:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 28px rgba(255, 93, 1, 0.2);
+    box-shadow: $astro-card-shadow-hover;
 }
 
 .astro-page__feature-icon {
@@ -310,7 +323,7 @@ $astro-tag-border: rgba(255, 93, 1, 0.3);
 
 .astro-page__concept:hover {
     background-color: $astro-primary;
-    color: #fff;
+    color: $color-white;
     transform: scale(1.06);
 }
 
