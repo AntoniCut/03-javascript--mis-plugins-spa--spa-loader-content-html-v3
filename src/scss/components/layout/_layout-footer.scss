@@ -8,36 +8,36 @@
 @use '../../base/mixins' as mix;
 
 
-//  -----  Variables  -----
-$shadow-footer-outer: var.$shadow-outer;
-$footer-shadow-title:        2px 2px 5px rgba(0, 0, 0, 0.5);
-$footer-border-list:         rgba(var.$color-light, 0.12);
-$footer-border-list-hover:   rgba(var.$color-light, 0.2);
-$footer-bg-list:             linear-gradient(180deg, rgba(var.$color-white, 0.08), rgba(var.$color-white, 0.04));
-$footer-bg-list-hover:       linear-gradient(180deg, rgba(var.$color-white, 0.11), rgba(var.$color-white, 0.06));
-$footer-shadow-list:         0 10px 24px rgba(var.$color-navy, 0.12);
-$footer-shadow-list-hover:   0 14px 28px rgba(var.$color-navy, 0.16);
-$color-link:          rgba(var.$color-light, 0.88);
-$bg-link-dot:         rgba(var.$color-focus, 0.85);
-$shadow-link-dot:     0 0 0 0.35rem rgba(var.$color-focus, 0.12);
-$footer-outline-focus:       rgba(var.$color-focus, 0.9);
-
-
 .layout__footer {
-    width: 100%;
+    min-width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
 }
 
+
+//  -----  Footer Container  -----
+
 .footer__container {
-    width: 100%;
+    width: 100vw;
+    padding-bottom: 5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4rem;
-    padding: 2rem;
-    text-align: center;
-    background: var.$bg-gradient-footer;
-    box-shadow: $shadow-footer-outer;
+    z-index: 10;
+
+    background-color: var.$bg-dark-footer;
+    background-image: var.$bg-grid-pattern-footer;
+    background-size: var.$bg-grid-size-32x32;
+    background-repeat: repeat;
+
+    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.3);
 }
+
+
+//  -----  Footer Header  -----
+//  Los estilos del footer header están definidos en _layout-header.scss
+//  ya que reutiliza las mismas clases (.header__container, .header__brand, etc.)
 
 .footer__header {
     width: 100%;
@@ -45,115 +45,93 @@ $footer-outline-focus:       rgba(var.$color-focus, 0.9);
     justify-content: center;
 }
 
-.footer__title {
-    width: 102.4rem;
-    font-size: 2.4rem;
-    color: var.$color-light;
-    text-shadow: $footer-shadow-title;
-}
 
-.footer__separator {
-    max-width: 102.4rem;
-    width: 100%;
-    height: 2px;
-    background-color: var.$color-light;
-}
+//  -----  Footer Main  -----
 
 .footer__main {
+
+    position: relative;
+    max-width: 120rem;
     width: 100%;
-    max-width: 144rem;
     margin: 0 auto;
-    padding: 1rem 1.2rem 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    padding: 2rem;
+
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 2rem;
 
+    align-items: start;
+
     @include mix.tablet {
-        padding: 1rem 2rem 0;
-        gap: 2.4rem;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 2rem 5rem;
     }
 
     @include mix.desktopSM {
-        padding: 1rem 4rem 0;
-        gap: 3rem;
+        grid-template-columns: repeat(3, 1fr);
     }
+
 }
+
+
+//  -----  Footer List  -----
 
 .footer__list {
-    position: relative;
-    flex: 0 1 26rem;
-    min-width: 20rem;
-    margin: 0 0 2.4rem;
-    padding: 1.6rem 1.6rem 1.8rem;
-    display: inline-block;
-    vertical-align: top;
-    box-sizing: border-box;
-    list-style: none;
-    break-inside: avoid;
-    -webkit-column-break-inside: avoid;
-    page-break-inside: avoid;
-    border: 1px solid $footer-border-list;
-    border-radius: 1.8rem;
-    background: $footer-bg-list;
-    box-shadow: $footer-shadow-list;
-    backdrop-filter: blur(8px);
-    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
-
-    &:hover {
-        transform: translateY(-0.2rem);
-        border-color: $footer-border-list-hover;
-        background: $footer-bg-list-hover;
-        box-shadow: $footer-shadow-list-hover;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1rem 1rem 2rem;
 }
+
+
+//  -----  Footer List Title  -----
+
+.footer__list-title {
+    width: 100%;
+    margin-bottom: 2rem;
+    padding-left: 2rem;
+
+    font-size: 1.2rem;
+    color: #fff;
+
+    border-bottom: 1px solid white;
+}
+
+.item__link-title {
+    font-weight: bold;
+}
+
+
+//  -----  Footer Items  -----
 
 .footer__item {
     width: 100%;
-    margin-top: 0.8rem;
-    list-style: none;
 }
 
-.footer__list-title {
-    margin: 0 0 0.8rem;
-    font-size: 1.8rem;
-    font-weight: 800;
-    line-height: 1.3;
-    color: var.$color-white;
-    text-align: left;
-    text-wrap: balance;
-}
+.footer__item a {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding-left: 2rem;
 
-.footer__list a {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    min-height: 3.2rem;
-    padding-left: 1.4rem;
-    margin-left: 0;
-    color: $color-link;
-    text-decoration: none;
-    transition: transform 160ms ease, color 160ms ease;
+    font-size: 1rem;
+    color: #f5e3e3;
 
-    &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        width: 0.7rem;
-        height: 0.7rem;
-        border-radius: 999px;
-        background: $bg-link-dot;
-        box-shadow: $shadow-link-dot;
-    }
+    transition: all 300ms ease-in-out;
 
     &:hover {
-        color: var.$color-white;
-        transform: translateX(0.4rem);
+        padding-left: 3rem;
+        color: #fff;
+        font-weight: bold;
     }
+}
 
-    &:focus-visible {
-        outline: 2px solid $footer-outline-focus;
-        outline-offset: 4px;
-        border-radius: 0.8rem;
-    }
+
+//  -----  Footer List Separator  -----
+
+.footer__list-separator {
+    width: 100%;
+    height: 0.1rem;
+    margin-top: auto;
+    background-color: #E6EBF1;
 }
