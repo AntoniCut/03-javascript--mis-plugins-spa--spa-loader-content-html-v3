@@ -184,7 +184,7 @@ red de la mutación del DOM en **3 fases**:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│  FASE 1 — PRECARGA (async, FUERA de la View Transition)                │
+│  FASE 1 — PRECARGA (async, FUERA de la View Transition)                 │
 │  preloadRouteContent(route, signal)                                     │
 │    • fetch() de todos los HTML: components, pagesComponents, Shiki      │
 │    • NO toca el DOM. Devuelve un payload con el HTML listo (strings)    │
@@ -197,7 +197,7 @@ red de la mutación del DOM en **3 fases**:
 │  FASE 2 — MUTACIÓN (SÍNCRONA, DENTRO de document.startViewTransition)   │
 │  applyPreloadedContent(payload, route)                                  │
 │    • Callback síncrono → Chrome no hace timeout → animación fluida.     │
-│    • Inyecta en ORDEN DE DEPENDENCIA (contenedores anidados):          │
+│    • Inyecta en ORDEN DE DEPENDENCIA (contenedores anidados):           │
 │        (1) components     → layoutHeader/Navbar/Main/Footer             │
 │        (2) pagesComponents → ahora [data-component-page="..."] existe   │
 │        (3) Markdown Shiki  → ahora [data-shiki="..."] existe            │
@@ -210,7 +210,7 @@ red de la mutación del DOM en **3 fases**:
 │  FASE 3 — SCRIPTS (async, DESPUÉS de la View Transition)                │
 │  applyRouteMetaAsync(route)                                             │
 │    • Carga los scripts de route.scripts secuencialmente.                │
-│    • Necesitan el DOM ya mutado (contenedores inyectados) para funcionar.│
+│    • Necesitan el DOM ya mutado (contenedores inyectados) para funcionar│
 │    • notifyRouteLoaded(route) → emite spa:route-loaded.                 │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
