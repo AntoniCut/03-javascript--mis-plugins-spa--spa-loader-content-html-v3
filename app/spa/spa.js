@@ -6,7 +6,7 @@
 
 
 import { routeManifest } from '../routes/route-manifest.js';
-import { spaLoaderContentHtml } from "../plugins/spa-loader-content-html/v3.1/spa-loader-content-html.js";
+import { spaLoaderContentHtml } from '../plugins/spa-loader-content-html/v3.1/spa-loader-content-html.js';
 
 
 /** @type {string} - `Base del proyecto` */

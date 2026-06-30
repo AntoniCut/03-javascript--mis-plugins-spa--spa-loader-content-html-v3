@@ -35,6 +35,14 @@ export const spaLoaderContentHtml = (options = {}) => {
     let isPopNavigation = false;
 
 
+    /** - `Indica si hay una carga de ruta en curso, para evitar navegaciones concurrentes (race conditions ante clics rápidos)` */
+    let isNavigating = false;
+
+
+    /** @type {AbortController|null} - `Controller activo para abortar fetchs de la navegación en curso al iniciar una nueva` */
+    let activeNavigationAbort = null;
+
+
 
     /*
         *  -------------------------------------------------------------------------  *
@@ -62,6 +70,10 @@ export const spaLoaderContentHtml = (options = {}) => {
     const routeCache = new Map();
 
 
+    /** @type {Set<string>} - `Registro de módulos de ruta cuyo import() falló, para evitar reintentos repetidos sobre rutas rotas` */
+    const brokenRouteModules = new Set();
+
+
 
     /*
         *  ---------------------------------------  *
@@ -71,14 +83,15 @@ export const spaLoaderContentHtml = (options = {}) => {
 
 
     /**
-    * ----------------------
-    * -----  `init()`  -----
-    * ----------------------
-    * - `Función de inicialización del plugin (con lazy loading de rutas)`
-    * @returns {void} - No devuelve nada, pero inicializa el plugin y configura el estado inicial.
-    */
+     * ----------------------
+     * -----  `init()`  -----
+     * ----------------------
+     * - `Función de inicialización del plugin (con lazy loading de rutas)`
+     * @async
+     * @returns {Promise<void>} - No devuelve nada, pero inicializa el plugin y configura el estado inicial.
+     */
 
-    const init = () => {
+    const init = async () => {
 
         console.log('\n');
         console.log("%c ✅ Plugin SPA cargado correctamente - spa-loader-content-html.js", "background:#2ecc71; color:white; padding:4px;");
@@ -101,13 +114,15 @@ export const spaLoaderContentHtml = (options = {}) => {
         //  -----  Si se encuentra una entrada en el manifest, cargar la ruta correspondiente  -----
         if (entry) {
 
-            //  -----  Importar dinámicamente el módulo de ruta y cargar su contenido  -----
-            loadRouteModule(entry.file).then((route) => {
+            try {
+
+                //  -----  Importar dinámicamente el módulo de ruta y cargar su contenido  -----
+                const route = await loadRouteModule(entry.file);
 
                 if (route)
                     loadContent(route);
                 else
-                    loadNotFoundRoute('init');
+                    await loadNotFoundRoute('init');
 
                 /** Pathname inicial normalizado */
                 const initialPathname = buildPathname(route?.path || entry.path || '');
@@ -124,14 +139,15 @@ export const spaLoaderContentHtml = (options = {}) => {
                     initialPathname
                 );
 
-            }).catch(() => {
-                loadNotFoundRoute('init');
-            });
+            } catch (e) {
+
+                await loadNotFoundRoute('init');
+            }
 
         } else {
 
             //  -----  Si no hay entrada en el manifest, intentar cargar la ruta 404  -----
-            loadNotFoundRoute('init');
+            await loadNotFoundRoute('init');
 
             //  -----  Reemplazar el estado del historial con la ruta inicial para evitar duplicados en el historial  -----
             history.replaceState(
@@ -281,6 +297,12 @@ export const spaLoaderContentHtml = (options = {}) => {
         if (routeCache.has(file))
             return routeCache.get(file);
 
+        //  -----  Si el módulo ya falló anteriormente, no reintentar el import() para evitar ciclos de error repetidos  -----
+        if (brokenRouteModules.has(file)) {
+            console.warn(`⚠️ Módulo de ruta previamente roto, se omite reimport: ${file}`);
+            return undefined;
+        }
+
         try {
 
             /** - `URL completa del módulo de ruta para import()` */
@@ -302,6 +324,10 @@ export const spaLoaderContentHtml = (options = {}) => {
 
         } catch (e) {
             console.error(`❌ Error importando módulo de ruta: ${file}`, e);
+
+            //  -----  Registrar el módulo como roto para no reintentar import() en futuras navegaciones  -----
+            brokenRouteModules.add(file);
+
             return undefined;
         }
 
@@ -341,11 +367,12 @@ export const spaLoaderContentHtml = (options = {}) => {
      * -----  `loadNotFoundRoute(source)`  -----
      * -----------------------------------------
      * - Carga la ruta 404 dinámicamente desde el manifest.
+     * @async
      * @param {'init'|'click'|'popstate'} source - Origen del intento de carga de ruta (para logging y eventos).
-     * @returns {void} - No devuelve nada, pero carga la ruta 404 o notifica error si no está configurada, evitando bloqueos del loader.
+     * @returns {Promise<void>} - No devuelve nada, pero carga la ruta 404 o notifica error si no está configurada, evitando bloqueos del loader.
      */
 
-    const loadNotFoundRoute = (source) => {
+    const loadNotFoundRoute = async (source) => {
 
         /** Entrada 404 encontrada en el manifest, si existe. */
         const entry404 = findNotFoundRoute();
@@ -360,8 +387,10 @@ export const spaLoaderContentHtml = (options = {}) => {
             return;
         }
 
-        //  -----  Importar dinámicamente el módulo de la ruta 404 y cargar su contenido  -----
-        loadRouteModule(entry404.file).then((route) => {
+        try {
+
+            //  -----  Importar dinámicamente el módulo de la ruta 404 y cargar su contenido  -----
+            const route = await loadRouteModule(entry404.file);
 
             //  -----  Si se pudo importar la ruta 404, cargar su contenido  -----
             if (route)
@@ -371,9 +400,10 @@ export const spaLoaderContentHtml = (options = {}) => {
             else
                 notifyRouteLoadError(undefined, new Error('No se pudo importar la ruta 404.'), source);
 
-        }).catch(() => {
+        } catch (e) {
+
             notifyRouteLoadError(undefined, new Error('Error importando ruta 404.'), source);
-        });
+        }
 
     };
 
@@ -392,37 +422,87 @@ export const spaLoaderContentHtml = (options = {}) => {
      * -----  `loadContent(route)`  -----
      * ----------------------------------
      * - `Función para cargar el contenido de una ruta específica`
-     * - Si el navegador soporta View Transitions, se usa para una transición suave.
-     * - Si no, se carga directamente el contenido.
-    * @param {Route} route - Ruta cuya contenido se va a cargar.
-     * @returns {void} - No devuelve nada, pero carga el contenido de la ruta o notifica error si falla.
+     * - Estrategia en 3 fases para soportar View Transitions sin TimeoutError:
+     *     1) Precargar TODO el HTML con fetch() FUERA de la transición (async).
+     *     2) Mutar el DOM DENTRO de `document.startViewTransition` con un callback SÍNCRONO
+     *        (solo innerHTML/estilos), de modo que Chrome no aborta la animación por timeout.
+     *     3) Cargar los scripts dinámicos DESPUÉS de la transición (necesitan el DOM ya mutado).
+     * - Si el navegador no soporta View Transitions, la mutación se aplica directamente.
+     * @param {Route} route - Ruta cuyo contenido se va a cargar.
+     * @returns {Promise<void>} - Promesa que se resuelve al terminar la carga; notifica error si falla.
      */
+    const loadContent = async (route) => {
 
-    const loadContent = (route) => {
-
-        /** @type {Promise<void>} - `Promesa de carga del contenido de la ruta` */
-        let loadPromise;
-
-        //  -----  Si el navegador soporta View Transitions, se usa para una transición suave  -----
-        if (document.startViewTransition) {
-
-            /** Inicia una transicion de vista y ejecuta la carga del DOM de la ruta. */
-            const viewTransition = document.startViewTransition(() => loadComponentDom(route));
-
-            //  -----  La promesa de carga se resuelve cuando la transición termina, o inmediatamente si no se puede usar la transición  -----
-            loadPromise = viewTransition?.finished || Promise.resolve();
+        //  -----  Guard de navegación: si ya hay una carga en curso, abortarla para evitar race conditions ante clics rápidos  -----
+        if (isNavigating && activeNavigationAbort) {
+            activeNavigationAbort.abort();
         }
 
-        //  -----  Si no, se carga directamente el contenido  -----
-        else
+        //  -----  Crear un nuevo AbortController para esta navegación y marcar como navegando  -----
+        activeNavigationAbort = new AbortController();
+        const signal = activeNavigationAbort.signal;
+        isNavigating = true;
 
-            //  -----  Cargar el contenido de la ruta sin transición  -----
-            loadPromise = loadComponentDom(route);
+        try {
 
-        //  -----  Manejo de errores en la carga del contenido para notificar y evitar bloqueos del loader  -----
-        Promise.resolve(loadPromise).catch((error) => {
+            //  -----  Validación  -----
+            if (!route)
+                throw new Error('Ruta inválida');
+
+            //  ============================================================================================
+            //  -----  FASE 1: Precargar TODO el contenido asíncrono (fetch) FUERA de la View Transition   -----
+            //  -----  Así el callback de startViewTransition será síncrono y Chrome no aborta por timeout   -----
+            //  ============================================================================================
+            const payload = await preloadRouteContent(route, signal);
+
+            //  ============================================================================================
+            //  -----  FASE 2: Mutar el DOM DENTRO de la View Transition (callback síncrono)               -----
+            //  -----  Las mutaciones (innerHTML, display, navbar, metadatos síncronos) son instantáneas    -----
+            //  ============================================================================================
+
+            /** - `Callback síncrono que aplica todo el contenido precargado de golpe al DOM` */
+            const mutate = () => applyPreloadedContent(payload, route);
+
+            if (document.startViewTransition) {
+
+                //  -----  Iniciar la View Transition con el callback síncrono de mutación del DOM  -----
+                const viewTransition = document.startViewTransition(() => mutate());
+
+                //  -----  Esperar a que termine la animación; capturar rechazos (ej. interrupción por nueva navegación) para que no salten como errores no capturados  -----
+                await viewTransition.finished.catch(() => { });
+
+            } else {
+
+                //  -----  Sin soporte de View Transitions: mutar directamente el DOM  -----
+                mutate();
+            }
+
+            //  ============================================================================================
+            //  -----  FASE 3: Cargar scripts asíncronos DESPUÉS de la transición                          -----
+            //  -----  Los scripts necesitan el DOM ya mutado (contenedores inyectados) para funcionar     -----
+            //  ============================================================================================
+            await applyRouteMetaAsync(route);
+
+            //  -----  Notificar fin de carga de ruta para el loader inicial y listeners externos  -----
+            notifyRouteLoaded(route);
+
+        } catch (error) {
+
+            //  -----  Si la carga fue abortada por una nueva navegación, no notificar error: es una cancelación intencional  -----
+            if (error instanceof DOMException && error.name === 'AbortError') {
+                console.info(`⏭️ Navegación abortada por una nueva navegación: ${route?.id || '(sin id)'}`);
+                return;
+            }
+
+            //  -----  Notificar error de carga para desbloquear el loader y permitir fallback  -----
             notifyRouteLoadError(route, error, 'loadContent');
-        });
+
+        } finally {
+
+            //  -----  Liberar el flag de navegación y el controller al terminar (o ser abortado)  -----
+            isNavigating = false;
+            activeNavigationAbort = null;
+        }
 
     };
 
@@ -515,110 +595,289 @@ export const spaLoaderContentHtml = (options = {}) => {
 
 
     /**
-     * ---------------------------------------
-     * -----  `loadComponentDom(route)`  -----
-     * ---------------------------------------
+     * ---------------------------------------------
+     * -----  `fetchHtmlContent(url, signal)`  -----
+     * ---------------------------------------------
      * @async
-     * - Carga TODO el contenido de la ruta (componentes, título, favicon, css, scripts)
-     * - usando únicamente async/await (sin new Promise ni then/catch)
-    * @param {Route} route - Ruta de la cual cargar el contenido en el DOM (componentes, metadatos, etc.)
-     * @returns {Promise<void>} - Promesa que se resuelve cuando el contenido de la ruta se ha cargado completamente en el DOM, 
-     *   o se ha manejado un error para evitar bloqueos del loader.
+     * - `Descarga HTML por fetch y lo devuelve como string (con URLs reescritas) SIN tocar el DOM.`
+     * - `Forma parte de la FASE 1 (precarga) del flujo con View Transition.`
+     * - `En caso de error devuelve un HTML con mensaje preciso (HTTP vs red) para inyectar después.`
+     * @param {string} url - URL del archivo HTML a descargar.
+     * @param {AbortSignal} [signal] - `Señal para abortar el fetch si una nueva navegación lo cancela.`
+     * @returns {Promise<string>} - HTML listo para inyectar (reescrito) o HTML de error.
      */
+    const fetchHtmlContent = async (url, signal) => {
 
-    const loadComponentDom = async (route) => {
+        //  -----  Intentar cargar el contenido HTML con fetch y devolverlo como string (sin tocar el DOM)  -----
+        try {
 
-        //  -----  Validación  -----
-        if (!route)
-            throw new Error('Ruta inválida');
+            /** - `Respuesta del fetch` */
+            const res = await fetch(url, { signal });
 
-        //  -----  Caso ruta sin components  -----
-        if (!route.components || Object.keys(route.components).length === 0) {
+            //  -----  Si la respuesta no es OK, lanzar error con código HTTP para distinguirlo de errores de red  -----
+            if (!res.ok)
+                throw new Error(`HTTP ${res.status} ${res.statusText}`);
+
+            /** - `Contenido HTML como texto` */
+            const html = await res.text();
+
+            //  -----  Reescribir URLs de recursos en el HTML inyectado para evitar roturas en SPA  -----
+            return rewriteInjectedHtmlUrls(html, url);
+
+        } catch (e) {
+
+            //  -----  Si el fetch fue abortado por una nueva navegación, propagar para cancelar toda la carga  -----
+            if (e instanceof DOMException && e.name === 'AbortError')
+                throw e;
+
+            //  -----  Distinguir error HTTP (respuesta recibida con código de error) de error de red (sin respuesta)  -----
+            const isHttpError = e instanceof Error && /^HTTP \d/.test(e.message);
+
+            console.error(`❌ Error al cargar ${url}:`, e);
+
+            //  -----  Devolver HTML de error (mensaje preciso) para inyectar en el contenedor en la fase de mutación  -----
+            return isHttpError
+                ? `<p>${e.message} — No se pudo cargar el contenido.</p>`
+                : `<p>Error de red: no se pudo conectar con ${url}.</p>`;
+        }
+
+    };
+
+
+
+    /**
+     * ---------------------------------------------
+     * -----  `preloadRouteContent(route, signal)`  -----
+     * ---------------------------------------------
+     * @async
+     * - `FASE 1 del flujo con View Transition: descarga (fetch) TODO el HTML asíncrono de la ruta`
+     * - `SIN tocar el DOM, y devuelve un payload con el contenido listo para inyectar de golpe.`
+     * - `Componentes del DOM (route.components), page components (route.pagesComponents) y Markdown Shiki (route.MarkdownShikiHtml).`
+     * @param {Route} route - Ruta cuyo contenido se va a precargar.
+     * @param {AbortSignal} [signal] - `Señal para abortar los fetchs si una nueva navegación los cancela.`
+     * @returns {Promise<{
+     *   components: Array<{el: HTMLElement, html: string} | {el: HTMLElement, hide: true}>,
+     *   hasComponents: boolean,
+     *   pageComponents: Array<{target: string, html: string}>,
+     *   markdownShiki: Array<{target: string, html: string}>
+     * }>} - Payload con el contenido precargado.
+     */
+    const preloadRouteContent = async (route, signal) => {
+
+        /** @type {{
+         *   components: Array<{el: HTMLElement, html: string} | {el: HTMLElement, hide: true}>,
+         *   hasComponents: boolean,
+         *   pageComponents: Array<{target: string, html: string}>,
+         *   markdownShiki: Array<{target: string, html: string}>
+         * }} */
+        const payload = {
+            components: [],
+            hasComponents: !!(route.components && Object.keys(route.components).length > 0),
+            pageComponents: [],
+            markdownShiki: [],
+        };
+
+
+        //  -----  Precargar componentes del DOM (route.components)  -----
+        //  -----  Sus contenedores (layoutHeader, layoutNavbar, layoutMain, layoutFooter) SÍ existen ya en el DOM,  -----
+        //  -----  así que se resuelve el elemento real para inyectar en la fase de mutación.                          -----
+        if (payload.hasComponents) {
+
+            for (const [selector, url] of Object.entries(route.components)) {
+
+                /** @type {HTMLElement|null} - `Contenedor (selector se trata como id sin #)` */
+                const el = document.getElementById(selector);
+
+                //  -----  Si el contenedor NO existe, avisar y omitir  -----
+                if (!el) {
+                    console.warn(`⚠️ Contenedor no encontrado para selector: #${selector} — se omite.`);
+                    continue;
+                }
+
+                //  -----  Si no hay url → marcar para ocultar (sin fetch)  -----
+                if (!url) {
+                    console.warn(`⏭️ Componente "${selector}" ignorado (url undefined). Se ocultará.`);
+                    payload.components.push({ el, hide: true });
+                    continue;
+                }
+
+                //  -----  Precargar el HTML del componente (fetch + rewrite) sin tocar el DOM  -----
+                const html = await fetchHtmlContent(url, signal);
+                payload.components.push({ el, html });
+            }
+
+        } else {
 
             console.warn(`La ruta '${route.id}' no contiene 'components'`);
-
-            //  -----  Aplicar metadatos de la ruta incluso si no hay componentes para cargar, para asegurar que título, favicon, etc. se actualicen correctamente  -----
-            await applyRouteMeta(route);
-
-            //  -----  Notificar fin de carga de ruta para el loader inicial y listeners externos incluso si no hay componentes,  -----
-            //  -----  para asegurar que el loader se desbloquee y los listeners se notifiquen correctamente                      -----
-            notifyRouteLoaded(route);
-
-            //  -----  Renderizar componentes de página (pagesComponents) aunque la ruta no defina 'components'  -----
-            await renderPageComponents(route);
-
-            return;
         }
 
 
-        /*
-            ----------------------------------------
-            -----  Cargar componentes del DOM  -----
-            ----------------------------------------
-        */
+        //  -----  Precargar page components (route.pagesComponents)  -----
+        //  -----  OJO: sus contenedores destino (p.ej. [data-component-page="htmlPage"]) viven DENTRO  -----
+        //  -----  del HTML de los componentes principales, que aún NO se ha inyectado. Por eso aquí solo  -----
+        //  -----  hacemos fetch y guardamos el selector como string; el contenedor se resuelve en la      -----
+        //  -----  fase de mutación (applyPreloadedContent), tras inyectar los componentes principales.    -----
+        if (route.pagesComponents && Array.isArray(route.pagesComponents)) {
 
-        //  -----  Iterar sobre cada componente definido en la ruta (selector y URL)  -----
-        for (const [selector, url] of Object.entries(route.components)) {
+            for (const entry of route.pagesComponents) {
 
+                /** @type {string|undefined} - URL del componente de página */
+                const url = entry?.url;
 
-            /** @type {HTMLElement|null} - `Elemento contenedor del componente`,  `Obtener elemento (selector se trata como id sin #)` */
-            const el = document.getElementById(selector);
+                /** @type {string|undefined} - Selector CSS del contenedor destino */
+                const target = entry?.target;
 
-            //  -----  Si el contenedor NO existe simplemente avisamos  -----
-            if (!el) {
-                console.warn(`⚠️ Contenedor no encontrado para selector: #${selector} — se omite.`);
-                continue;
+                //  -----  Validación de la entrada: debe tener url y target  -----
+                if (!url || !target) {
+                    console.warn('⚠️ Entrada pagesComponents incompleta (falta url o target). Se omite.');
+                    continue;
+                }
+
+                //  -----  Precargar el HTML (fetch + rewrite) sin resolver ni tocar el contenedor  -----
+                const html = await fetchHtmlContent(url, signal);
+                payload.pageComponents.push({ target, html });
             }
-
-
-            //  -----  Evitar fetch(undefined) → ocultar contenedor si undefined  -----
-            if (!url) {
-
-                console.log('\n');
-                console.warn(`⏭️ Componente "${selector}" ignorado (url undefined). Ocultando contenedor.`);
-                console.log('\n');
-
-                //  -----  Ocultar contenedor y limpiar contenido para evitar fetch con URL inválida  -----
-                el.style.display = 'none';
-                el.innerHTML = '';
-
-                continue;
-            }
-
-
-            //  -----  Si hay url → restaurar visibilidad antes de cargar  -----
-            el.style.display = '';
-
-            //*  -----  Cargar contenido HTML del componente en el contenedor correspondiente  -----
-            await fetchHTML(url, selector);
-
         }
 
 
-        //  -----  Inicializar acciones del navbar  --------------------------
-        //  -----  proteger de errores si navbar no existe en esta ruta  -----
+        //  -----  Precargar Markdown Shiki (route.MarkdownShikiHtml)  -----
+        //  -----  OJO: sus contenedores destino (p.ej. [data-shiki="codeHtml"]) viven DENTRO del HTML  -----
+        //  -----  de los page components (o de los componentes principales), que aún NO se ha inyectado.  -----
+        //  -----  Aquí solo hacemos fetch y guardamos el selector; se resuelve en la fase de mutación,    -----
+        //  -----  tras inyectar componentes principales y page components.                                 -----
+        if (route.MarkdownShikiHtml && Array.isArray(route.MarkdownShikiHtml)) {
+
+            for (const entry of route.MarkdownShikiHtml) {
+
+                /** @type {string|undefined} - URL del archivo Shiki */
+                const url = entry?.url;
+
+                /** @type {string|undefined} - Selector CSS del contenedor destino */
+                const target = entry?.target;
+
+                if (!url || !target)
+                    continue;
+
+                try {
+
+                    //  -----  Precargar el HTML del archivo Shiki (fetch) sin resolver ni tocar el contenedor  -----
+                    const html = await fetch(url, { signal }).then(r => r.text());
+                    payload.markdownShiki.push({ target, html });
+
+                } catch (e) {
+
+                    //  -----  Si fue abortado por nueva navegación, propagar para cancelar la carga  -----
+                    if (e instanceof DOMException && e.name === 'AbortError')
+                        throw e;
+
+                    console.error(`❌ Error cargando archivo Shiki: ${url}`, e);
+                }
+            }
+        }
+
+
+        return payload;
+
+    };
+
+
+
+    /**
+     * ---------------------------------------------
+     * -----  `applyPreloadedContent(payload, route)`  -----
+     * ---------------------------------------------
+     * - `FASE 2 del flujo con View Transition: aplica el payload precargado al DOM de forma SÍNCRONA.`
+     * - `Diseñada para ejecutarse dentro del callback de document.startViewTransition,`
+     * - `por lo que NO realiza ningún fetch ni await: solo innerHTML/estilos/acciones síncronas.`
+     * - `Inyecta en ORDEN DE DEPENDENCIA para que los contenedores anidados existan antes de usarse:`
+     *     1) Componentes principales (layoutHeader/layoutNavbar/layoutMain/layoutFooter) → sus contenedores ya están en el DOM.
+     *     2) Page components (target p.ej. [data-component-page="htmlPage"]) → viven DENTRO del HTML de (1), se resuelven tras inyectar (1).
+     *     3) Markdown Shiki (target p.ej. [data-shiki="codeHtml"]) → viven DENTRO del HTML de (2), se resuelven tras inyectar (2).
+     * - `Ejecuta también los metadatos síncronos (título, favicon, pushState, headerTitle, estilos).`
+     * @param {{ components: Array<{el: HTMLElement, html: string} | {el: HTMLElement, hide: true}>, pageComponents: Array<{target: string, html: string}>, markdownShiki: Array<{target: string, html: string}> }} payload - Contenido precargado por preloadRouteContent.
+     * @param {Route} route - Ruta cuyos metadatos síncronos se aplican.
+     * @returns {void}
+     */
+
+    const applyPreloadedContent = (payload, route) => {
+
+        /**
+         * - `Resuelve un selector a elemento del DOM.`
+         * - `Acepta un selector CSS completo (empieza por '[', '.' o '#') o un id sin '#' (retrocompatibilidad).`
+         * @param {string} target - Selector CSS o id sin '#'
+         * @returns {HTMLElement|null}
+         */
+        const resolveContainer = (target) =>
+            (typeof target === 'string' && /^[.\[#]/.test(target))
+                ? document.querySelector(target)
+                : document.querySelector(`#${target}`);
+
+
+        //  -----  (1) Inyectar componentes principales (síncrono)  -----
+        //  -----  Sus contenedores son elementos del layout ya presentes en el DOM.  -----
+        for (const item of payload.components) {
+
+            //  -----  Componente sin url → ocultar contenedor y limpiar  -----
+            if ('hide' in item && item.hide) {
+                item.el.style.display = 'none';
+                item.el.innerHTML = '';
+                continue;
+            }
+
+            //  -----  Restaurar visibilidad y volcar el HTML precargado  -----
+            item.el.style.display = '';
+            item.el.innerHTML = item.html;
+        }
+
+
+        //  -----  Inicializar acciones del navbar (síncrono, protegido si no existe en la vista)  -----
         try {
 
             actionsNavbar();
 
         } catch (e) {
 
-            console.log('\n');
             console.warn('⚠️ actionsNavbar falló (probablemente falta .navbar__container en la vista):', e);
-            console.log('\n');
         }
 
 
-        //  -----  Aplicar metadatos de la ruta  -----
-        await applyRouteMeta(route);
+        //  -----  (2) Inyectar page components (síncrono)  -----
+        //  -----  Ahora los contenedores destino (que vivían dentro del HTML de los componentes) ya existen en el DOM.  -----
+        for (const { target, html } of payload.pageComponents) {
 
-        //  -----  Renderizar componentes de página (pagesComponents) dentro de la vista ya cargada  -----
-        await renderPageComponents(route);
+            /** @type {HTMLElement|null} - `Contenedor destino resuelto tras inyectar los componentes principales` */
+            const container = resolveContainer(target);
 
-        //  -----  Notificar fin de carga de ruta para el loader inicial y listeners externos  -----
-        notifyRouteLoaded(route);
+            if (!container) {
+                console.warn(`⚠️ Contenedor no encontrado para pageComponent: ${target} — se omite.`);
+                continue;
+            }
 
-    }
+            container.style.display = '';
+            container.innerHTML = html;
+        }
+
+
+        //  -----  (3) Inyectar Markdown Shiki (síncrono)  -----
+        //  -----  Ahora los contenedores [data-shiki="..."] (que vivían dentro del HTML de los page components) ya existen en el DOM.  -----
+        for (const { target, html } of payload.markdownShiki) {
+
+            /** @type {HTMLElement|null} - `Contenedor destino resuelto tras inyectar los page components` */
+            const container = resolveContainer(target);
+
+            if (!container) {
+                console.warn(`⚠️ Contenedor no encontrado para Markdown Shiki: ${target} — se omite.`);
+                continue;
+            }
+
+            container.innerHTML = html;
+        }
+
+
+        //  -----  Aplicar metadatos síncronos (título, favicon, pushState, headerTitle, estilos)  -----
+        applyRouteMetaSync(route);
+
+    };
 
 
 
@@ -777,96 +1036,28 @@ export const spaLoaderContentHtml = (options = {}) => {
 
     /*
         *  -----------------------------------------------------------------------------  *
-        *  -----  Función para cargar contenido HTML dinámicamente en un selector  -----  *
-        *  -----  específico y Metadatos de la Ruta (título, favicon, CSS, JS)      ----  *
+        *  -----  Metadatos de la Ruta (título, favicon, CSS, JS)                   ----  *
+        *  -----  Ver applyRouteMetaSync (fase de mutación) y applyRouteMetaAsync   ----  *
+        *  -----  (fase de scripts, tras la View Transition)                        ----  *
         *  -----------------------------------------------------------------------------  *
     */
 
 
-    /**
-     * ----------------------------------------
-     * -----  `fetchHTML(url, selector)`  -----
-     * ----------------------------------------
-     * @async
-     * - `Carga contenido HTML en un selector específico`
-     * @param {string|undefined} url - URL del archivo HTML
-     * @param {string} selector - Selector CSS de destino. Se acepta tanto un ID sin `#` (p.ej. `'layoutMain'`, por retrocompatibilidad) como un selector CSS completo (p.ej. `'[data-component-page="htmlPage"]'` o `'.my-class'`).
-     * @returns {Promise<void>} - Promesa que se resuelve cuando el contenido se ha cargado o se ha manejado un error
-     * 
-     */
-
-    const fetchHTML = async (url, selector) => {
-
-
-        /**
-         * @type {HTMLElement|null} - `Referencia al contenedor donde se cargará el HTML`
-         * - `Si el selector es un ID sin '#' (formato legacy) se resuelve como '#selector'.`
-         * - `Si ya es un selector CSS (empieza por '[', '.' o '#') se usa tal cual.`
-         */
-        const el = (typeof selector === 'string' && /^[.\[#]/.test(selector))
-            ? document.querySelector(selector)
-            : document.querySelector(`#${selector}`);
-
-        //  -----  Si el contenedor NO existe simplemente avisamos  -----
-        if (!el) {
-            console.warn(`⚠️ No existe el elemento #${selector}`);
-            return;
-        }
-
-        // -----  Si la URL es undefined → ocultar contenedor y salir  -----
-        if (!url) {
-            console.info(`⏭️ ${selector} omitido (URL undefined). Ocultando contenedor.`);
-            el.style.display = "none";
-            el.innerHTML = "";
-            return;
-        }
-
-
-        //*  -----  Si hay URL ==> aseguramos que el contenedor esté visible  -----
-
-        //  -----  para restaurar estado si antes estaba oculto  -----
-        el.style.display = "";
-
-        //  -----  Intentar cargar el contenido HTML con fetch y manejar errores para mostrar mensaje en el contenedor  -----
-        try {
-
-            /** - `Respuesta del fetch` */
-            const res = await fetch(url);
-
-            //  -----  Si la respuesta no es OK, lanzar error para manejarlo en el catch  -----
-            if (!res.ok)
-                throw new Error(res.statusText);
-
-            /** - `Contenido HTML como texto` */
-            const html = await res.text();
-            
-            //  -----  Reescribir URLs de recursos en el HTML inyectado para evitar roturas en SPA  -----
-            el.innerHTML = rewriteInjectedHtmlUrls(html, url);
-
-        } catch (e) {
-
-            console.error(`❌ Error al cargar ${url}:`, e);
-
-            //  -----  Mostrar mensaje de error en el contenedor para informar al usuario  -----
-            el.innerHTML = `<p>Error 404: No se pudo cargar el contenido.</p>`;
-        }
-
-    }
 
 
 
     /**
-     * -------------------------------------
-     * -----  `applyRouteMeta(route)`  -----
-     * -------------------------------------
-     * @async
-     * - `Función para aplicar metadatos de la ruta (título, favicon, URL, etc.)`
-     * @param {Route} route - Ruta de la cual aplicar los metadatos en el DOM (título, favicon, headerTitle, CSS, scripts, etc.)
-     * @returns {Promise<void>} - Promesa que se resuelve cuando los metadatos de la ruta se han aplicado completamente en el DOM,
+     * ------------------------------------------
+     * -----  `applyRouteMetaSync(route)`  -----
+     * ------------------------------------------
+     * - `Aplica los metadatos SÍNCRONOS de la ruta (título, favicon, pushState, headerTitle, estilos).`
+     * - `Pensada para ejecutarse DENTRO del callback síncrono de document.startViewTransition.`
+     * - `NO incluye Markdown Shiki (se inyecta en la fase de mutación) ni scripts (carga async, fase 3).`
+     * @param {Route} route - Ruta de la cual aplicar los metadatos síncronos en el DOM.
+     * @returns {void}
      */
 
-    const applyRouteMeta = async (route) => {
-
+    const applyRouteMetaSync = (route) => {
 
         //  -----  Actualizar título  -----
         if (route.pageTitle)
@@ -908,8 +1099,21 @@ export const spaLoaderContentHtml = (options = {}) => {
         if (route.styles)
             loadStylesheetsByPage(route.styles);
 
-        //  -----  Cargar renderizado de Markdown Shiki  -----
-        await renderMarkdownShiki(route);
+    };
+
+
+
+    /**
+     * -------------------------------------------
+     * -----  `applyRouteMetaAsync(route)`  -----
+     * -------------------------------------------
+     * @async
+     * - `Carga los scripts dinámicos de la ruta de forma secuencial (FASE 3, después de la View Transition).`
+     * - `Los scripts necesitan el DOM ya mutado (contenedores y page components inyectados) para funcionar.`
+     * @param {Route} route - Ruta cuyos scripts se van a cargar.
+     * @returns {Promise<void>} - Promesa que se resuelve cuando todos los scripts se han cargado.
+     */
+    const applyRouteMetaAsync = async (route) => {
 
         //  -----  Cargar scripts dinámicos  -----
         if (route.scripts) {
@@ -1052,7 +1256,7 @@ export const spaLoaderContentHtml = (options = {}) => {
         /** @type {HTMLElement|null} * - `Referencias a los elementos del navbar` */
         const navbar = document.querySelector('.navbar__container');
 
-        //  -----  Si no se encuentra el navbar, lanzamos un error para que se capture y se loguee en loadComponentDom sin romper el flujo global  -----
+        //  -----  Si no se encuentra el navbar, lanzamos un error para que se capture y se loguee en applyPreloadedContent sin romper el flujo global  -----
         if (!navbar)
             throw new Error("❌ No se encontró el elemento .navbar__container");
 
@@ -1060,7 +1264,7 @@ export const spaLoaderContentHtml = (options = {}) => {
         /** @type {HTMLElement|null}  - `Referencias a los botones de abrir/cerrar menú` */
         const btnOpen = document.querySelector('.navbar__btn-open');
 
-        //  -----  Si no se encuentra el botón de abrir menú, lanzamos un error para que se capture y se loguee en loadComponentDom sin romper el flujo global  -----
+        //  -----  Si no se encuentra el botón de abrir menú, lanzamos un error para que se capture y se loguee en applyPreloadedContent sin romper el flujo global  -----
         if (!btnOpen)
             throw new Error("❌ No se encontró el elemento .navbar__btn-open");
 
@@ -1068,7 +1272,7 @@ export const spaLoaderContentHtml = (options = {}) => {
         /** @type {HTMLElement|null} - `Referencias al botón de cerrar menú` */
         const btnClose = document.querySelector('.navbar__btn-close');
 
-        //  -----  Si no se encuentra el botón de cerrar menú, lanzamos un error para que se capture y se loguee en loadComponentDom sin romper el flujo global  -----
+        //  -----  Si no se encuentra el botón de cerrar menú, lanzamos un error para que se capture y se loguee en applyPreloadedContent sin romper el flujo global  -----
         if (!btnClose)
             throw new Error("❌ No se encontró el elemento .navbar__btn-close");
 
@@ -1540,127 +1744,13 @@ export const spaLoaderContentHtml = (options = {}) => {
 
 
     /*
-        *  -------------------------------------------  *
-        *  -----  Renderizado de Markdown Shiki  -----  *
-        *  -------------------------------------------  *
+        *  ----------------------------------------------------------------  *
+        *  -----  Renderizado de Markdown Shiki y Page Components          --  *
+        *  -----  Su lógica se movió a preloadRouteContent (FASE 1, fetch)  --  *
+        *  -----  y applyPreloadedContent (FASE 2, inyección síncrona)     --  *
+        *  -----  del flujo con View Transition.                           --  *
+        *  ----------------------------------------------------------------  *
     */
-
-
-    /**
-     * -----------------------------------
-     * -----  `renderMarkdownShiki`  -----
-     * -----------------------------------
-     * - `Función para renderizar archivos html Markdown Shiki en la vista`
-     * @param {Route} route
-     * @returns {Promise<void>}
-     */
-
-    const renderMarkdownShiki = async (route) => {
-
-        //  -----  Validación (caso válido: la mayoría de rutas no tienen código que mostrar)  -----
-        if (!route.MarkdownShikiHtml || !Array.isArray(route.MarkdownShikiHtml)) {
-            return;
-        }
-
-        //  -----  Cargar cada entrada Shiki  -----
-        for (const entry of route.MarkdownShikiHtml) {
-
-            /**
-             * Cada entrada es un objeto  { url: string, target: string }
-             * donde target es un selector CSS del contenedor destino.
-             */
-            /** @type {string} */
-            const url = entry.url;
-
-            /** @type {string} */
-            const target = entry.target;
-
-            try {
-
-                /**
-                 * - `Contenido HTML del archivo Shiki` 
-                 * @type {string}
-                 */
-                const html = await fetch(url).then(r => r.text());
-
-                /**
-                 * - `Contenedor donde se insertará el HTML` 
-                 * @type {HTMLElement|null}
-                 */
-                const container = document.querySelector(target);
-
-                if (!container) {
-                    console.warn(`❌ No se encontró contenedor para: ${url}`);
-                    continue;
-                }
-
-                //  -----  Insertar el HTML renderizado de Shiki en el contenedor destino  -----
-                container.innerHTML = html;
-
-            } catch (error) {
-                console.error(`❌ Error cargando archivo Shiki: ${url}`, error);
-            }
-        }
-
-    }
-
-
-
-    /*
-        *  --------------------------------------------  *
-        *  -----  Renderizado de Page Components  -----  *
-        *  --------------------------------------------  *
-    */
-
-
-    /**
-     * -------------------------------------------
-     * -----  `renderPageComponents(route)`  -----
-     * -------------------------------------------
-     * @async
-     * - `Función para renderizar componentes HTML dentro de cada página`
-     * - `Carga cada componente definido en 'route.pagesComponents' en su contenedor destino (selector CSS),`
-     *   `delegando la inyección en 'fetchHTML' para mantener el mismo comportamiento que los componentes del DOM.`
-     * - `Permite renderizar más de un componente por página (la ruta puede definir un array de entradas).`
-     * @param {Route} route - Ruta de la cual cargar los componentes de página.
-     * @returns {Promise<void>} - Promesa que se resuelve cuando todos los componentes de página se han renderizado (o se han omitido/amaiado errores).
-     */
-
-    const renderPageComponents = async (route) => {
-
-        //  -----  Validación (caso válido: la mayoría de rutas no definen pagesComponents)  -----
-        if (!route.pagesComponents || !Array.isArray(route.pagesComponents)) {
-            return;
-        }
-
-        //  -----  Renderizar cada componente de página en su contenedor destino  -----
-        for (const entry of route.pagesComponents) {
-
-            /**
-             * Cada entrada es un objeto { url: string, target: string }
-             * donde target es un selector CSS del contenedor destino (p.ej. '[data-component-page="htmlPage"]').
-             */
-
-            
-            /** @type {string|undefined} - URL del componente de página */
-            const url = entry?.url;
-
-            /** @type {string|undefined} - Selector CSS del contenedor destino */
-            const target = entry?.target;
-
-            //  -----  Validación de la entrada: debe tener url y target  -----
-            if (!url || !target) {
-                console.warn('⚠️ Entrada pagesComponents incompleta (falta url o target). Se omite.');
-                continue;
-            }
-
-            //  -----  Cargar el componente HTML en el contenedor destino usando fetchHTML  -----
-            //  -----  (mismo renderizado que los componentes del DOM: visibility, inyección y manejo de errores)  -----
-            await fetchHTML(url, target);
-
-        }
-
-    }
 
 
 

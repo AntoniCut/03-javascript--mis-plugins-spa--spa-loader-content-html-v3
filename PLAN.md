@@ -33,15 +33,24 @@
 ## Cambios aplicados a v3.1
 
 ### Core (portados de 02-javascript)
-- [x] **1.** `loadContent` → `async` con `try/await/catch`, sin View Transition.
+- [x] **1.** `loadContent` → `async` con `try/await/catch` (originalmente sin View Transition; restaurada después, ver sección "View Transition" abajo).
 - [x] **2.** `loadComponentDom` (rama sin components): orden `renderPageComponents` → `applyRouteMeta` → `notifyRouteLoaded`.
 - [x] **3.** `loadComponentDom` (rama principal): orden navbar → `renderPageComponents` → `applyRouteMeta` → `notifyRouteLoaded`.
 
 ### Mejoras adicionales (A–D)
 - [x] **A.** `init()` y `loadNotFoundRoute` migrados de `.then()/.catch()` a `async/await` por consistencia con el resto del plugin.
-- [x] **B.** Guard de navegación: flag `isNavigating` + `AbortController` para abortar fetchs previos ante clics rápidos (evita race conditions). La señal se propaga `loadContent` → `loadComponentDom` → `fetchHTML`.
-- [x] **C.** `fetchHTML`: mensaje de error preciso. Distingue error HTTP (`HTTP <status> <statusText>`) de error de red (`Error de red: no se pudo conectar...`). Los `AbortError` (cancelación por nueva navegación) se ignoran sin mostrar error.
+- [x] **B.** Guard de navegación: flag `isNavigating` + `AbortController` para abortar fetchs previos ante clics rápidos (evita race conditions). La señal se propaga `loadContent` → `preloadRouteContent` → `fetchHtmlContent`.
+- [x] **C.** Mensaje de error preciso. Distingue error HTTP (`HTTP <status> <statusText>`) de error de red (`Error de red: no se pudo conectar...`). Los `AbortError` (cancelación por nueva navegación) se ignoran sin mostrar error.
 - [x] **D.** `loadRouteModule`: cachear fallos con un `Set<string>` (`brokenRouteModules`) para no reintentar `import()` repetidamente sobre rutas rotas.
+
+### View Transition (restaurada sin TimeoutError)
+- [x] **E.** Refactor a 3 fases para soportar `document.startViewTransition` sin que Chrome aborte por timeout:
+  - **FASE 1 — Precarga (async, fuera de la transición):** `preloadRouteContent` descarga (fetch) TODO el HTML de componentes, page components y Markdown Shiki SIN tocar el DOM.
+  - **FASE 2 — Mutación (síncrona, dentro de `startViewTransition`):** `applyPreloadedContent` inyecta el HTML precargado de golpe (solo `innerHTML`/estilos/navbar/metadatos síncronos). Al ser síncrona, la transición no hace timeout.
+  - **FASE 3 — Scripts (async, después de la transición):** `applyRouteMetaAsync` carga los scripts dinámicos (necesitan el DOM ya mutado).
+- [x] `applyRouteMeta` dividida en `applyRouteMetaSync` (título, favicon, pushState, headerTitle, estilos — va en FASE 2) y `applyRouteMetaAsync` (scripts — va en FASE 3).
+- [x] Eliminadas funciones huérfanas: `loadComponentDom`, `fetchHTML`, `renderPageComponents`, `renderMarkdownShiki` (su lógica se movió a las nuevas funciones de precarga/mutación).
+- [x] `viewTransition.finished.catch(() => {})` suprime rechazos de la animación (ej. interrupción por nueva navegación) para que no salten como errores no capturados.
 
 ### Cambio de cableado
 - [x] `src/spa/spa.js`: import redirigido de `v3/` a `v3.1/`.
@@ -55,4 +64,5 @@
 
 - `v3/` se conserva intacto como referencia/historial.
 - La señalización de aborto no cancela el `import()` dinámico de módulos de ruta (no soporta `AbortSignal`), solo los `fetch()` de componentes HTML.
-- Las mejoras B, C y D no estaban en 02-javascript; son nuevas en v3.1 y son candidatas a backport hacia 02-javascript si se desea unificar.
+- Las mejoras B, C, D y E no estaban en 02-javascript; son nuevas en v3.1 y son candidatas a backport hacia 02-javascript si se desea unificar.
+- Si el navegador no soporta View Transitions, la FASE 2 se aplica directamente (mismo resultado, sin animación).
